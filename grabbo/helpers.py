@@ -1,4 +1,4 @@
 import os
 
-def getfile(*args):
-    os.path.abspath(os.path.join(args))
+def getfile(*path):
+    os.path.abspath(os.path.join(*path))
