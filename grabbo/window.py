@@ -1,6 +1,6 @@
 from gi.repository import Gtk
 
-from builder import Builder
+from grabbo import Builder
 
 class Window(Builder, Gtk.Window):
     def __init__(self, content = Gtk.Box()):
