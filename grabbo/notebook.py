@@ -83,8 +83,9 @@ class Notebook(object):
                 self.tabs.remove_page(n)
                 del self
 
-        self.buttons_box.pack_start(temp().get(), True, True, True)
-        temp.get().show()
+        t = temp().get()
+        self.buttons_box.pack_start(t, True, True, True)
+        t.show()
 
 class Window(grabbo.Window):
     def __init__(self):
