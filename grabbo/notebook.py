@@ -37,7 +37,7 @@ Nbui = os.path.join("..", "ui", "Notebook.ui")
 class Notebook(grabbo.Builder):
     def __init__(self, addable = True, closeable = True, orientation = Gtk.Orientation.HORIZONTAL):
         super(Notebook, self).__init__(Nbui)
-        self.notebook = self.ui.get_object('Notebook')
+        self.notebook = Gtk.Notebook()
         self.buttons_box = self.ui.get_object("ButtonBox")
         self.add_button = self.ui.get_object("Add")
 
@@ -47,7 +47,7 @@ class Notebook(grabbo.Builder):
         self.get().show()
 
     def get(self):
-        return self.ui.get_object("box")
+        return self.ui.get_object("box2")
 
     def set_addable(self, addable):
         if not addable:
@@ -58,12 +58,18 @@ class Notebook(grabbo.Builder):
 
             if orientation == Gtk.Orientation.VERTICAL:
                 self.buttons_box.hide()
+                self.get().hide()
+                self.get().set_hexpand(False)
+                self.get().set_vexpand(True)
                 self.buttons_box.set_hexpand(False)
                 self.buttons_box.set_vexpand(True)
                 self.buttons_box.show()
 
             else:
                 self.buttons_box.hide()
+                self.get().hide()
+                self.get().set_hexpand(True)
+                self.get().set_vexpand(False)
                 self.buttons_box.set_hexpand(True)
                 self.buttons_box.set_vexpand(False)
                 self.buttons_box.show()
@@ -71,9 +77,11 @@ class Notebook(grabbo.Builder):
 class Window(grabbo.Window):
     def __init__(self):
         super(Window, self).__init__()
+        Box = Gtk.VBox()
         N = Notebook()
-        # N.tabs.append_page(Gtk.Label("Tab"), Gtk.Label("Content"))
-        self.add(N.get())
+        N.tabs.append_page(Gtk.Label("Tab"), Gtk.Label("Content"))
+        Box.add(N.get(), N.tabs)
+        self.add(Box)
         self.show()
 
 if __name__ == "__main__":
