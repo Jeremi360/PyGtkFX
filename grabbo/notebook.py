@@ -43,7 +43,7 @@ class Notebook(grabbo.Builder):
 
         for i in range(4):
             bt = _TabButton("Label")
-            b = Gtk.Button()
+            b = Gtk.Label("Content")
             b.show()
             self.pages.append_page(b, Gtk.Label("Tab " + str(i)))
             self.buttons_box.add(bt.get())
