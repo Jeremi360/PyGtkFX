@@ -8,3 +8,5 @@ If you won to use this your python apps will need:
 - Gtk and Webkit from gi repository:
    - Linux check your dist repos
    - [Windows](http://sourceforge.net/projects/pygobjectwin32/files/) - download "pygi-aio-*-setup.exe"
+
+You need to copy ui folder to your project.
