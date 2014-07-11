@@ -36,7 +36,7 @@ class _TabButton(grabbo.Builder):
 
     def on_close(self):
         self.notebook.pages.remove_page(self.num)
-        self.notebook.buttons_box.remove(self.button)
+        self.notebook.buttons_box.remove(self.get())
 
 Nbui = os.path.join("..", "ui", "Notebook.ui")
 
