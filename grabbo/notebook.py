@@ -57,6 +57,9 @@ class Notebook(grabbo.Builder):
     def get(self):
         return self.ui.get_object("box2")
 
+    def get_pages(self):
+        return self.pages
+
     def set_addable(self, addable):
         if not addable:
             self.add_button.hide()
