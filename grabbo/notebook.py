@@ -9,7 +9,7 @@ class _TabButton(grabbo.Builder):
     def __init__(self, title, closeable = True):
         super(_TabButton, self).__init__(tbui)
         self.button = self.ui.get_object("TabButton")
-        self.close = self.ui.get_object("close")
+        self.close = self.ui.get_object("Close")
 
         self.set_closeable(closeable)
         self.button.set_label(title)
