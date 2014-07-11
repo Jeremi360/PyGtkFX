@@ -5,7 +5,7 @@ import os
 
 TBui = os.path.join('..', 'ui', 'TabButton.ui')
 
-class _TabButton(grabbo.Builder):
+class TabButton(grabbo.Builder):
     def __init__(self, notebook, num, title, closeable = True):
         super(_TabButton, self).__init__(TBui)
         self.button = self.ui.get_object("TabButton")
