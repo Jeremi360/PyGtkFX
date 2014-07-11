@@ -91,7 +91,7 @@ class Window(grabbo.Window):
         Box.pack_end(N.pages, False, False, 0)
         self.add(Box)
         Box.show()
-        self.show()
+        self.show_all()
 
 if __name__ == "__main__":
     app = Window()
