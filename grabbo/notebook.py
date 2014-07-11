@@ -86,11 +86,12 @@ class Window(grabbo.Window):
         super(Window, self).__init__()
 
     def do_then_init(self):
-        self.content = Gtk.HBox()
+        c = Gtk.HBox()
         N = Notebook()
         N.add_tab()
-        self.content.pack_start(N.buttons_box, False, True, True)
-        self.content.pack_end(N.tabs, False, True, True)
+        c.pack_start(N.buttons_box, False, True, True)
+        c.pack_end(N.tabs, False, True, True)
+        self.content = c
         self.show_all()
 
 if __name__ == "__main__":
