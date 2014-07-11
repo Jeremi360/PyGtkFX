@@ -51,7 +51,7 @@ class Notebook(grabbo.Builder):
         self.set_addable(addable)
         self.set_orientation(orientation)
 
-        self.pages.show()
+        self.pages.show_all()
         self.get().show()
 
     def get(self):
