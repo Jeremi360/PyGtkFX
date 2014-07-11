@@ -90,14 +90,14 @@ class Notebook(object):
 class Window(grabbo.Window):
     def __init__(self):
         super(Window, self).__init__()
+        self.show_all()
 
     def do_then_init(self):
         self.content = Gtk.HBox()
         N = Notebook()
         N.add_tab("Test", Gtk.Button())
-        self.content.pack_start(N.buttons_box, False, True, True)
-        self.content.pack_end(N.tabs, False, True, True)
-        self.show_all()
+        self.content.pack_start(N.buttons_box, True, True, True)
+        self.content.pack_end(N.tabs, True, True, True)
 
 if __name__ == "__main__":
     app = Window()
