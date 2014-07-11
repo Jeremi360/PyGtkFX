@@ -50,7 +50,7 @@ class Notebook(grabbo.Builder):
         self.pages.show()
         self.get().show()
 
-    def add_tab(content = Gtk.Label("Content"), closeable = True, label = None):
+    def add_tab(self, content = Gtk.Label("Content"), closeable = True, label = None):
         self.pages.append_page(content)
 
         if label == None:
