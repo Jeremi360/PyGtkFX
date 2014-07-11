@@ -59,7 +59,7 @@ class Notebook(object):
         label = "tab"
         content = Gtk.Button()
         print(label, content)
-        self.tabs.append_page(content, label)
+        self.tabs.append_page(content, Gtk.Label(label))
         n = self.tabs.page_num(content)
 
         class temp(_TabButton):
