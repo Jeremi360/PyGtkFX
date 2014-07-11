@@ -91,6 +91,7 @@ class Window(grabbo.Window):
         N.add_tab()
         self.content.pack_start(N.buttons_box, False, True, True)
         self.content.pack_end(N.tabs, False, True, True)
+        self.show_all()
 
 if __name__ == "__main__":
     app = Window()
