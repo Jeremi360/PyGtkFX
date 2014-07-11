@@ -86,7 +86,6 @@ class Notebook(object):
         self.buttons_box.pack_start(temp().get(), True, True, True)
         temp.get().show()
 
-
 class Window(grabbo.Window):
     def __init__(self):
         super(Window, self).__init__()
