@@ -58,6 +58,7 @@ class Notebook(object):
 
     def add_tabs(self, tabs = (("tab", Gtk.Label("Content"))), closeable = True):
         for t in tabs:
+            print(t[1])
             self.tabs.append_page(t[0], t[1])
             n = self.tabs.page_num(t[1])
 
