@@ -14,8 +14,8 @@ class _TabButton(grabbo.Builder):
         self.set_closeable(closeable)
         self.button.set_label(title)
 
-        self.close.connect("clicked", self.on_close)
-        self.button.connect("toggled", self.on_button)
+        self.close.connect("clicked", lambda x: self.on_close())
+        self.button.connect("toggled", lambda x: self.on_button())
 
     def get(self):
         return self.ui.get_object("box")
@@ -26,10 +26,10 @@ class _TabButton(grabbo.Builder):
         else:
             self.close.show()
 
-    def on_button(self, button, name):
+    def on_button(self):
         pass
 
-    def on_close(self, button, name):
+    def on_close(self):
         pass
 
 Nbui = os.path.join("..", "ui", "Notebook.ui")
