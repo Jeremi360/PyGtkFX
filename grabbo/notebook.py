@@ -58,24 +58,24 @@ class Notebook(object):
 
     def add_tab(self, label = "tab", content = Gtk.Label("Content"), closeable = True):
         print(label, content)
-            self.tabs.append_page(label, content)
-            n = self.tabs.page_num(content)
+        self.tabs.append_page(label, content)
+        n = self.tabs.page_num(content)
 
-            class temp(_TabButton):
-                def __init__(self):
-                    super(temp, self).__init__(label, closeable)
+        class temp(_TabButton):
+            def __init__(self):
+                super(temp, self).__init__(label, closeable)
 
-                def on_button(self, button, name):
-                    if button.get_active():
-                        self.tabs.set_current_page(n)
-                    else:
-                        self.tabs.prev_page()
+            def on_button(self, button, name):
+                if button.get_active():
+                    self.tabs.set_current_page(n)
+                else:
+                    self.tabs.prev_page()
 
-                def on_close(self, button, name):
-                    self.tabs.remove_page(n)
-                    del self
+            def on_close(self, button, name):
+                self.tabs.remove_page(n)
+                del self
 
-            self.buttons_box.pack_start(temp(), False, True, True)
+        self.buttons_box.pack_start(temp(), False, True, True)
 
 class Window(grabbo.Window):
     def __init__(self):
