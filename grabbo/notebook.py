@@ -56,8 +56,8 @@ class Notebook(object):
                 self.buttons_box.set_vexpand(False)
 
     def add_tab(self, closeable = True):
-         label = "tab"
-         content = Gtk.Label("Content")
+        label = "tab"
+        content = Gtk.Label("Content")
         print(label, content)
         self.tabs.append_page(label, content)
         n = self.tabs.page_num(content)
