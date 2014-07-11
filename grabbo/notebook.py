@@ -41,14 +41,7 @@ class Notebook(grabbo.Builder):
         self.buttons_box = self.ui.get_object("ButtonBox")
         self.add_button = self.ui.get_object("Add")
 
-
-
-
-        bt = _TabButton("Label")
-        b = Gtk.Label("Content")
-        b.show()
-        self.pages.append_page(b)
-        self.buttons_box.add(bt.get())
+        self.add_tab()
 
         self.set_addable(addable)
         self.set_orientation(orientation)
@@ -56,6 +49,20 @@ class Notebook(grabbo.Builder):
         self.pages.set_show_tabs(False)
         self.pages.show()
         self.get().show()
+
+    def add_tab(content = Gtk.Label("Content"), closeable = True, label = None):
+        self.pages.append_page(content)
+
+        if label == None:
+            label = self.pages.
+        class _Temp(_TabButton):
+            def __init__():
+                super(_Temp, self).__init__(Label)
+
+        bt = _Temp()
+        content.show()
+
+        self.buttons_box.add(bt.get())
 
     def get(self):
         return self.ui.get_object("box2")
