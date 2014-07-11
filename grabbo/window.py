@@ -1,5 +1,4 @@
 from gi.repository import Gtk
-
 from grabbo import Builder
 
 class Window(Builder, Gtk.Window):
