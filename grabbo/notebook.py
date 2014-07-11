@@ -52,12 +52,24 @@ class Notebook(grabbo.Builder):
 
     def add_tab(self, content = Gtk.Label("Content"), closeable = True, label = None):
         self.pages.append_page(content)
+        n = self.pages.page_num(content)
 
         if label == None:
-            label = "Page " + str(self.pages.page_num(content))
+            label = "Page " + str(n)
+
         class _Temp(_TabButton):
             def __init__(self):
                 super(_Temp, self).__init__(label)
+
+            def on_button(self):
+                if self.button.get_active():
+                    self.pages.set_current_page(n)
+                else:
+                    self.pages.prev_page()
+
+            def on_close(self):
+                self.pages.remove_page(n)
+                self.buttons_box.remove(self.button)
 
         bt = _Temp()
         content.show()
