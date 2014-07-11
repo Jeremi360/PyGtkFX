@@ -32,10 +32,7 @@ class _TabButton(grabbo.Builder):
         if self.button.get_active():
             self.notebook.pages.set_current_page(self.num)
         else:
-            if self.notebook.pages.get_current_page() == self.num:
-                self.button.set_active(True)
-            else:
-                self.notebook.pages.prev_page()
+            self.notebook.pages.prev_page()
 
     def on_close(self):
         self.notebook.pages.remove_page(self.num)
