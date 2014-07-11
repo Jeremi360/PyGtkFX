@@ -12,19 +12,22 @@ class _TabButton(grabbo.Builder):
         self.button = self.ui.get_object("TabButton")
         self.close = self.ui.get_object("close")
 
-
         self.set_closeable(closeable)
-
         self.button.set_label(title)
+
+        self.closefb.connect("clicked", self)
+
 
     def set_closeable(self,  closeable = True):
         if not closeable:
             self.close.hide()
-
-    def on_close(self):
-        pass
+        else:
+            self.close.show()
 
     def on_button(self):
+        pass
+
+    def on_close(self):
         pass
 
 class Notebook(object):
