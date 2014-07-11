@@ -57,9 +57,6 @@ class Notebook(grabbo.Builder):
     def get(self):
         return self.ui.get_object("box2")
 
-    def get_pages(self):
-        return self.pages
-
     def set_addable(self, addable):
         if not addable:
             self.add_button.hide()
@@ -91,7 +88,7 @@ class Window(grabbo.Window):
         Box = Gtk.VBox()
         N = Notebook()
         Box.pack_start(N.get(), False, False, 0)
-        Box.pack_end(N.get_pages(), False, False, 0)
+        Box.pack_end(N.pages, False, False, 0)
         self.add(Box)
         Box.show()
         self.show()
