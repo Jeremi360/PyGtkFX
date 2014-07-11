@@ -15,7 +15,8 @@ class _TabButton(grabbo.Builder):
         self.set_closeable(closeable)
         self.button.set_label(title)
 
-        self.closefb.connect("clicked", self)
+        self.close.connect("clicked", self.on_close)
+        self.button.connect("toggled", self.on_button)
 
 
     def set_closeable(self,  closeable = True):
