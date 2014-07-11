@@ -37,12 +37,12 @@ Nbui = os.path.join("..", "ui", "Notebook.ui")
 class Notebook(grabbo.Builder):
     def __init__(self, addable = True, closeable = True, orientation = Gtk.Orientation.HORIZONTAL):
         super(Notebook, self).__init__(Nbui)
-        self.notebook = Gtk.Notebook()
+        self.pages = Gtk.Notebook()
         self.buttons_box = self.ui.get_object("ButtonBox")
         self.add_button = self.ui.get_object("Add")
 
         bt = _TabButton("Label")
-        self.notebook.append_page(Gtk.Label("Tab"), Gtk.Label("Content"))
+        self.pages.append_page(Gtk.Label("Tab"), Gtk.Label("Content"))
 
         self.buttons_box.add(bt)
 
