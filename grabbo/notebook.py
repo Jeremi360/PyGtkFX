@@ -86,7 +86,10 @@ class Window(grabbo.Window):
         N = Notebook()
         Box.add(N.get())
         Box.add(N.pages)
+        N.get().show()
+        N.pages.show()
         self.add(Box)
+        Box.show()
         self.show()
 
 if __name__ == "__main__":
