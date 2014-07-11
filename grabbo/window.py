@@ -8,7 +8,8 @@ class Window(Builder, Gtk.Window):
         self.content = content
         self.do_then_init()
 
-        self.set_size_request(400, 400)
+        self.set_size_request(800, 600)
+        self.connect("destroy", Gtk.main_quit)
         self.add(self.content)
         self.maximize()
 
