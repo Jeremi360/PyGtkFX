@@ -42,7 +42,7 @@ class Notebook(object):
     def set_addable(self, addable):
         if addable:
             self.add_button = Gtk.Button(None)
-            self.add_button.set_image(Gtk.Image.set_from_icon_name("gtk-add", 4))
+            self.add_button.new_from_icon_name("gtk-add", 4)
             self.buttons_box.pack_end(self.add_button)
 
     def set_orientation(self, orientation):
