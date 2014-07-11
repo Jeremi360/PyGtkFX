@@ -84,7 +84,7 @@ class Window(grabbo.Window):
         super(Window, self).__init__()
         Box = Gtk.VBox()
         N = Notebook()
-        Box.add(N.get(), N.tabs)
+        Box.add(N.get(), N.pages)
         self.add(Box)
         self.show()
 
