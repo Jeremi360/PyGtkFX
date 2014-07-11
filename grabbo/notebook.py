@@ -30,15 +30,18 @@ class Notebook(object):
     def __init__(self, tabs = {"tab":Gtk.Label("Content")}, addable = True, closeable = True, orientation = Gtk.Orientation.HORIZONTAL):
         self.tabs = Gtk.Notebook()
         self.buttons_box = Gtk.Box()
-        self.add_button = Gtk.Button(None)
 
-        self.add_button.set_image(Gtk.Image.set_from_icon_name("gtk-add"))
-        self.buttons_box.set_
+       self
 
         self.tabs.set_show_tabs(False)
         self.set_orientation(orientation)
         self.add_tabs(tabs, closeable)
 
+    def set_addable(self, addable):
+        if addable:
+            self.add_button = Gtk.Button(None)
+            self.add_button.set_image(Gtk.Image.set_from_icon_name("gtk-add"))
+            self.buttons_box.pack_end(self.add_button)
 
     def set_orientation(self, orientation):
             self.buttons_box.set_orientation(orientation)
