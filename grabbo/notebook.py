@@ -30,14 +30,13 @@ class _TabButton(grabbo.Builder):
         pass
 
 class Notebook(object):
-    def __init__(self, tab = ("tab", Gtk.Label("Content")), addable = True, closeable = True, orientation = Gtk.Orientation.HORIZONTAL):
+    def __init__(self, addable = True, closeable = True, orientation = Gtk.Orientation.HORIZONTAL):
         self.tabs = Gtk.Notebook()
         self.buttons_box = Gtk.Box()
 
         self.set_addable(addable)
         self.tabs.set_show_tabs(False)
         self.set_orientation(orientation)
-        self.add_tab(tab, closeable)
 
     def set_addable(self, addable):
         if addable:
@@ -84,6 +83,7 @@ class Window(grabbo.Window):
     def do_then_init(self):
         self.content = Gtk.HBox()
         N = Notebook()
+        N.add_tab("Test")
         self.content.pack_start(N.buttons_box, False, True, True)
         self.content.pack_end(N.tabs, False, True, True)
 
