@@ -47,7 +47,7 @@ class Notebook(object):
         if addable:
             self.add_button = Gtk.Button(None)
             self.add_button.new_from_icon_name("gtk-add", 4)
-            self.buttons_box.pack_end(self.add_button, True, True, True)
+            self.buttons_box.add(self.add_button)
 
     def set_orientation(self, orientation):
             self.buttons_box.set_orientation(orientation)
@@ -84,20 +84,18 @@ class Notebook(object):
                 del self
 
         t = temp().get()
-        self.buttons_box.pack_start(t, True, True, True)
+        self.buttons_box.add(t)
         t.show()
 
 class Window(grabbo.Window):
     def __init__(self):
-        super(Window, self).__init__()
-        self.show_all()
-
-    def do_then_init(self):
-        self.content = Gtk.HBox()
+        con = Gtk.HBox()
         N = Notebook()
         N.add_tab("Test", Gtk.Button())
-        self.content.pack_start(N.buttons_box, True, True, True)
-        self.content.pack_end(N.tabs, True, True, True)
+        con.add(N.buttons_box)
+        con.add(N.tabs)
+        super(Window, self).__init__()
+        self.show_all()
 
 if __name__ == "__main__":
     app = Window()
