@@ -46,8 +46,10 @@ class Notebook(grabbo.Builder):
 
         self.add_button.connet('clicked', self.add_button())
 
-        self.tabs.show()
-        self.buttons_box.show()
+        self.get().show()
+
+    def get(self):
+        return self.ui.get_object("box")
 
     def set_addable(self, addable):
         if not addable:
@@ -94,11 +96,9 @@ class Notebook(grabbo.Builder):
 
 class Window(grabbo.Window):
     def __init__(self):
-        con = Gtk.HBox()
-        N = Notebook()
+        N = Notebook().get()
         N.add_tab("Test", Gtk.Button())
-        con.add(N.buttons_box)
-        con.add(N.tabs)
+        self.add(N)
         super(Window, self).__init__()
         self.show()
 
