@@ -56,15 +56,14 @@ class Notebook(object):
                 self.buttons_box.set_hexpand(True)
                 self.buttons_box.set_vexpand(False)
 
-    def add_tabs(self, tabs = {"tab":Gtk.Label("Content")}, closeable = True):
+    def add_tabs(self, tabs = (("tab", Gtk.Label("Content")), closeable = True):
         for t in tabs:
-            print(t, tabs[t])
-            self.tabs.append_page(t, tabs[t])
-            n = self.tabs.page_num(tabs[t])
+            self.tabs.append_page(t[0], t[1])
+            n = self.tabs.page_num(t[1])
 
             class temp(_TabButton):
                 def __init__(self):
-                    super(temp, self).__init__(t, closeable)
+                    super(temp, self).__init__(t[0], closeable)
 
                 def on_button(self, button, name):
                     if button.get_active():
