@@ -6,9 +6,8 @@ import os
 tbui = os.path.join('..', 'ui', 'TabButton.ui')
 
 class _TabButton(grabbo.Builder):
-    def __init__(self, title, tab, closeable = True):
+    def __init__(self, title, closeable = True):
         super(_TabButton, self).__init__(tbui)
-        self.tab = tab
         self.button = self.ui.get_object("TabButton")
         self.close = self.ui.get_object("close")
 
@@ -18,17 +17,16 @@ class _TabButton(grabbo.Builder):
         self.close.connect("clicked", self.on_close)
         self.button.connect("toggled", self.on_button)
 
-
     def set_closeable(self,  closeable = True):
         if not closeable:
             self.close.hide()
         else:
             self.close.show()
 
-    def on_button(self):
+    def on_button(self, button, name):
         pass
 
-    def on_close(self):
+    def on_close(self, button, name):
         pass
 
 class Notebook(object):
@@ -58,10 +56,25 @@ class Notebook(object):
                 self.buttons_box.set_hexpand(True)
                 self.buttons_box.set_vexpand(False)
 
-    def add_tabs(self, tabs = {"tab":Gtk.Label("Content")}, closeable):
+    def add_tabs(self, tabs = {"tab":Gtk.Label("Content")}, closeable = True):
         for t in tabs.items():
             self.tabs.append_page(t[0], t[1])
+            n = self.tabs.page_num(t[1])
+
             class temp(_TabButton):
+                def __init__(self):
+                    super(temp, self).__init__(t[0], closeable)
+
+                def on_button(self, button, name):
+                    if button.get_active():
+                        self.tabs.set_current_page(n)
+                    else:
+                        self.tabs.prev_page()
+
+                def on_close(self, button, name):
+                    self.tabs.remove_page(n)
+                    del self
+
 
             self.buttons_box.pack_start()
 
