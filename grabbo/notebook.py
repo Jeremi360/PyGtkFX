@@ -75,6 +75,17 @@ class Notebook(object):
                     self.tabs.remove_page(n)
                     del self
 
-
             self.buttons_box.pack_start()
 
+class Window(grabbo.Window):
+    def __init__(self):
+        super(Window, self).__init__()
+
+    def do_then_init(self):
+        self.content = Gtk.HBox()
+        N = Notebook()
+        self.content.pack_start(N)
+
+if __name__ == "__main__":
+    app = Window()
+    Gtk.main()
