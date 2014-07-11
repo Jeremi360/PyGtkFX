@@ -44,7 +44,7 @@ class Notebook(grabbo.Builder):
         self.set_addable(addable)
         self.set_orientation(orientation)
 
-        self.add_button.connect('clicked', self.add_button())
+        self.add_button.connect('clicked', self.add_button)
 
         self.get().show()
 
