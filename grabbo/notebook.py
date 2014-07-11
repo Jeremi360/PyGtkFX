@@ -3,7 +3,7 @@ from gi.repository import Gtk
 import grabbo
 import os
 
-tbui = os.path.join('ui', 'TabButton.ui')
+tbui = os.path.join('..', 'ui', 'TabButton.ui')
 
 class _TabButton(grabbo.Builder):
     def __init__(self, title, closeable = True):
