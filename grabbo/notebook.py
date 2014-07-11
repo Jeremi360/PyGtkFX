@@ -54,7 +54,7 @@ class Notebook(grabbo.Builder):
         self.pages.append_page(content)
 
         if label == None:
-            label = self.pages.
+            label = "Page " + str(self.pages.page_num(content))
         class _Temp(_TabButton):
             def __init__():
                 super(_Temp, self).__init__(Label)
