@@ -55,7 +55,7 @@ class Notebook(grabbo.Builder):
             self.add_tab(i[0], i[1], closeable)
 
         if addable:
-            self.add_button.connect("clicked", lambda x: self.add_tab(addable_content[0], addable_content[1], closeable)
+            self.add_button.connect("clicked", lambda x: self.add_tab(addable_content[0], addable_content[1], closeable))
 
         #self.pages.show()
         #self.get().show()
