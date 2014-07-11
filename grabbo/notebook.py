@@ -60,11 +60,11 @@ class Notebook(object):
         for t in tabs:
             print(t, tabs[t])
             self.tabs.append_page(t, tabs[t])
-            n = self.tabs.page_num(t[1])
+            n = self.tabs.page_num(tabs[t])
 
             class temp(_TabButton):
                 def __init__(self):
-                    super(temp, self).__init__(t[0], closeable)
+                    super(temp, self).__init__(t, closeable)
 
                 def on_button(self, button, name):
                     if button.get_active():
