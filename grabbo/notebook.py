@@ -40,27 +40,31 @@ class Notebook(object):
         self.set_addable(addable)
         self.tabs.set_show_tabs(False)
         self.set_orientation(orientation)
+        self.tabs.show()
+        self.buttons_box.show()
 
     def set_addable(self, addable):
         if addable:
             self.add_button = Gtk.Button(None)
             self.add_button.new_from_icon_name("gtk-add", 4)
-            self.buttons_box.pack_end(self.add_button, False, True, True)
+            self.buttons_box.pack_end(self.add_button, True, True, True)
 
     def set_orientation(self, orientation):
             self.buttons_box.set_orientation(orientation)
 
             if orientation == Gtk.Orientation.VERTICAL:
+                self.buttons_box.hide()
                 self.buttons_box.set_hexpand(False)
                 self.buttons_box.set_vexpand(True)
+                self.buttons_box.show()
 
             else:
+                self.buttons_box.hide()
                 self.buttons_box.set_hexpand(True)
                 self.buttons_box.set_vexpand(False)
+                self.buttons_box.show()
 
-    def add_tab(self, closeable = True):
-        label = "tab"
-        content = Gtk.Button()
+    def add_tab(self, label, content, closeable = True):
         print(label, content)
         self.tabs.append_page(content, Gtk.Label(label))
         n = self.tabs.page_num(content)
@@ -79,7 +83,9 @@ class Notebook(object):
                 self.tabs.remove_page(n)
                 del self
 
-        self.buttons_box.pack_start(temp().get(), False, True, True)
+        self.buttons_box.pack_start(temp().get(), True, True, True)
+        temp.get().show()
+
 
 class Window(grabbo.Window):
     def __init__(self):
