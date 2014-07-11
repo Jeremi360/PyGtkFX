@@ -96,7 +96,7 @@ class Window(grabbo.Window):
         con.add(N.buttons_box)
         con.add(N.tabs)
         super(Window, self).__init__()
-        self.show_all()
+        self.show()
 
 if __name__ == "__main__":
     app = Window()
