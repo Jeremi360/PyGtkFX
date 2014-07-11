@@ -89,8 +89,8 @@ class Window(grabbo.Window):
         c = Gtk.HBox()
         N = Notebook()
         N.add_tab()
-        c.pack_start(N.buttons_box, False, True, True)
-        c.pack_end(N.tabs, False, True, True)
+        c.pack_start(N.buttons_box, True, True, True)
+        c.pack_end(N.tabs, True, True, True)
         self.content = c
         self.show_all()
 
