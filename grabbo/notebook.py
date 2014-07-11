@@ -6,10 +6,12 @@ import os
 TBui = os.path.join('..', 'ui', 'TabButton.ui')
 
 class _TabButton(grabbo.Builder):
-    def __init__(self, title, closeable = True):
+    def __init__(self, notebook, num, title, closeable = True):
         super(_TabButton, self).__init__(TBui)
         self.button = self.ui.get_object("TabButton")
         self.close = self.ui.get_object("Close")
+        self.notebook = notebook
+        self.num = num
 
         self.set_closeable(closeable)
         self.button.set_label(title)
@@ -27,10 +29,14 @@ class _TabButton(grabbo.Builder):
             self.close.show()
 
     def on_button(self):
-        pass
+        if self.button.get_active():
+            self.notebook.pages.set_current_page(self.num)
+        else:
+            self.notebook.pages.prev_page()
 
-    def on_close(self):
-        pass
+        def on_close(self):
+            self.notebook.pages.remove_page(self.num)
+            self.notebook.buttons_box.remove(self.button)
 
 Nbui = os.path.join("..", "ui", "Notebook.ui")
 
@@ -61,21 +67,7 @@ class Notebook(grabbo.Builder):
         if label == None:
             label = "Page " + str(n)
 
-        class _Temp(_TabButton):
-            def __init__(self):
-                super(_Temp, self).__init__(label)
-
-            def on_button(self):
-                if self.button.get_active():
-                    self.pages.set_current_page(n)
-                else:
-                    self.pages.prev_page()
-
-            def on_close(self):
-                self.pages.remove_page(n)
-                self.buttons_box.remove(self.button)
-
-        bt = _Temp()
+        bt = _TabButton
         content.show()
 
         self.buttons_box.add(bt.get())
@@ -113,6 +105,8 @@ class Window(grabbo.Window):
         super(Window, self).__init__()
         Box = Gtk.VBox()
         N = Notebook()
+        N.get().show()
+        N.pages.show()
         Box.pack_start(N.get(), False, False, 0)
         Box.pack_end(N.pages, True, True, 0)
         self.add(Box)
