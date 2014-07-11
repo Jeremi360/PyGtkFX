@@ -74,6 +74,7 @@ class Window(grabbo.Window):
     def __init__(self):
         super(Window, self).__init__()
         N = Notebook().get()
+        N.tabs.append_page(Gtk.Label("Tab"), Gtk.Label("Content"))
         self.add(N)
         self.show()
 
