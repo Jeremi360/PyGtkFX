@@ -34,9 +34,10 @@ class _TabButton(grabbo.Builder):
         else:
             self.notebook.pages.prev_page()
 
-        def on_close(self):
-            self.notebook.pages.remove_page(self.num)
-            self.notebook.buttons_box.remove(self.button)
+    def on_close(self):
+        self.notebook.pages.remove_page(self.num)
+        self.notebook.buttons_box.remove(self.button)
+        del self
 
 Nbui = os.path.join("..", "ui", "Notebook.ui")
 
@@ -56,7 +57,6 @@ class Notebook(grabbo.Builder):
 
         if addable:
             self.add_button.connect("clicked", lambda x: self.add_tab(addable_content[0], addable_content[1], closeable))
-
 
     def add_tab(self, content = Gtk.Label("Content"), label = None, closeable = True):
         self.pages.append_page(content)
