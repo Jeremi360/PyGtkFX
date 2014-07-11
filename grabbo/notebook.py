@@ -98,20 +98,3 @@ class Notebook(grabbo.Builder):
                 self.buttons_box.set_hexpand(True)
                 self.buttons_box.set_vexpand(False)
                 self.buttons_box.show()
-
-class Window(grabbo.Window):
-    def __init__(self):
-        super(Window, self).__init__()
-        Box = Gtk.VBox()
-        N = Notebook()
-        N.get().show()
-        N.pages.show()
-        Box.pack_start(N.get(), False, False, 0)
-        Box.pack_end(N.pages, True, True, 0)
-        self.add(Box)
-        Box.show()
-        self.show()
-
-if __name__ == "__main__":
-    app = Window()
-    Gtk.main()
