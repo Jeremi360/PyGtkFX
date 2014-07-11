@@ -73,9 +73,11 @@ class Notebook(grabbo.Builder):
 class Window(grabbo.Window):
     def __init__(self):
         super(Window, self).__init__()
-        N = Notebook().get()
+        N = Notebook()
         N.tabs.append_page(Gtk.Label("Tab"), Gtk.Label("Content"))
-        self.add(N)
+        tb = _TabButton("Tab")
+        N.buttons_box.add(tb)
+        self.add(N.get())
         self.show()
 
 if __name__ == "__main__":
