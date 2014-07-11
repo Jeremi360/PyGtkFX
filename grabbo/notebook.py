@@ -84,6 +84,7 @@ class Notebook(object):
                 del self
 
         t = temp().get()
+        content.show()
         self.buttons_box.add(t)
         t.show()
 
