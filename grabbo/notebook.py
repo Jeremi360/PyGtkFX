@@ -89,7 +89,7 @@ class Window(grabbo.Window):
         Box = Gtk.VBox()
         N = Notebook()
         Box.pack_start(N.get(), False, False, 0)
-        Box.pack_end(N.pages, False, False, 0)
+        Box.pack_end(N.pages, True, True, 0)
         self.add(Box)
         Box.show()
         self.show()
