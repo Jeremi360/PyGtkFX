@@ -7,7 +7,7 @@ TBui = os.path.join('..', 'ui', 'TabButton.ui')
 
 class TabButton(grabbo.Builder):
     def __init__(self, notebook, num, title, closeable = True):
-        super(_TabButton, self).__init__(TBui)
+        super(TabButton, self).__init__(TBui)
         self.button = self.ui.get_object("TabButton")
         self.close = self.ui.get_object("Close")
         self.notebook = notebook
@@ -67,7 +67,7 @@ class Notebook(grabbo.Builder):
         if label == None:
             label = "Page " + str(n)
 
-        bt = _TabButton(self, n, label, closeable)
+        bt = TabButton(self, n, label, closeable)
         content.show()
 
         self.buttons_box.add(bt.get())
