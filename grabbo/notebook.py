@@ -52,22 +52,22 @@ class Notebook(grabbo.Builder):
         self.pages.set_show_tabs(False)
 
         for i in content.items():
-            self.add_tab(i[0], closeable, i[1])
+            self.add_tab(i[0], i[1], closeable)
 
         if addable:
-            self.add_button.connect("clicked", lambda x: self.add_tab(addable_content[0], closeable, addable_content[1]))
+            self.add_button.connect("clicked", lambda x: self.add_tab(addable_content[0], addable_content[1]), closeable)
 
         #self.pages.show()
         #self.get().show()
 
-    def add_tab(self, content = Gtk.Label("Content"), closeable = True, label = None):
+    def add_tab(self, content = Gtk.Label("Content"), label = None, closeable = True):
         self.pages.append_page(content)
         n = self.pages.page_num(content)
 
         if label == None:
             label = "Page " + str(n)
 
-        bt = _TabButton
+        bt = _TabButton(self, n, label, closeable)
         content.show()
 
         self.buttons_box.add(bt.get())
