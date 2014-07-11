@@ -3,11 +3,11 @@ from gi.repository import Gtk
 import grabbo
 import os
 
-tbui = os.path.join('..', 'ui', 'TabButton.ui')
+TBui = os.path.join('..', 'ui', 'TabButton.ui')
 
 class _TabButton(grabbo.Builder):
     def __init__(self, title, closeable = True):
-        super(_TabButton, self).__init__(tbui)
+        super(_TabButton, self).__init__(TBui)
         self.button = self.ui.get_object("TabButton")
         self.close = self.ui.get_object("Close")
 
@@ -32,22 +32,26 @@ class _TabButton(grabbo.Builder):
     def on_close(self, button, name):
         pass
 
-class Notebook(object):
+Nbui = os.path.join("..", "ui", "Notebook.ui")
+
+class Notebook(grabbo.Builder):
     def __init__(self, addable = True, closeable = True, orientation = Gtk.Orientation.HORIZONTAL):
-        self.tabs = Gtk.Notebook()
-        self.buttons_box = Gtk.Box()
+        super(Notebook, self).__init__(Nbui)
+        self.notebook = self.ui.get_object('Notebook')
+        self.buttons_box = self.ui.get_object("ButtonBox")
+        self.add_button = self.ui.get_object("Add")
 
         self.set_addable(addable)
-        self.tabs.set_show_tabs(False)
         self.set_orientation(orientation)
+
+        self.add_button.connet('clicked', self.add_button())
+
         self.tabs.show()
         self.buttons_box.show()
 
     def set_addable(self, addable):
-        if addable:
-            self.add_button = Gtk.Button(None)
-            self.add_button.new_from_icon_name("gtk-add", 4)
-            self.buttons_box.add(self.add_button)
+        if not addable:
+            self.add_button.hide()
 
     def set_orientation(self, orientation):
             self.buttons_box.set_orientation(orientation)
@@ -64,7 +68,7 @@ class Notebook(object):
                 self.buttons_box.set_vexpand(False)
                 self.buttons_box.show()
 
-    def add_tab(self, label, content, closeable = True):
+    def add_tab(self, label = "Label", content = Gtk.Label("Content"), closeable = True):
         print(label, content)
         self.tabs.append_page(content, Gtk.Label(label))
         n = self.tabs.page_num(content)
