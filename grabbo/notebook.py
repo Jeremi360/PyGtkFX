@@ -44,7 +44,7 @@ class Notebook(grabbo.Builder):
         bt = _TabButton("Label")
         self.pages.append_page(Gtk.Label("Tab"), Gtk.Label("Content"))
 
-        self.buttons_box.add(bt)
+        self.buttons_box.add(bt.get())
 
         self.set_addable(addable)
         self.set_orientation(orientation)
