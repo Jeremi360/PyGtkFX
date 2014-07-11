@@ -35,6 +35,7 @@ class TabButton(grabbo.Builder):
             self.notebook.pages.prev_page()
 
     def on_close(self):
+        self.notebook.pages.prev_page()
         self.notebook.pages.remove_page(self.num)
         self.notebook.buttons_box.remove(self.get())
         del self
