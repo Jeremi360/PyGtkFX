@@ -51,6 +51,7 @@ class Notebook(grabbo.Builder):
         self.set_addable(addable)
         self.set_orientation(orientation)
 
+        self.pages.show()
         self.get().show()
 
     def get(self):
@@ -88,8 +89,6 @@ class Window(grabbo.Window):
         N = Notebook()
         Box.pack_start(N.get(), False, False, 0)
         Box.pack_end(N.pages, False, False, 0)
-        N.get().show()
-        N.pages.show()
         self.add(Box)
         Box.show()
         self.show()
