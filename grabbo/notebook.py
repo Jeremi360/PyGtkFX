@@ -17,6 +17,9 @@ class _TabButton(grabbo.Builder):
         self.close.connect("clicked", self.on_close)
         self.button.connect("toggled", self.on_button)
 
+    def get(self):
+        return self.ui.get_object("box")
+
     def set_closeable(self,  closeable = True):
         if not closeable:
             self.close.hide()
@@ -76,7 +79,7 @@ class Notebook(object):
                 self.tabs.remove_page(n)
                 del self
 
-        self.buttons_box.pack_start(temp(), False, True, True)
+        self.buttons_box.pack_start(temp().get(), False, True, True)
 
 class Window(grabbo.Window):
     def __init__(self):
