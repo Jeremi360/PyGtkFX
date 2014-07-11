@@ -31,7 +31,7 @@ class Notebook(object):
         self.tabs = Gtk.Notebook()
         self.buttons_box = Gtk.Box()
 
-       self
+       self.set_addable(addable)
 
         self.tabs.set_show_tabs(False)
         self.set_orientation(orientation)
