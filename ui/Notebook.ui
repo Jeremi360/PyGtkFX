@@ -30,7 +30,6 @@
               <object class="GtkBox" id="ButtonBox">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="valign">start</property>
                 <property name="hexpand">True</property>
                 <property name="vexpand">False</property>
                 <child>
@@ -52,8 +51,6 @@
         <property name="visible">True</property>
         <property name="can_focus">True</property>
         <property name="receives_default">True</property>
-        <property name="halign">start</property>
-        <property name="valign">start</property>
         <property name="image">AddIcon</property>
         <property name="relief">none</property>
         <property name="image_position">right</property>
