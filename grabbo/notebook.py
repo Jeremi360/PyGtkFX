@@ -19,6 +19,9 @@ class TabButton(grabbo.Builder):
         self.close.connect("clicked", lambda x: self.on_close())
         self.button.connect("clicked", lambda x: self.on_button())
 
+        if self.notebook.pages.get_current_page != self.num:
+            self.button.set_sensitive(True)
+
     def get(self):
         return self.ui.get_object("box")
 
@@ -30,7 +33,8 @@ class TabButton(grabbo.Builder):
 
     def on_button(self):
         self.notebook.pages.set_current_page(self.num)
-        self.button.event(Gdk)
+        self.button.set_sensitive(False)
+        self.button.event(Gdk.EventButton)
 
     def on_close(self):
         self.notebook.pages.prev_page()
