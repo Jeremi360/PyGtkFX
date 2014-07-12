@@ -1,5 +1,5 @@
 
-from gi.repository import Gtk
+from gi.repository import Gtk, Gdk
 import grabbo
 import os
 
@@ -30,7 +30,7 @@ class TabButton(grabbo.Builder):
 
     def on_button(self):
         self.notebook.pages.set_current_page(self.num)
-        self.button.emit('pressed')
+        self.button.event(Gdk)
 
     def on_close(self):
         self.notebook.pages.prev_page()
