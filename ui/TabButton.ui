@@ -15,8 +15,9 @@
         <property name="label" translatable="yes">button</property>
         <property name="visible">True</property>
         <property name="can_focus">True</property>
-        <property name="has_focus">True</property>
+        <property name="is_focus">True</property>
         <property name="receives_default">True</property>
+        <property name="valign">start</property>
         <property name="relief">none</property>
       </object>
       <packing>
