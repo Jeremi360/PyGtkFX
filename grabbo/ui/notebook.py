@@ -58,6 +58,7 @@ NOTEBOOK_UI = '''<?xml version="1.0" encoding="UTF-8"?>
   </object>
 </interface>
 '''
+
 TAB_UI = '''<?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated with glade 3.18.3 -->
 <interface>
