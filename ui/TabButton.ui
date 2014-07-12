@@ -13,16 +13,18 @@
     <child>
       <object class="GtkButton" id="TabButton">
         <property name="label" translatable="yes">button</property>
+        <property name="width_request">5</property>
+        <property name="height_request">5</property>
         <property name="visible">True</property>
         <property name="can_focus">True</property>
-        <property name="is_focus">True</property>
         <property name="receives_default">True</property>
+        <property name="halign">start</property>
         <property name="valign">start</property>
         <property name="relief">none</property>
       </object>
       <packing>
         <property name="expand">False</property>
-        <property name="fill">True</property>
+        <property name="fill">False</property>
         <property name="position">0</property>
       </packing>
     </child>
