@@ -79,11 +79,10 @@ TAB_UI = '''<?xml version="1.0" encoding="UTF-8"?>
     <child>
       <object class="GtkButton" id="TabButton">
         <property name="label" translatable="yes">Tab</property>
-        <property name="width_request">5</property>
-        <property name="height_request">5</property>
         <property name="visible">True</property>
         <property name="can_focus">True</property>
         <property name="receives_default">True</property>
+        <property name="halign">start</property>
         <property name="valign">start</property>
         <property name="image">TabIcon</property>
         <property name="relief">none</property>
