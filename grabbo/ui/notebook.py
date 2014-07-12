@@ -59,7 +59,6 @@ NOTEBOOK_UI = '''<?xml version="1.0" encoding="UTF-8"?>
       <packing>
         <property name="expand">False</property>
         <property name="fill">False</property>
-        <property name="pack_type">end</property>
         <property name="position">1</property>
       </packing>
     </child>
