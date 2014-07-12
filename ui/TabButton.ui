@@ -19,7 +19,6 @@
         <property name="can_focus">True</property>
         <property name="receives_default">True</property>
         <property name="halign">start</property>
-        <property name="valign">start</property>
         <property name="relief">none</property>
       </object>
       <packing>
