@@ -3,7 +3,7 @@ from gi.repository import Gtk
 import grabbo
 import os
 
-TBui = grabbo.ui.notebook  #os.path.join('..', 'ui', 'TabButton.ui')
+TBui = grabbo.ui.TAB_UI  #os.path.join('..', 'ui', 'TabButton.ui')
 
 class TabButton(grabbo.Builder):
     def __init__(self, notebook, num, title, closeable = True):
@@ -37,7 +37,7 @@ class TabButton(grabbo.Builder):
         self.notebook.buttons_box.remove(self.get())
         del self
 
-Nbui = os.path.join("..", "ui", "notebook.ui")
+Nbui = grabbo.ui.NOTEBOOK_UI #os.path.join("..", "ui", "notebook.ui")
 
 class Notebook(grabbo.Builder):
     def __init__(self, addable = True, closeable = True, orientation = Gtk.Orientation.HORIZONTAL):
