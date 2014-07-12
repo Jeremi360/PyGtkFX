@@ -37,7 +37,7 @@ class TabButton(grabbo.Builder):
         self.notebook.buttons_box.remove(self.get())
         del self
 
-Nbui = os.path.join("..", "ui", "Notebook.ui")
+Nbui = os.path.join("..", "ui", "notebook.ui")
 
 class Notebook(grabbo.Builder):
     def __init__(self, addable = True, closeable = True, orientation = Gtk.Orientation.HORIZONTAL):
