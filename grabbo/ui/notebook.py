@@ -11,20 +11,26 @@ NOTEBOOK_UI = '''<?xml version="1.0" encoding="UTF-8"?>
   <object class="GtkBox" id="box2">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
+    <property name="halign">start</property>
     <child>
       <object class="GtkScrolledWindow" id="scrolledwindow1">
         <property name="visible">True</property>
         <property name="can_focus">True</property>
+        <property name="halign">start</property>
+        <property name="valign">start</property>
         <property name="vscrollbar_policy">never</property>
         <child>
           <object class="GtkViewport" id="viewport1">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="halign">start</property>
+            <property name="valign">start</property>
             <property name="shadow_type">none</property>
             <child>
               <object class="GtkBox" id="ButtonBox">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="valign">start</property>
                 <child>
                   <placeholder/>
                 </child>
@@ -44,6 +50,8 @@ NOTEBOOK_UI = '''<?xml version="1.0" encoding="UTF-8"?>
         <property name="visible">True</property>
         <property name="can_focus">True</property>
         <property name="receives_default">True</property>
+        <property name="halign">start</property>
+        <property name="valign">start</property>
         <property name="image">AddIcon</property>
         <property name="relief">none</property>
         <property name="image_position">right</property>
@@ -56,7 +64,8 @@ NOTEBOOK_UI = '''<?xml version="1.0" encoding="UTF-8"?>
       </packing>
     </child>
   </object>
-</interface>'''
+</interface>
+'''
 
 TAB_UI = '''<?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated with glade 3.18.3 -->
