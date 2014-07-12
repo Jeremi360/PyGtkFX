@@ -43,7 +43,7 @@ NOTEBOOK_UI = '''<?xml version="1.0" encoding="UTF-8"?>
       </object>
       <packing>
         <property name="expand">True</property>
-        <property name="fill">False</property>
+        <property name="fill">True</property>
         <property name="position">0</property>
       </packing>
     </child>
