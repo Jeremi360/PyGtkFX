@@ -30,8 +30,6 @@ class TabButton(grabbo.Builder):
 
     def on_button(self):
         self.notebook.pages.set_current_page(self.num)
-        #self.button.set_sensitive(False)
-        self.button.event(Gdk.EventType.BUTTON_PRESS)
 
     def on_close(self):
         self.notebook.pages.prev_page()
