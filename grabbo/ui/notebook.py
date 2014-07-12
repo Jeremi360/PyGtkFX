@@ -11,26 +11,29 @@ NOTEBOOK_UI = '''<?xml version="1.0" encoding="UTF-8"?>
   <object class="GtkBox" id="box2">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="halign">start</property>
+    <property name="hexpand">True</property>
+    <property name="vexpand">False</property>
     <child>
       <object class="GtkScrolledWindow" id="scrolledwindow1">
         <property name="visible">True</property>
         <property name="can_focus">True</property>
-        <property name="halign">start</property>
-        <property name="valign">start</property>
+        <property name="hexpand">True</property>
+        <property name="vexpand">False</property>
         <property name="vscrollbar_policy">never</property>
         <child>
           <object class="GtkViewport" id="viewport1">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="halign">start</property>
-            <property name="valign">start</property>
+            <property name="hexpand">True</property>
+            <property name="vexpand">False</property>
             <property name="shadow_type">none</property>
             <child>
               <object class="GtkBox" id="ButtonBox">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="valign">start</property>
+                <property name="hexpand">True</property>
+                <property name="vexpand">False</property>
                 <child>
                   <placeholder/>
                 </child>
@@ -118,4 +121,5 @@ TAB_UI = '''<?xml version="1.0" encoding="UTF-8"?>
       </packing>
     </child>
   </object>
-</interface>'''
+</interface>
+'''
