@@ -84,15 +84,15 @@ TAB_UI = '''<?xml version="1.0" encoding="UTF-8"?>
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <child>
-      <object class="GtkButton" id="TabButton">
+      <object class="GtkRadioButton" id="TabButton">
         <property name="label" translatable="yes">Tab</property>
         <property name="visible">True</property>
         <property name="can_focus">True</property>
-        <property name="receives_default">True</property>
-        <property name="halign">start</property>
-        <property name="valign">start</property>
+        <property name="receives_default">False</property>
         <property name="image">TabIcon</property>
-        <property name="relief">none</property>
+        <property name="xalign">0</property>
+        <property name="active">True</property>
+        <property name="draw_indicator">False</property>
       </object>
       <packing>
         <property name="expand">False</property>
@@ -113,7 +113,7 @@ TAB_UI = '''<?xml version="1.0" encoding="UTF-8"?>
       <packing>
         <property name="expand">False</property>
         <property name="fill">False</property>
-        <property name="position">1</property>
+        <property name="position">2</property>
       </packing>
     </child>
   </object>
