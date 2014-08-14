@@ -34,8 +34,8 @@ class test(Window):
     def __init__(self):
         super(test, self).__init__()
         hb = HeaderBar()
-        box = tesz()
-        box.show()
+        #box = tesz()
+        #box.show()
         #hb.pack_start(box)
         self.set_titlebar(hb)
         hb.show()
