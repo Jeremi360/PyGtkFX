@@ -1,7 +1,6 @@
 
 from gi.repository import Gtk
 import grabbo
-import os
 
 TBui = grabbo.ui.TAB_UI  #os.path.join('..', 'ui', 'TabButton.ui')
 
