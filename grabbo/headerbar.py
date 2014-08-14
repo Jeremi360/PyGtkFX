@@ -35,9 +35,10 @@ class test(Window):
         super(test, self).__init__()
         hb = HeaderBar()
         box = tesz()
+        box.show()
         hb.pack_start(box)
         self.set_titlebar(hb)
-        hb.show_all()
+        hb.show()
         self.show()
 
 if __name__ == "__main__":
