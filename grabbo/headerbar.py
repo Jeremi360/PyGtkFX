@@ -24,7 +24,7 @@ class test(Window):
         vp.add(self.box)
         scroll.add(vp)
 
-        button.connect("clicked", self.on_button("add"))
+        button.connect("clicked", self.on_button)
 
         box_zwie.pack_start(scroll, True, True, True)
         box_zwie.pack_end(button, True, True, True)
