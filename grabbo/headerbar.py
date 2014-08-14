@@ -1,4 +1,5 @@
 from gi.repository import Gtk
+from grabbo import Window
 
 class HeaderBar(Gtk.HeaderBar, Gtk.Box):
     def __init__(self):
@@ -14,3 +15,12 @@ class HeaderBar(Gtk.HeaderBar, Gtk.Box):
 
     def pack_end(self, child, expand, fill, padding):
         Gtk.Box.pack_end(self, child, expand, fill, padding)
+
+class test(Window):
+    def __init__(self):
+        hb = HeaderBar()
+        self.set_titlebar(hb)
+
+if __name__ == "__main__":
+    app = test()
+    Gtk.main()
