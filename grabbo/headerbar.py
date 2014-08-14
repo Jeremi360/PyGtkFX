@@ -21,9 +21,27 @@ class test(Window):
     def __init__(self):
         super(test, self).__init__()
         hb = HeaderBar()
+        scroll = Gtk.ScrolledWindow()
+        vp = Gtk.Viewport()
+        self.box = Gtk.Box()
+        button = Gtk.Button("add")
+        box_zwie = Gtk.Box()
+
+        vp.add(self.box)
+        scroll.add(vp)
+
+        button.connect("clicked", )
+
+        box_zwie.pack_start(scroll, True, True, True)
+        box_zwie.pack_end(button, True, True, True)
+        hb.pack_start(box_zwie, True, True, True)
         self.set_titlebar(hb)
         hb.show()
         self.show()
+
+    def on_button(self):
+        l = Gtk.Label("Test")
+        self.box.pack_end(l, True, True, True)
 
 if __name__ == "__main__":
     app = test()
