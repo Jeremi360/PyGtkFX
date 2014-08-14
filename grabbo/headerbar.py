@@ -15,15 +15,15 @@ class tesz(Gtk.Box):
         scroll = Gtk.ScrolledWindow()
         vp = Gtk.Viewport()
         self.box = Gtk.Box()
-        button = Gtk.Button("add")
+        self.button = Gtk.Button("add")
 
         vp.add(self.box)
         scroll.add(vp)
 
-        button.connect("clicked", self.on_button)
+        self.button.connect("clicked", self.on_button)
 
         self.pack_start(scroll, True, True, True)
-        self.pack_end(button, True, True, True)
+        self.pack_end(self.button, True, True, True)
 
     def on_button(self, button):
         l = Gtk.Label("Test")
