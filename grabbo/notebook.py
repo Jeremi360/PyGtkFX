@@ -17,7 +17,10 @@ class TabButton(grabbo.Builder):
     def set(self, notebook, num, label, closeable = True):
         self.set_closeable(closeable)
 
-        self.button.set_label(label)
+        try:
+            self.button.set_label(label)
+        except:
+            self.button.set_label(label.button.get_label())
 
         self.notebook = notebook
         self.num = num
