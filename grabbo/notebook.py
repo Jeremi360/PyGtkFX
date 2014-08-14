@@ -14,10 +14,10 @@ class TabButton(grabbo.Builder):
         self.close.connect("clicked", lambda x: self.on_close())
         self.button.connect("clicked", lambda x: self.on_button())
 
-    def set(self, notebook, num, title, closeable = True):
+    def set(self, notebook, num, label, closeable = True):
         self.set_closeable(closeable)
-        title = str(title)
-        self.button.set_label(title)
+        label = str(label)
+        self.button.set_label(label)
         print(title)
         self.notebook = notebook
         self.num = num
