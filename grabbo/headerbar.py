@@ -30,7 +30,7 @@ class test(Window):
         vp.add(self.box)
         scroll.add(vp)
 
-        button.connect("clicked", )
+        button.connect("clicked", self.on_button)
 
         box_zwie.pack_start(scroll, True, True, True)
         box_zwie.pack_end(button, True, True, True)
@@ -39,7 +39,7 @@ class test(Window):
         hb.show()
         self.show()
 
-    def on_button(self):
+    def on_button(self, button, name):
         l = Gtk.Label("Test")
         self.box.pack_end(l, True, True, True)
 
