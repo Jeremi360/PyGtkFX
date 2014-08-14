@@ -33,7 +33,7 @@ class test(Window):
         hb.show_all()
         self.show()
 
-    def on_button(self, button, name):
+    def on_button(self, button):
         l = Gtk.Label("Test")
         self.box.pack_end(l, True, True, True)
 
