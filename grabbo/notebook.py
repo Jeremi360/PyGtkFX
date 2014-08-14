@@ -20,7 +20,7 @@ class TabButton(grabbo.Builder):
         try:
             self.button.set_label(label)
         except:
-            self.button.set_label(label.get_label())
+            self.button.set_label(label.button.get_label())
 
         self.notebook = notebook
         self.num = num
