@@ -36,7 +36,7 @@ class test(Window):
         box_zwie.pack_end(button, True, True, True)
         hb.pack_start(box_zwie, True, True, True)
         self.set_titlebar(hb)
-        hb.show()
+        hb.show_all()
         self.show()
 
     def on_button(self, button, name):
