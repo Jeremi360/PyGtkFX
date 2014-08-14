@@ -1,7 +1,7 @@
 from gi.repository import Gtk
 from grabbo import Window
 
-class HeaderBar(Gtk.HeaderBar):
+class HeaderBar(Gtk.HeaderBar, Gtk.Box):
     def __init__(self):
         Gtk.HeaderBar.__init__(self)
         self.set_show_close_button(True)
@@ -9,6 +9,7 @@ class HeaderBar(Gtk.HeaderBar):
         self.props.border_width = 0
         self.props.margin = 0
         self.set_has_subtitle(False)
+        Gtk.Box.__init__(self)
 
     def pack_start(self, child, expand, fill, padding):
         Gtk.Box.pack_start(self, child, expand, fill, padding)
@@ -18,6 +19,7 @@ class HeaderBar(Gtk.HeaderBar):
 
 class test(Window):
     def __init__(self):
+        super(test, self).__init__()
         hb = HeaderBar()
         self.set_titlebar(hb)
         hb.show()
