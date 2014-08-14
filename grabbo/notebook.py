@@ -6,18 +6,19 @@ import os
 TBui = grabbo.ui.TAB_UI  #os.path.join('..', 'ui', 'TabButton.ui')
 
 class TabButton(grabbo.Builder):
-    def __init__(self, notebook, num, title, closeable = True):
+    def __init__(self):
         super(TabButton, self).__init__(TBui)
         self.button = self.ui.get_object("TabButton")
         self.close = self.ui.get_object("Close")
-        self.notebook = notebook
-        self.num = num
-
-        self.set_closeable(closeable)
-        self.button.set_label(title)
 
         self.close.connect("clicked", lambda x: self.on_close())
         self.button.connect("clicked", lambda x: self.on_button())
+
+    def set(self, notebook, num, title, closeable = True):
+        self.set_closeable(closeable)
+        self.button.set_label(title)
+        self.notebook = notebook
+        self.num = num
 
     def get(self):
         return self.ui.get_object("box")
