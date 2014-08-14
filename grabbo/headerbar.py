@@ -10,10 +10,8 @@ class HeaderBar(Gtk.HeaderBar):
         self.props.margin = 0
         self.set_has_subtitle(False)
 
-class test(Window):
+class tesz(Gtk.Box):
     def __init__(self):
-        super(test, self).__init__()
-        hb = HeaderBar()
         scroll = Gtk.ScrolledWindow()
         vp = Gtk.Viewport()
         self.box = Gtk.Box()
@@ -27,14 +25,21 @@ class test(Window):
 
         box_zwie.pack_start(scroll, True, True, True)
         box_zwie.pack_end(button, True, True, True)
-        hb.pack_start(box_zwie)
-        self.set_titlebar(hb)
-        hb.show_all()
-        self.show()
 
     def on_button(self, button):
         l = Gtk.Label("Test")
         self.box.pack_end(l, True, True, True)
+
+
+class test(Window):
+    def __init__(self):
+        super(test, self).__init__()
+        hb = HeaderBar()
+        box = tesz()
+        hb.pack_start(box)
+        self.set_titlebar(hb)
+        hb.show_all()
+        self.show()
 
 if __name__ == "__main__":
     app = test()
