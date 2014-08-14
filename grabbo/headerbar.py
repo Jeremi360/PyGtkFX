@@ -11,12 +11,6 @@ class HeaderBar(Gtk.HeaderBar, Gtk.Box):
         self.set_has_subtitle(False)
         Gtk.Box.__init__(self)
 
-    def pack_start(self, child, expand, fill, padding):
-        Gtk.Box.pack_start(self, child, expand, fill, padding)
-
-    def pack_end(self, child, expand, fill, padding):
-        Gtk.Box.pack_end(self, child, expand, fill, padding)
-
 class test(Window):
     def __init__(self):
         super(test, self).__init__()
