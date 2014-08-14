@@ -33,7 +33,7 @@ class test(Window):
         button.connect("clicked", self.on_button)
 
         box_zwie.pack_start(scroll, True, True, True)
-        box_zwie.pack_end(button)#, True, True, True)
+        box_zwie.pack_end(button, True, True, True)
         hb.pack_start(box_zwie)#, True, True, True)
         self.set_titlebar(hb)
         hb.show_all()
