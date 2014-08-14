@@ -50,14 +50,13 @@ class Notebook(grabbo.Builder):
         self.pages.set_show_tabs(False)
         self.add_button.connect("clicked", lambda x: self.add_tab())
 
-    def add_tab(self, content, bt = TabButton(), label = None, closeable = True):
+    def add_tab(self, content, bt = TabButton(), closeable = True):
         self.pages.append_page(content)
         n = self.pages.page_num(content)
 
-        if label == None:
-            label = "Page " + str(n)
-
-        bt.set(self, n, label, closeable)
+        bt.notebook = self
+        bt.num = n
+        bt.set_closeable(closeable)
         content.show()
 
         self.buttons_box.add(bt.get())
