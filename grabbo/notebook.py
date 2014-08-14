@@ -56,10 +56,7 @@ class Notebook(grabbo.Builder):
         self.set_addable(addable)
         self.set_orientation(orientation)
         self.pages.set_show_tabs(False)
-        self.add_button.connect("clicked", self._add_tab)
-
-    def _add_tab(self, button):
-        self.add_tab(Gtk.Label("Content"))
+        self.add_button.connect("clicked", lambda x: self.add_tab())
 
     def add_tab(self, content, label = None, closeable = True):
         self.pages.append_page(content)
