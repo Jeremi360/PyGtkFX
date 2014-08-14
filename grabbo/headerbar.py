@@ -1,6 +1,6 @@
 from gi.repository import Gtk
 
-class HeaderBar(Gtk.HeaderBar):
+class HeaderBar(Gtk.HeaderBar, Gtk.Box):
     def __init__(self):
         super(HeaderBar, self).__init__()
         self.set_show_close_button(True)
@@ -10,3 +10,7 @@ class HeaderBar(Gtk.HeaderBar):
         self.set_has_subtitle(False)
 
     def pack_start(self, child, expand, fill, padding):
+        Gtk.Box.pack_start(self, child, expand, fill, padding)
+
+    def pack_end(self, child, expand, fill, padding):
+        Gtk.Box.pack_end(self, child, expand, fill, padding)
