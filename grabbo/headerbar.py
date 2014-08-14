@@ -36,7 +36,7 @@ class test(Window):
         hb = HeaderBar()
         box = tesz()
         box.show()
-        hb.pack_start(box)
+        #hb.pack_start(box)
         self.set_titlebar(hb)
         hb.show()
         self.show()
