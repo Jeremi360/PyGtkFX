@@ -20,6 +20,8 @@ class test(Window):
     def __init__(self):
         hb = HeaderBar()
         self.set_titlebar(hb)
+        hb.show()
+        self.show()
 
 if __name__ == "__main__":
     app = test()
