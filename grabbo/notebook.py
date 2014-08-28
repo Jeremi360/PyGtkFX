@@ -2,8 +2,6 @@
 from gi.repository import Gtk
 
 gtknever = Gtk.PolicyType.NEVER
-gtknone = Gtk.ShadowType.NONE
-gtkright = Gtk.DirectionType.RIGHT
 
 class _CloseButton(Gtk.Button):
     def __init__(self, notebook, content):
@@ -31,12 +29,7 @@ class Notebook(Gtk.Box):
         AddIcon.new_from_icon_name("list-add", 4)
 
         self.Add = Gtk.Button()
-        self.Add.props.visible = True
-        self.Add.props.can_focus = True
-        self.Add.props.receives_default = True
         self.Add.props.image = AddIcon
-        self.Add.props.relief = gtknone
-        self.Add.props.image_position = gtkright
 
         self.stack = Gtk.Stack()
         self.stack.set_transition_type(Gtk.StackTransitionType.SLIDE_LEFT_RIGHT)
