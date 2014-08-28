@@ -20,17 +20,17 @@ class Notebook(Gtk.Box):
         super(Notebook, self).__init__()
         self.set_orientation(Gtk.Orientation.HORIZONTAL)
 
-        AddButtonIcon = Gtk.Image()
-        AddButtonIcon.new_from_icon_name("list-AddButton", 4)
+        AddIcon = Gtk.Image()
+        AddIcon.new_from_icon_name("list-AddButton", 4)
 
         self.AddButton = Gtk.Button()
-        self.AddButton.props.image = AddButtonIcon
+        self.AddButton.props.image = AddIcon
 
         self.stack = stack
 
         self.set_AddButtonable(AddButtonable)
         self.set_orientation(orientation)
-        self.AddButton.connect("clicked", lambda x: self.AddButton_tab())
+        self.AddButton.connect("clicked", lambda x: self.add_tab())
 
         self.switcher = Gtk.StackSwitcher()
         self.switcher.set_stack(self.stack)
