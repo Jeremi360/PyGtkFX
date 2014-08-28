@@ -28,7 +28,7 @@ class Notebook(Gtk.Box):
 
         self.stack = stack
 
-        self.set_AddButtonable(AddButtonable)
+        self.set_addable(addable)
         self.set_orientation(orientation)
         self.AddButton.connect("clicked", lambda x: self.add_tab())
 
