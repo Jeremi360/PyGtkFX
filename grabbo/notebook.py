@@ -40,7 +40,7 @@ Nbui = grabbo.ui.NOTEBOOK_UI
 
 class Notebook(grabbo.Builder): #os.path.join("..", "ui", "notebook.ui")
     def __init__(self, addable = True, closeable = True, orientation = Gtk.Orientation.HORIZONTAL):
-        super(Notebook, self).__init__(Nubi)
+        super(Notebook, self).__init__(Nbui)
 
         self.pages = Gtk.Notebook()
         self.set_addable(addable)
