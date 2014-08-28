@@ -56,7 +56,7 @@ class Notebook(Gtk.Box):
 
         if closeable:
             b = _CloseButton(self, content)
-            self.switcher.pack_end(b, False, False, 0)
+            self.switcher.pack_end(b, False, False, n + 1)
             b.show()
 
 
