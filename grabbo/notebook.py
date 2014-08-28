@@ -23,7 +23,7 @@ class Notebook(Gtk.Box):
         self.set_orientation(orientation)
 
         AddIcon = Gtk.Image()
-        AddIcon.new_from_icon_name("list-AddButton", 4)
+        AddIcon.new_from_icon_name("list-add", 4)
 
         self.AddButton = Gtk.Button()
         self.AddButton.props.image = AddIcon
