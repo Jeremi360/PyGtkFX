@@ -38,11 +38,13 @@ class Notebook(Gtk.Box):
         self.switcher.set_stack(self.stack)
 
         vp = Gtk.Viewport()
+        self.switcher.show()
         vp.add(self.switcher)
         sc = Gtk.ScrolledWindow()
+        vp.show()
         sc.add(vp)
         sc.show()
-        self.pack_start(sc, True, True, 0)
+        self.pack_start(sc, False, False, 0)
         self.pack_end(self.AddButton, False, False, 0)
         self.i = 0
 
