@@ -13,7 +13,7 @@ class _CloseButton(Gtk.Button):
 
     def on_it(self, button):
         self.n.stack.remove(self.c)
-        self.i -= 1
+        self.n.i -= 1
         self.n.switcher.remove(self)
 
 
