@@ -32,7 +32,7 @@ class Notebook(Gtk.Box):
 
         self.set_addable(addable)
         self.set_orientation(orientation)
-        self.AddButton.connect("clicked", self.add_tab)
+        self.AddButton.connect("clicked", self.on_add)
 
         self.switcher = Gtk.StackSwitcher()
         self.switcher.set_stack(self.stack)
@@ -41,7 +41,12 @@ class Notebook(Gtk.Box):
         self.pack_end(self.AddButton, False, False, 0)
         self.i = 0
 
-    def add_tab(self, button, content, title, closeable = True):
+    def on_add(self, button):
+        content = Gtk.Label()
+        content.set_label("Content")
+        self.add_tab(content, "Title")
+
+    def add_tab(self, content, title, closeable = True):
 
         n = str(self.i + 1)
         self.stack.add_titled(content, n, title)
