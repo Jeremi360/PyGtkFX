@@ -64,5 +64,5 @@ class Notebook(grabbo.ui.NOTEBOOK_UI): #os.path.join("..", "ui", "notebook.ui")
 
     def set_addable(self, addable):
         if not addable:
-            self.add_button.hide()
+            self.Add.hide()
 
