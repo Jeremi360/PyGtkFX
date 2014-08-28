@@ -43,9 +43,9 @@ class TabButton(grabbo.Builder):
 class Notebook(Gtk.Box): #os.path.join("..", "ui", "notebook.ui")
     def __init__(self, addable = True, closeable = True, orientation = Gtk.Orientation.HORIZONTAL):
         super(Notebook, self).__init__()
-        self.props.hexpand = True
-        self.props.vexpand = False
+        self.set_orientation(Gtk.Orientation.VERTICAL)
 
+        '''
         self._scrolledwindow = Gtk.ScrolledWindow()
         self._scrolledwindow.props.hexpand = True
         self._scrolledwindow.props.vexpand = False
@@ -57,12 +57,14 @@ class Notebook(Gtk.Box): #os.path.join("..", "ui", "notebook.ui")
         self._viewport.props.hexpand = True
         self._viewport.props.vexpand = False
         self._viewport.props.shadow_type = gtknone
+        '''
 
         self.ButtonBox = Gtk.Box()
         self.ButtonBox.props.visible = True
         self.ButtonBox.props.can_focus = False
         self.ButtonBox.props.hexpand = True
         self.ButtonBox.props.vexpand = False
+        self.set_orientation(Gtk.Orientation.HORIZONTAL)
 
         AddIcon = Gtk.Image()
         AddIcon.new_from_icon_name("list-add", 4)
@@ -75,11 +77,6 @@ class Notebook(Gtk.Box): #os.path.join("..", "ui", "notebook.ui")
         self.Add.props.relief = gtknone
         self.Add.props.image_position = gtkright
 
-        self.pack_end(self.Add, True, True, True)
-        self._scrolledwindow.add(self._viewport)
-
-        self.pack_start(self._scrolledwindow, True, True, True)
-
         self.stack = Gtk.Stack()
         self.stack.set_transition_type(Gtk.StackTransitionType.SLIDE_LEFT_RIGHT)
         self.stack.set_transition_duration(1000)
@@ -90,7 +87,11 @@ class Notebook(Gtk.Box): #os.path.join("..", "ui", "notebook.ui")
 
         self.switcher = Gtk.StackSwitcher()
         self.switcher.set_stack(self.stack)
-        self._viewport.add(self.switcher)
+
+        self.ButtonBox.pack_end(self.Add, True, True, True)
+        self.ButtonBox.pack_start(self.switcher, True, True, True)
+        self.pack_start(self.ButtonBox, True, True, True)
+
 
 
         self.show_all()
