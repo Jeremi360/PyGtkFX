@@ -46,6 +46,7 @@ class Notebook(grabbo.ui.Notebook_ui): #os.path.join("..", "ui", "notebook.ui")
         self.set_orientation(orientation)
         self.pages.set_show_tabs(False)
         self.add_button.connect("clicked", lambda x: self.add_tab())
+        self.show_all()
 
     def add_tab(self, content, bt = TabButton(), closeable = True):
         self.pages.append_page(content)
