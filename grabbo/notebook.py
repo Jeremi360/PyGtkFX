@@ -1,6 +1,5 @@
 
 from gi.repository import Gtk
-import grabbo
 
 gtknever = Gtk.PolicyType.NEVER
 gtknone = Gtk.ShadowType.NONE
