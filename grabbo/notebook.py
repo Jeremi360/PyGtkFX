@@ -26,20 +26,6 @@ class Notebook(Gtk.Box):
         super(Notebook, self).__init__()
         self.set_orientation(Gtk.Orientation.VERTICAL)
 
-        '''
-        self._scrolledwindow = Gtk.ScrolledWindow()
-        self._scrolledwindow.props.hexpand = True
-        self._scrolledwindow.props.vexpand = False
-        self._scrolledwindow.props.vscrollbar_policy = gtknever
-
-        self._viewport = Gtk.Viewport()
-        self._viewport.props.visible = True
-        self._viewport.props.can_focus = False
-        self._viewport.props.hexpand = True
-        self._viewport.props.vexpand = False
-        self._viewport.props.shadow_type = gtknone
-        '''
-
         self.ButtonBox = Gtk.Box()
         self.set_orientation(Gtk.Orientation.HORIZONTAL)
 
