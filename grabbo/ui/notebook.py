@@ -2,7 +2,7 @@ from gi.repository import Gtk
 
 gtknever = Gtk.PolicyType.NEVER
 gtknone = Gtk.ShadowType.NONE
-gtkright = Gtk.
+gtkright = Gtk.DirectionType.RIGHT
 
 class Notebook_ui(Gtk.Box):
     def __init__(self):
@@ -30,17 +30,26 @@ class Notebook_ui(Gtk.Box):
         #<property name="expand">True</property>
         #<property name="fill">True</property>
 
+        AddIcon = Gtk.Image()
+        AddIcon.new_from_icon_name("list-add")
+
         self.Add = Gtk.Button()
         self.Add.props.visible = True
         self.Add.props.can_focus = True
         self.Add.props.receives_default = True
         self.Add.props.image = AddIcon
         self.Add.props.relief = gtknone
-        self.Add.props.image_position = right
+        self.Add.props.image_position = gtkright
 
         #<property name="expand">False</property>
         #<property name="fill">False</property>
         #<property name="position">1</property>
+
+        self.pack_end(self.Add)
+        self._viewport.add(self.ButtonBox)
+        self._scrolledwindow.add(self._viewport)
+        self.pack_start(self._scrolledwindow)
+        self.show_all()
 
 
 TAB_UI = '''<?xml version="1.0" encoding="UTF-8"?>
