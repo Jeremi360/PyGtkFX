@@ -71,18 +71,18 @@ class Notebook():
 
             if orientation == Gtk.Orientation.VERTICAL:
                 self.ButtonBox.hide()
-                self.get().hide()
-                self.get().set_hexpand(False)
-                self.get().set_vexpand(True)
+                self.hide()
+                self.set_hexpand(False)
+                self.set_vexpand(True)
                 self.ButtonBox.set_hexpand(False)
                 self.ButtonBox.set_vexpand(True)
                 self.ButtonBox.show()
 
             else:
                 self.ButtonBox.hide()
-                self.get().hide()
-                self.get().set_hexpand(True)
-                self.get().set_vexpand(False)
+                self.hide()
+                self.set_hexpand(True)
+                self.set_vexpand(False)
                 self.ButtonBox.set_hexpand(True)
                 self.ButtonBox.set_vexpand(False)
                 self.ButtonBox.show()
