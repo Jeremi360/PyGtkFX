@@ -9,12 +9,12 @@ class _CloseButton(Gtk.Button):
         self.set_image(i)
         self.c = content
         self.n = notebook
+        self.connect("clicked", self.on_it)
 
     def on_it(self, button):
         self.n.stack.remove(self.c)
         self.i -= 1
         self.n.switcher.remove(self)
-
 
 
 class Notebook(Gtk.Box):
