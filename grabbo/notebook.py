@@ -49,12 +49,14 @@ class Notebook(Gtk.Box):
         self.switcher = Gtk.StackSwitcher()
         self.switcher.set_stack(self.stack)
 
+        self.l = []
+
+    def auto_pack(self):
         self.ButtonBox.pack_end(self.Add, True, True, True)
         self.ButtonBox.pack_start(self.switcher, True, True, True)
         self.pack_start(self.ButtonBox, True, True, True)
         self.pack_end(self.stack, True, True, True)
-        self.l = []
-        self.show_all()
+
 
     def add_tab(self, content, title, closeable = True):
         self.l.append(content)
