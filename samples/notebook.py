@@ -20,6 +20,7 @@ class Window(grabbo.Window):
         hb.pack_start(n)
         self.set_titlebar(hb)
 
+        n.show()
         self.add(n.stack)
         hb.show_all()
         self.show_all()
