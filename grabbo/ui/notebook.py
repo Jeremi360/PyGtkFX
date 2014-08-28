@@ -4,7 +4,7 @@ gtknever = Gtk.PolicyType.NEVER
 gtknone = Gtk.ShadowType.NONE
 gtkright = Gtk.DirectionType.RIGHT
 
-class Notebook_ui(Gtk.Box):
+class NOTEBOOK_UI(Gtk.Box):
     def __init__(self):
         self.props.hexpand = True
         self.props.vexpand = False
@@ -51,64 +51,8 @@ class Notebook_ui(Gtk.Box):
         self.pack_start(self._scrolledwindow)
         self.show_all()
 
-NOTEBOOK_UI = '''<?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.18.3 -->
-<interface>
-  <requires lib="gtk+" version="3.12"/>
-  <object class="GtkImage" id="AddIcon">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="icon_name">list-add</property>
-  </object>
-  <object class="GtkBox" id="box2">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="hexpand">True</property>
-    <property name="vexpand">False</property>
-    <child>
-      <object class="GtkScrolledWindow" id="scrolledwindow1">
-        <property name="visible">True</property>
-        <property name="can_focus">True</property>
-        <property name="hexpand">True</property>
-        <property name="vexpand">False</property>
-        <property name="vscrollbar_policy">never</property>
-        <child>
-          <object class="GtkViewport" id="viewport1">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="hexpand">True</property>
-            <property name="vexpand">False</property>
-            <property name="shadow_type">none</property>
-            <child>
-              <placeholder/>
-            </child>
-          </object>
-        </child>
-      </object>
-      <packing>
-        <property name="expand">True</property>
-        <property name="fill">True</property>
-        <property name="position">0</property>
-      </packing>
-    </child>
-    <child>
-      <object class="GtkButton" id="Add">
-        <property name="visible">True</property>
-        <property name="can_focus">True</property>
-        <property name="receives_default">True</property>
-        <property name="image">AddIcon</property>
-        <property name="relief">none</property>
-        <property name="image_position">right</property>
-      </object>
-      <packing>
-        <property name="expand">False</property>
-        <property name="fill">False</property>
-        <property name="position">1</property>
-      </packing>
-    </child>
-  </object>
-</interface>
-'''
+
+
 
 
 TAB_UI = '''<?xml version="1.0" encoding="UTF-8"?>
