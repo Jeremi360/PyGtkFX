@@ -52,17 +52,17 @@ class Notebook(Gtk.Box):
     def AddButton_tab(self, content, title, closeable = True):
         self.l.append(content)
         n = str(self.l.count(content))
-        self.stack.AddButton_titled(content, n, title)
+        self.stack.add_titled(content, n, title)
         content.show()
 
 
         if closeable:
             b = _CloseButton(self, content)
-            self.switcher.AddButton(b)
+            self.switcher.add(b)
             b.show()
 
 
-    def set_AddButtonable(self, AddButtonable):
-        if not AddButtonable:
+    def set_AddButtonable(self, addable):
+        if not addable:
             self.AddButton.hide()
 
