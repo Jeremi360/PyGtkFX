@@ -32,7 +32,7 @@ class NOTEBOOK_UI(Gtk.Box):
         #<property name="fill">True</property>
 
         AddIcon = Gtk.Image()
-        AddIcon.new_from_icon_name("list-add")
+        AddIcon.new_from_icon_name("list-add", 4)
 
         self.Add = Gtk.Button()
         self.Add.props.visible = True
