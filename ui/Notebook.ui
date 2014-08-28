@@ -27,14 +27,11 @@
             <property name="vexpand">False</property>
             <property name="shadow_type">none</property>
             <child>
-              <object class="GtkBox" id="ButtonBox">
+              <object class="GtkButton" id="button1">
+                <property name="label" translatable="yes">button</property>
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="hexpand">True</property>
-                <property name="vexpand">False</property>
-                <child>
-                  <placeholder/>
-                </child>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
               </object>
             </child>
           </object>
