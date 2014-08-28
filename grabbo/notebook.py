@@ -59,9 +59,6 @@ class Notebook(grabbo.ui.NOTEBOOK_UI): #os.path.join("..", "ui", "notebook.ui")
 
         self.ButtonBox.add(bt.get())
 
-    def get(self):
-        return self.ui.get_object("box2")
-
     def set_addable(self, addable):
         if not addable:
             self.Add.hide()
