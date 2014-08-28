@@ -2,6 +2,10 @@
 from gi.repository import Gtk
 import grabbo
 
+gtknever = Gtk.PolicyType.NEVER
+gtknone = Gtk.ShadowType.NONE
+gtkright = Gtk.DirectionType.RIGHT
+
 class _CloseButton(Gtk.Button):
     def __init__(self, notebook, content):
         super(_CloseButton, self).__init__()
