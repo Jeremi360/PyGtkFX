@@ -11,6 +11,10 @@ class Window(grabbo.Window):
         lii= Gtk.Label()
         lii.set_label("test 02")
 
+        s = Gtk.Stack()
+        s.set_transition_type(Gtk.StackTransitionType.SLIDE_LEFT_RIGHT)
+        s.set_transition_duration(1000)
+
         n = grabbo.Notebook()
         n.set_addable(False)
         n.add_tab(li, "l1", False)
