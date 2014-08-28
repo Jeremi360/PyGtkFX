@@ -15,9 +15,9 @@ class _CloseButton(Gtk.Button):
         self.switcher.remove(self)
 
 
-class NotebookSwitcher(Gtk.Box):
+class Notebook(Gtk.Box):
     def __init__(self, stack = Gtk.Stack, AddButtonable = True, closeable = True, orientation = Gtk.Orientation.HORIZONTAL):
-        super(NotebookSwitcher, self).__init__()
+        super(Notebook, self).__init__()
         self.set_orientation(Gtk.Orientation.HORIZONTAL)
 
         AddButtonIcon = Gtk.Image()
