@@ -21,6 +21,12 @@ class Window(grabbo.Window):
         n.add_tab(lii, "l2", False)
 
         hb = Gtk.HeaderBar()
+        hb.set_show_close_button(True)
+        hb.set_title("")
+        hb.set_custom_title(Gtk.Separator())
+        hb.props.border_width = 0
+        hb.props.margin = 0
+        hb.set_has_subtitle(False)
         hb.pack_start(n)
         self.set_titlebar(hb)
 
