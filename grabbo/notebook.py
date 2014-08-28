@@ -24,7 +24,7 @@ class Notebook(Gtk.Box):
 
         AddIcon = Gtk.Image()
         AddIcon.new_from_icon_name("list-add", 4)
-        AddIcon.show()
+
         self.AddButton = Gtk.Button()
         self.AddButton.props.image = AddIcon
 
