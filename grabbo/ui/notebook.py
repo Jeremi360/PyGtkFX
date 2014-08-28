@@ -6,6 +6,7 @@ gtkright = Gtk.DirectionType.RIGHT
 
 class NOTEBOOK_UI(Gtk.Box):
     def __init__(self):
+        super(NOTEBOOK_UI, self).__init__()
         self.props.hexpand = True
         self.props.vexpand = False
 

@@ -40,8 +40,7 @@ Nbui = grabbo.ui.NOTEBOOK_UI
 
 class Notebook(grabbo.Builder): #os.path.join("..", "ui", "notebook.ui")
     def __init__(self, addable = True, closeable = True, orientation = Gtk.Orientation.HORIZONTAL):
-        super(Notebook, self).__init__(Nbui)
-        self.ButtonBox = self.ui.get_object("ButtonBox")
+        super(Notebook, self).__init__()
 
         self.pages = Gtk.Notebook()
         self.set_addable(addable)
@@ -68,23 +67,3 @@ class Notebook(grabbo.Builder): #os.path.join("..", "ui", "notebook.ui")
         if not addable:
             self.add_button.hide()
 
-    def set_orientation(self, orientation):
-            self.ButtonBox.set_orientation(orientation)
-
-            if orientation == Gtk.Orientation.VERTICAL:
-                self.ButtonBox.hide()
-                self.hide()
-                self.set_hexpand(False)
-                self.set_vexpand(True)
-                self.ButtonBox.set_hexpand(False)
-                self.ButtonBox.set_vexpand(True)
-                self.ButtonBox.show()
-
-            else:
-                self.ButtonBox.hide()
-                self.hide()
-                self.set_hexpand(True)
-                self.set_vexpand(False)
-                self.ButtonBox.set_hexpand(True)
-                self.ButtonBox.set_vexpand(False)
-                self.ButtonBox.show()
