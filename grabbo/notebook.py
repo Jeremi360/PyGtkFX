@@ -55,12 +55,12 @@ class Notebook(Gtk.Box):
         self.stack.add_titled(content, n, title)
         content.show()
 
-        '''
+
         if closeable:
             b = _CloseButton(self, content)
             self.switcher.add(b)
             b.show()
-        '''
+
 
     def set_addable(self, addable):
         if not addable:
