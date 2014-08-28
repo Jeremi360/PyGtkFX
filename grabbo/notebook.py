@@ -16,26 +16,26 @@ class _CloseButton(Gtk.Button):
 
 
 class Notebook(Gtk.Box):
-    def __init__(self, addable = True, closeable = True, orientation = Gtk.Orientation.HORIZONTAL):
+    def __init__(self, AddButtonable = True, closeable = True, orientation = Gtk.Orientation.HORIZONTAL):
         super(Notebook, self).__init__()
         self.set_orientation(Gtk.Orientation.VERTICAL)
 
         self.ButtonBox = Gtk.Box()
         self.set_orientation(Gtk.Orientation.HORIZONTAL)
 
-        AddIcon = Gtk.Image()
-        AddIcon.new_from_icon_name("list-add", 4)
+        AddButtonIcon = Gtk.Image()
+        AddButtonIcon.new_from_icon_name("list-AddButton", 4)
 
-        self.Add = Gtk.Button()
-        self.Add.props.image = AddIcon
+        self.AddButton = Gtk.Button()
+        self.AddButton.props.image = AddButtonIcon
 
         self.stack = Gtk.Stack()
         self.stack.set_transition_type(Gtk.StackTransitionType.SLIDE_LEFT_RIGHT)
         self.stack.set_transition_duration(1000)
 
-        self.set_addable(addable)
+        self.set_AddButtonable(AddButtonable)
         self.set_orientation(orientation)
-        self.Add.connect("clicked", lambda x: self.add_tab())
+        self.AddButton.connect("clicked", lambda x: self.AddButton_tab())
 
         self.switcher = Gtk.StackSwitcher()
         self.switcher.set_stack(self.stack)
@@ -43,26 +43,26 @@ class Notebook(Gtk.Box):
         self.l = []
 
     def auto_pack(self):
-        self.ButtonBox.pack_end(self.Add, True, True, True)
+        self.ButtonBox.pack_end(self.AddButton, True, True, True)
         self.ButtonBox.pack_start(self.switcher, True, True, True)
         self.pack_start(self.ButtonBox, True, True, True)
         self.pack_end(self.stack, True, True, True)
 
 
-    def add_tab(self, content, title, closeable = True):
+    def AddButton_tab(self, content, title, closeable = True):
         self.l.append(content)
         n = str(self.l.count(content))
-        self.stack.add_titled(content, n, title)
+        self.stack.AddButton_titled(content, n, title)
         content.show()
 
 
         if closeable:
             b = _CloseButton(self, content)
-            self.switcher.add(b)
+            self.switcher.AddButton(b)
             b.show()
 
 
-    def set_addable(self, addable):
-        if not addable:
-            self.Add.hide()
+    def set_AddButtonable(self, AddButtonable):
+        if not AddButtonable:
+            self.AddButton.hide()
 
