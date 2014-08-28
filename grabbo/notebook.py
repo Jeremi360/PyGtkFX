@@ -54,6 +54,7 @@ class Notebook(Gtk.Box):
         n = str(self.l.count(content))
         self.stack.add_titled(content, n, title)
         content.show()
+        self.switcher.show()
 
 
         if closeable:
