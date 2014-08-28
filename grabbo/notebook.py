@@ -57,7 +57,7 @@ class Notebook():
         bt.set_closeable(closeable)
         content.show()
 
-        self.buttons_box.add(bt.get())
+        self.ButtonBox.add(bt.get())
 
     def get(self):
         return self.ui.get_object("box2")
@@ -67,22 +67,22 @@ class Notebook():
             self.add_button.hide()
 
     def set_orientation(self, orientation):
-            self.buttons_box.set_orientation(orientation)
+            self.ButtonBox.set_orientation(orientation)
 
             if orientation == Gtk.Orientation.VERTICAL:
-                self.buttons_box.hide()
+                self.ButtonBox.hide()
                 self.get().hide()
                 self.get().set_hexpand(False)
                 self.get().set_vexpand(True)
-                self.buttons_box.set_hexpand(False)
-                self.buttons_box.set_vexpand(True)
-                self.buttons_box.show()
+                self.ButtonBox.set_hexpand(False)
+                self.ButtonBox.set_vexpand(True)
+                self.ButtonBox.show()
 
             else:
-                self.buttons_box.hide()
+                self.ButtonBox.hide()
                 self.get().hide()
                 self.get().set_hexpand(True)
                 self.get().set_vexpand(False)
-                self.buttons_box.set_hexpand(True)
-                self.buttons_box.set_vexpand(False)
-                self.buttons_box.show()
+                self.ButtonBox.set_hexpand(True)
+                self.ButtonBox.set_vexpand(False)
+                self.ButtonBox.show()
