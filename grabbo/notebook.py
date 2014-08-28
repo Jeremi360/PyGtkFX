@@ -12,7 +12,9 @@ class _CloseButton(Gtk.Button):
 
     def on_it(self, button):
         self.n.stack.remove(self.c)
-        self.switcher.remove(self)
+        self.i -= 1
+        self.n.switcher.remove(self)
+
 
 
 class Notebook(Gtk.Box):
@@ -34,11 +36,15 @@ class Notebook(Gtk.Box):
 
         self.switcher = Gtk.StackSwitcher()
         self.switcher.set_stack(self.stack)
+        self.i = 0
 
     def add_tab(self, content, title, closeable = True):
+
+        n = self.i + 1
         self.stack.add_titled(content, n, title)
         content.show()
         self.switcher.show()
+        self.i += 1
 
         if closeable:
             b = _CloseButton(self, content)
