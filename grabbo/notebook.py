@@ -35,16 +35,10 @@ class Notebook(Gtk.Box):
         self.switcher = Gtk.StackSwitcher()
         self.switcher.set_stack(self.stack)
 
-        self.l = []
-
-
     def add_tab(self, content, title, closeable = True):
-        self.l.append(content)
-        n = str(self.l.count(content))
         self.stack.add_titled(content, n, title)
         content.show()
         self.switcher.show()
-
 
         if closeable:
             b = _CloseButton(self, content)
