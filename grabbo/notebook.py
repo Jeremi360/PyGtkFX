@@ -36,15 +36,13 @@ class TabButton(grabbo.Builder):
         self.notebook.pages.remove_page(self.num)
         self.notebook.buttons_box.remove(self.get())
 
-Nbui = grabbo.ui.NOTEBOOK_UI #os.path.join("..", "ui", "notebook.ui")
+Nbui = grabbo.ui.Notebook_ui #os.path.join("..", "ui", "notebook.ui")
 
-class Notebook(grabbo.Builder):
+class Notebook():
     def __init__(self, addable = True, closeable = True, orientation = Gtk.Orientation.HORIZONTAL):
-        super(Notebook, self).__init__(Nbui)
-        self.pages = Gtk.Notebook()
-        self.buttons_box = self.ui.get_object("ButtonBox")
-        self.add_button = self.ui.get_object("Add")
+        super(Notebook, self).__init__()
 
+        self.pages = Gtk.Notebook()
         self.set_addable(addable)
         self.set_orientation(orientation)
         self.pages.set_show_tabs(False)
