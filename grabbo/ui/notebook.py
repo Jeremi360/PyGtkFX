@@ -51,6 +51,8 @@ class Notebook_ui(Gtk.Box):
         self.pack_start(self._scrolledwindow)
         self.show_all()
 
+NOTEBOOK_UI = '''
+
 
 TAB_UI = '''<?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated with glade 3.18.3 -->
