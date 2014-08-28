@@ -1,8 +1,6 @@
 
 from gi.repository import Gtk
 
-gtknever = Gtk.PolicyType.NEVER
-
 class _CloseButton(Gtk.Button):
     def __init__(self, notebook, content):
         super(_CloseButton, self).__init__()
