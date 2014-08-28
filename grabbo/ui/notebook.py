@@ -46,10 +46,10 @@ class NOTEBOOK_UI(Gtk.Box):
         #<property name="fill">False</property>
         #<property name="position">1</property>
 
-        self.pack_end(self.Add)
+        self.pack_end(self.Add, True, True, True)
         self._viewport.add(self.ButtonBox)
         self._scrolledwindow.add(self._viewport)
-        self.pack_start(self._scrolledwindow)
+        self.pack_start(self._scrolledwindow, True, True, True)
         self.show_all()
 
 
