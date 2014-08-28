@@ -44,7 +44,7 @@ class Notebook(Gtk.Box):
         self.pack_end(self.stack, True, True, True)
 
 
-    def AddButton_tab(self, content, title, closeable = True):
+    def add_tab(self, content, title, closeable = True):
         self.l.append(content)
         n = str(self.l.count(content))
         self.stack.add_titled(content, n, title)
