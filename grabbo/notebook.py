@@ -52,7 +52,7 @@ class Notebook(Gtk.Box):
             b.show()
 
 
-    def set_AddButtonable(self, addable):
+    def set_addable(self, addable):
         if not addable:
             self.AddButton.hide()
 
