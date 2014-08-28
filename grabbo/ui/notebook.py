@@ -47,13 +47,12 @@ class NOTEBOOK_UI(Gtk.Box):
         #<property name="position">1</property>
 
         self.pack_end(self.Add, True, True, True)
-        self._viewport.add(self.ButtonBox)
         self._scrolledwindow.add(self._viewport)
         self.pack_start(self._scrolledwindow, True, True, True)
         self.show_all()
 
-
-
+    def add_to_vp(self, children):
+        self._viewport.add(children)
 
 
 TAB_UI = '''<?xml version="1.0" encoding="UTF-8"?>
