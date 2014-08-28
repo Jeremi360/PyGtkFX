@@ -2,11 +2,6 @@
 from gi.repository import Gtk
 import grabbo
 
-TBui = grabbo.ui.TAB_UI  #os.path.join('..', 'ui', 'TabButton.ui')
-gtknever = Gtk.PolicyType.NEVER
-gtknone = Gtk.ShadowType.NONE
-gtkright = Gtk.DirectionType.RIGHT
-
 class _CloseButton(Gtk.Button):
     def __init__(self, notebook, content):
         super(_CloseButton, self).__init__()
