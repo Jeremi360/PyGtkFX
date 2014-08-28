@@ -17,8 +17,8 @@ class _CloseButton(Gtk.Button):
 
 class Notebook(Gtk.Box):
     def __init__(self, stack = Gtk.Stack, AddButtonable = True, closeable = True, orientation = Gtk.Orientation.HORIZONTAL):
-        super(Notebook, self).__init__()
-        self.set_orientation(Gtk.Orientation.HORIZONTAL)
+        super(Notebook, self).__init__(orientation)
+        self.set_orientation()
 
         AddIcon = Gtk.Image()
         AddIcon.new_from_icon_name("list-AddButton", 4)
