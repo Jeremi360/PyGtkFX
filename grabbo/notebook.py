@@ -38,7 +38,7 @@ class Notebook(Gtk.Box):
         self.switcher.set_stack(self.stack)
 
         self.pack_start(self.switcher, True, True, 0)
-        self.pack_end(self.AddButton, False, True, 0)
+        self.pack_end(self.AddButton, False, False, 0)
         self.i = 0
 
     def add_tab(self, content, title, closeable = True):
