@@ -56,6 +56,6 @@ class NOTEBOOK_UI(Gtk.Box):
 
 
 class TAB_UI(Gtk.StackSwitcher):
-    def __init__(self):
+    def __init__(self, stack):
         super(TAB_UI, self).__init__()
 

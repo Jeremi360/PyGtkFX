@@ -41,10 +41,9 @@ class Notebook(grabbo.ui.NOTEBOOK_UI): #os.path.join("..", "ui", "notebook.ui")
     def __init__(self, addable = True, closeable = True, orientation = Gtk.Orientation.HORIZONTAL):
         super(Notebook, self).__init__()
 
-        self.pages = Gtk.Notebook()
+        self.pages = Gtk.Stack()
         self.set_addable(addable)
         self.set_orientation(orientation)
-        self.pages.set_show_tabs(False)
         self.Add.connect("clicked", lambda x: self.add_tab())
         self.show_all()
 
