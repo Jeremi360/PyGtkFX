@@ -12,7 +12,7 @@ class Window(grabbo.Window):
         lii.set_label("test 02")
 
         n = grabbo.Notebook()
-        n.set_addbale(False)
+        n.set_addable(False)
         n.add_tab(li, li.get_label(), False)
         n.add_tab(lii, lii.get_label(), False)
 
