@@ -40,7 +40,7 @@ class Notebook(Gtk.Box):
 
     def add_tab(self, content, title, closeable = True):
 
-        n = self.i + 1
+        n = str(self.i + 1)
         self.stack.add_titled(content, n, title)
         content.show()
         self.switcher.show()
