@@ -7,40 +7,21 @@ gtknever = Gtk.PolicyType.NEVER
 gtknone = Gtk.ShadowType.NONE
 gtkright = Gtk.DirectionType.RIGHT
 
-class TabButton(grabbo.Builder):
-    def __init__(self):
-        super(TabButton, self).__init__(TBui)
-        self.button = self.ui.get_object("TabButton")
-        self.close = self.ui.get_object("Close")
+class _CloseButton(Gtk.Button):
+    def __init__(self, notebook, content):
+        super(_CloseButton, self).__init__()
+        i = Gtk.Image()
+        i.new_from_icon_name("close-window", 4)
+        self.set_image(i)
+        self.c = content
+        self.n = notebook
 
-        self.close.connect("clicked", lambda x: self.on_close())
-        self.button.connect("clicked", lambda x: self.on_button())
-
-    def set(self, notebook, num, label, closeable = True):
-        self.set_closeable(closeable)
-        self.button.set_label(label)
-        self.notebook = notebook
-        self.num = num
-
-    def get(self):
-        return self.ui.get_object("box")
-
-    def set_closeable(self,  closeable = True):
-        if not closeable:
-            self.close.hide()
-        else:
-            self.close.show()
-
-    def on_button(self):
-        self.notebook.pages.set_current_page(self.num)
-
-    def on_close(self):
-        self.notebook.pages.prev_page()
-        self.notebook.pages.remove_page(self.num)
-        self.notebook.buttons_box.remove(self.get())
+    def on_it(self, button):
+        self.n.stack.remove(self.c)
+        self.switcher.remove(self)
 
 
-class Notebook(Gtk.Box): #os.path.join("..", "ui", "notebook.ui")
+class Notebook(Gtk.Box):
     def __init__(self, addable = True, closeable = True, orientation = Gtk.Orientation.HORIZONTAL):
         super(Notebook, self).__init__()
         self.set_orientation(Gtk.Orientation.VERTICAL)
@@ -60,10 +41,6 @@ class Notebook(Gtk.Box): #os.path.join("..", "ui", "notebook.ui")
         '''
 
         self.ButtonBox = Gtk.Box()
-        self.ButtonBox.props.visible = True
-        self.ButtonBox.props.can_focus = False
-        self.ButtonBox.props.hexpand = True
-        self.ButtonBox.props.vexpand = False
         self.set_orientation(Gtk.Orientation.HORIZONTAL)
 
         AddIcon = Gtk.Image()
@@ -91,19 +68,22 @@ class Notebook(Gtk.Box): #os.path.join("..", "ui", "notebook.ui")
         self.ButtonBox.pack_end(self.Add, True, True, True)
         self.ButtonBox.pack_start(self.switcher, True, True, True)
         self.pack_start(self.ButtonBox, True, True, True)
-
-
-
+        self.pack_end(self.stack, True, True, True)
+        self.l = []
         self.show_all()
 
-    def add_tab(self, content, closeable = True):
-        self.pages.append_page(content)
-        n = self.pages.page_num(content)
-
-
-
-
+    def add_tab(self, content, title, closeable = True):
+        self.l.append(content)
+        n = str(self.l.count(content))
+        self.stack.add_titled(content, n, title)
         content.show()
+
+        if closeable:
+            b = _CloseButton(self, content)
+            self.switcher.add(b)
+            b.show()
+
+
 
 
     def set_addable(self, addable):
