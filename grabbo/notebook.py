@@ -16,7 +16,7 @@ class _CloseButton(Gtk.Button):
 
 
 class Notebook(Gtk.Box):
-    def __init__(self, stack = Gtk.Stack, addable = True, closeable = True, orientation = Gtk.Orientation.HORIZONTAL):
+    def __init__(self, stack = Gtk.Stack(), addable = True, closeable = True, orientation = Gtk.Orientation.HORIZONTAL):
         super(Notebook, self).__init__()
         self.set_orientation(orientation)
 
