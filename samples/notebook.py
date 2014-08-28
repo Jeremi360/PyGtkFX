@@ -11,15 +11,17 @@ class Window(grabbo.Window):
         lii= Gtk.Label()
         lii.set_label("test 02")
 
-        N = grabbo.Notebook()
-        N.add_tab(li, li.get_label(), False)
-        N.add_tab(lii, lii.get_label(), False)
+        n = grabbo.Notebook()
+        n.set_addbale(False)
+        n.add_tab(li, li.get_label(), False)
+        n.add_tab(lii, lii.get_label(), False)
 
         hb = Gtk.HeaderBar()
-        hb.pack_start(N)
+        hb.pack_start(n)
         self.set_titlebar(hb)
 
-
+        self.add(n.stack)
+        self.show_all()
 
 if __name__ == "__main__":
     app = Window()
