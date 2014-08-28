@@ -2,6 +2,7 @@ from gi.repository import Gtk
 
 gtknever = Gtk.PolicyType.NEVER
 gtknone = Gtk.ShadowType.NONE
+gtkright = Gtk.
 
 class Notebook_ui(Gtk.Box):
     def __init__(self):
@@ -19,44 +20,28 @@ class Notebook_ui(Gtk.Box):
         self._viewport.props.hexpand = True
         self._viewport.props.vexpand = False
         self._viewport.props.shadow_type = gtknone
-            '''<child>
-              <object class="GtkBox" id="ButtonBox">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="hexpand">True</property>
-                <property name="vexpand">False</property>
-                <child>
-                  <placeholder/>
-                </child>
-              </object>
-            </child>
-          </object>
-        </child>
-      </object>
-      <packing>
-        <property name="expand">True</property>
-        <property name="fill">True</property>
-        <property name="position">0</property>
-      </packing>
-    </child>
-    <child>
-      <object class="GtkButton" id="Add">
-        <property name="visible">True</property>
-        <property name="can_focus">True</property>
-        <property name="receives_default">True</property>
-        <property name="image">AddIcon</property>
-        <property name="relief">none</property>
-        <property name="image_position">right</property>
-      </object>
-      <packing>
-        <property name="expand">False</property>
-        <property name="fill">False</property>
-        <property name="position">1</property>
-      </packing>
-    </child>
-  </object>
-</interface>
-'''
+
+        self.ButtonBox = Gtk.Box()
+        self.ButtonBox.props.visible = True
+        self.ButtonBox.props.can_focus = False
+        self.ButtonBox.props.hexpand = True
+        self.ButtonBox.props.vexpand = False
+
+        #<property name="expand">True</property>
+        #<property name="fill">True</property>
+
+        self.Add = Gtk.Button()
+        self.Add.props.visible = True
+        self.Add.props.can_focus = True
+        self.Add.props.receives_default = True
+        self.Add.props.image = AddIcon
+        self.Add.props.relief = gtknone
+        self.Add.props.image_position = right
+
+        #<property name="expand">False</property>
+        #<property name="fill">False</property>
+        #<property name="position">1</property>
+
 
 TAB_UI = '''<?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated with glade 3.18.3 -->
