@@ -64,9 +64,6 @@ class Notebook(Gtk.Box): #os.path.join("..", "ui", "notebook.ui")
         self.ButtonBox.props.hexpand = True
         self.ButtonBox.props.vexpand = False
 
-        #<property name="expand">True</property>
-        #<property name="fill">True</property>
-
         AddIcon = Gtk.Image()
         AddIcon.new_from_icon_name("list-add", 4)
 
@@ -78,32 +75,35 @@ class Notebook(Gtk.Box): #os.path.join("..", "ui", "notebook.ui")
         self.Add.props.relief = gtknone
         self.Add.props.image_position = gtkright
 
-        #<property name="expand">False</property>
-        #<property name="fill">False</property>
-        #<property name="position">1</property>
-
         self.pack_end(self.Add, True, True, True)
         self._scrolledwindow.add(self._viewport)
-        self._viewport.add()
+
         self.pack_start(self._scrolledwindow, True, True, True)
-        self.show_all()
 
         self.stack = Gtk.Stack()
+        self.stack.set_transition_type(Gtk.StackTransitionType.SLIDE_LEFT_RIGHT)
+        self.stack.set_transition_duration(1000)
+
         self.set_addable(addable)
         self.set_orientation(orientation)
         self.Add.connect("clicked", lambda x: self.add_tab())
+
+        self.switcher = Gtk.StackSwitcher()
+        self.switcher.set_stack(self.stack)
+        self._viewport.add(self.switcher)
+
+
         self.show_all()
 
-    def add_tab(self, content, bt = TabButton(), closeable = True):
+    def add_tab(self, content, closeable = True):
         self.pages.append_page(content)
         n = self.pages.page_num(content)
 
-        bt.notebook = self
-        bt.num = n
-        bt.set_closeable(closeable)
+
+
+
         content.show()
 
-        self.ButtonBox.add(bt.get())
 
     def set_addable(self, addable):
         if not addable:
