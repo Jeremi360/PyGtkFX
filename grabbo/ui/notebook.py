@@ -1,33 +1,25 @@
+from gi.repository import Gtk
 
-NOTEBOOK_UI = '''<?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.18.3 -->
-<interface>
-  <requires lib="gtk+" version="3.12"/>
-  <object class="GtkImage" id="AddIcon">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="icon_name">list-add</property>
-  </object>
-  <object class="GtkBox" id="box2">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="hexpand">True</property>
-    <property name="vexpand">False</property>
-    <child>
-      <object class="GtkScrolledWindow" id="scrolledwindow1">
-        <property name="visible">True</property>
-        <property name="can_focus">True</property>
-        <property name="hexpand">True</property>
-        <property name="vexpand">False</property>
-        <property name="vscrollbar_policy">never</property>
-        <child>
-          <object class="GtkViewport" id="viewport1">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="hexpand">True</property>
-            <property name="vexpand">False</property>
-            <property name="shadow_type">none</property>
-            <child>
+gtknever = Gtk.PolicyType.NEVER
+gtknone = Gtk.ShadowType.NONE
+
+class Notebook_ui(Gtk.Box):
+    def __init__(self):
+        self.props.hexpand = True
+        self.props.vexpand = False
+
+        self._scrolledwindow = Gtk.ScrolledWindow()
+        self._scrolledwindow.props.hexpand = True
+        self._scrolledwindow.props.vexpand = False
+        self._scrolledwindow.props.vscrollbar_policy = gtknever
+
+        self._viewport = Gtk.Viewport()
+        self._viewport.props.visible = True
+        self._viewport.props.can_focus = False
+        self._viewport.props.hexpand = True
+        self._viewport.props.vexpand = False
+        self._viewport.props.shadow_type = gtknone
+            '''<child>
               <object class="GtkBox" id="ButtonBox">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
