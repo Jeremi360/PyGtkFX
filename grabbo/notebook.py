@@ -73,7 +73,7 @@ class Notebook(grabbo.Builder):
         else:
             tb.close.hide()
 
-        self.switcher.add(tb)
+        self.switcher.add(tb.get())
 
     def set_addable(self, addable):
         if addable:
