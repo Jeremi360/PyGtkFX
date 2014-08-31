@@ -77,6 +77,8 @@ class Notebook(Gtk.Box):
             box.pack_end(cb, False, False, 0)
             cb.show()
 
+        self.switcher.pack_end(box, True, False, 0)
+
         box.show_all()
         content.show()
         self.switcher.show()
