@@ -55,9 +55,9 @@ class Notebook(Gtk.Box):
         vp.add(self.switcher)
         self._sc = Gtk.ScrolledWindow()
         vp.show()
-        sc.add(vp)
-        sc.show()
-        self.pack_start(sc, True, False, 0)
+        self._sc.add(vp)
+        self._sc.show()
+        self.pack_start(self._sc, True, False, 0)
         self.pack_end(self.AddButton, False, False, 0)
 
     def on_add(self, button):
