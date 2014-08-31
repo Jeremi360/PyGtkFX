@@ -2,7 +2,8 @@ from gi.repository import Gtk
 import grabbo
 import os
 
-LIST_UI = os.path.join('..', 'ui', 'List.ui')
+r = os.path.realpath(__file__)
+LIST_UI = os.path.join(r, '..', 'ui', 'List.xml')
 
 class ListElement(grabbo.Builder):
     def __init__(self, label = "Item", element = "item", pylist = ["item"]):
