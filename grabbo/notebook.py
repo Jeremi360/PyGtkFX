@@ -46,6 +46,7 @@ class Notebook(grabbo.Builder):
         self._vp.add(self.switcher)
         self._sc = Gtk.ScrolledWindow()
         self._sc.show_all()
+        self.get().show()
 
     def get(self):
         return self.ui.get_object("box")
