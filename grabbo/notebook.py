@@ -70,7 +70,7 @@ class Notebook(Gtk.Box):
 
         self.stack.add(content)
         box = Gtk.Box()
-        box.pack_start(tb, True, False, 0)
+        box.pack_start(tb, False, True, 0)
 
         if closeable:
             cb = _CloseButton(self, content)
