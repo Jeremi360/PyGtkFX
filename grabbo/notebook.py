@@ -9,7 +9,7 @@ class _NButton(Gtk.Button):
         self.set_image(img)
         self.set_always_show_image(True)
         self.set_vexpand(False)
-        self.set_vexpand_set(False)
+        self.set_vexpand_set(True)
         self.c = content
         self.n = notebook
         self.connect("clicked", self.on_it)
