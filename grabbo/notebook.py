@@ -51,7 +51,7 @@ class Notebook(Gtk.Box):
         self._sc.add(vp)
         self._sc.show()
         self.pack_start(self._sc, True, False, 0)
-        self.pack_end(self.AddButton, False, False, 0)
+        self.add(self.AddButton)
 
     def on_add(self, button):
         content = Gtk.Label()
@@ -64,7 +64,7 @@ class Notebook(Gtk.Box):
 
         if closeable:
             cb = _CloseButton(self, content)
-            self.switcher.pack_end(cb, False, False, 0)
+            self.switcher.add(cb)
             cb.show()
 
     def set_addable(self, addable):
