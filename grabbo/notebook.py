@@ -8,8 +8,14 @@ CB_UI = os.path.join(r, '..', 'ui', 'CloseButton.xml')
 class _CloseButton(grabbo.Builder):
     def __init__(self, notebook, content):
         super(_CloseButton, self).__init__(CB_UI)
+
+        self.get().connect("clicked", self.on_it)
+
         self.n = notebook
         self.c = content
+
+    def get(self):
+        return self.ui.get_object("CloseButton")
 
     def on_it(self, button):
         self.n.stack.remove(self.c)
@@ -18,7 +24,7 @@ class _CloseButton(grabbo.Builder):
 
 LIST_UI = os.path.join(r, '..', 'ui', 'Tabs.xml')
 
-class Notebook(Gtk.Box):
+class Notebook():
     def __init__(self, stack = Gtk.Stack(), addable = True, closeable = True, orientation = Gtk.Orientation.HORIZONTAL):
         super(Notebook, self).__init__()
 
