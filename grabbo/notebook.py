@@ -82,7 +82,6 @@ class Notebook(Gtk.Box):
         box.show_all()
         content.show()
         self.switcher.show()
-        self._sc.show()
 
 
     def set_addable(self, addable):
