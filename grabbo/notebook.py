@@ -8,9 +8,9 @@ r = os.path.dirname(r)
 
 TB_UI = os.path.join(r, 'ui', 'TabButton.xml')
 
-class _CloseButton(grabbo.Builder):
+class _TabButton(grabbo.Builder):
     def __init__(self, notebook, content):
-        super(_CloseButton, self).__init__(TB_UI)
+        super(_TabButton, self).__init__(TB_UI)
 
         self.get().connect("clicked", self.on_it)
 
