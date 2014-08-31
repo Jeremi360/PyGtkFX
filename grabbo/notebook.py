@@ -36,6 +36,9 @@ class Notebook(Gtk.Box):
         img.new_from_icon_name("list-add", 4)
         self.AddButton = Gtk.Button("add")
         self.AddButton.set_image(img)
+        self.AddButton.set_always_show_image(True)
+        self.AddButton.set_vexpand(False)
+        self.AddButton.set_hexpand(False)
 
         self.stack = stack
 
