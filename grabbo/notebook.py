@@ -25,7 +25,7 @@ class _CloseButton(_NButton):
 
 class TabButton(_NButton):
     def __init__(self, n, c):
-        super(_TabButton, self).__init__(n, c, "applications-internet")
+        super(TabButton, self).__init__(n, c, "applications-internet")
 
     def on_it(self, button):
         self.n.set_visible_child(self.c)
