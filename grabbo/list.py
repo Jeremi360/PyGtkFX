@@ -3,6 +3,9 @@ import grabbo
 import os
 
 r = os.path.realpath(__file__)
+r = os.path.dirname(r)
+r = os.path.dirname(r)
+
 LIST_UI = os.path.join(r, '..', 'ui', 'List.xml')
 
 class ListElement(grabbo.Builder):
