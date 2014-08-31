@@ -22,7 +22,7 @@ class _CloseButton(grabbo.Builder):
 
     def on_it(self, button):
         self.n.stack.remove(self.c)
-        self.n.switcher.remove(self)
+        self.n.switcher.remove(self.get())
 
 
 TABS_UI = os.path.join(r, 'ui', 'Tabs.xml')
