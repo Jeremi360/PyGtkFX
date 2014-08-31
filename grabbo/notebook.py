@@ -25,11 +25,11 @@ class _CloseButton(grabbo.Builder):
         self.n.switcher.remove(self.get())
 
 
-TABS_UI = os.path.join(r, 'ui', 'Tabs.xml')
+NOTEBOOK_UI = os.path.join(r, 'ui', 'Tabs.xml')
 
 class Notebook(grabbo.Builder):
     def __init__(self, stack = Gtk.Stack(), addable = True, closeable = True, orientation = Gtk.Orientation.HORIZONTAL):
-        super(Notebook, self).__init__(TABS_UI)
+        super(Notebook, self).__init__(NOTEBOOK_UI)
 
         self._sc = self.ui.get_object("scroll")
         self._vp = self.ui.get_object("viewport")
