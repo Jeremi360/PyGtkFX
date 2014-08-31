@@ -23,7 +23,7 @@ class _CloseButton(_NButton):
         self.n.stack.remove(self.c)
         self.n.switcher.remove(self)
 
-class _TabButton(_NButton):
+class TabButton(_NButton):
     def __init__(self, n, c):
         super(_TabButton, self).__init__(n, c, "applications-internet")
 
@@ -65,13 +65,10 @@ class Notebook(Gtk.Box):
         content.set_label("Content")
         self.add_tab(content, "Title")
 
-    def add_tab(self, content, title, closeable = True):
+    def add_tab(self, content, tb, closeable = True):
 
         self.stack.add(content)
         box = Gtk.Box()
-
-        tb = _TabButton(self, content)
-        tb.set_label(title)
         box.pack_start(tb, True, False, 0)
 
         if closeable:
