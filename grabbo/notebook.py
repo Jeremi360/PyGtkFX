@@ -1,27 +1,7 @@
-
 from gi.repository import Gtk
 
-class _NButton(Gtk.Button):
-    def __init__(self, notebook, content, icon_name):
-        super(_NButton, self).__init__()
-        img = Gtk.Image()
-        img.new_from_icon_name(icon_name, 4)
-        self.set_image(img)
-        self.set_always_show_image(True)
-        self.set_vexpand(False)
-        self.set_hexpand(False)
-        self.c = content
-        self.n = notebook
-        self.connect("clicked", self.on_it)
-
-    def on_it(self, button):
-        pass
-
-
-class _CloseButton(_NButton):
-    def __init__(self, n, c):
-        super(_CloseButton, self).__init__(n, c, "close-window")
-        self.set_label("X")
+r = os.path.realpath(__file__)
+LIST_UI = os.path.join(r, '..', 'ui', 'Tabs.xml')
 
     def on_it(self, button):
         self.n.stack.remove(self.c)
