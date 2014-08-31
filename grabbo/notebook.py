@@ -4,7 +4,9 @@ from gi.repository import Gtk
 class _NButton(Gtk.Button):
     def __init__(self, notebook, content, icon_name):
         super(_NButton, self).__init__()
-        self.get_image().new_from_icon_name(icon_name, 4)
+        img = Gtk.Image()
+        img.new_from_icon_name(icon_name, 4)
+        self.set_image(img)
         self.c = content
         self.n = notebook
         self.connect("clicked", self.on_it)
