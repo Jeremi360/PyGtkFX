@@ -37,13 +37,12 @@ class Notebook(grabbo.Builder):
 
         self.get().set_orientation(orientation)
         self.stack = stack
-
-        self.set_addable(addable)
         self.AddButton.connect("clicked", self.on_add)
 
         self.switcher = Gtk.StackSwitcher()
         self.switcher.set_stack(self.stack)
 
+        self.set_addable(addable)
         self._vp.add(self.switcher)
         self._sc = Gtk.ScrolledWindow()
         self._sc.show_all()
@@ -61,9 +60,9 @@ class Notebook(grabbo.Builder):
         self.stack.add_titled(content, "_Namestack", "LabelInTheSwitcher")
 
         if closeable:
-            cb = _CloseButton(self, content)
-            self.switcher.add(cb.get())
-            cb.get().show()
+            cb = _CloseButton(self, content).get()
+            self.switcher.add(cb)
+            cb.show()
 
     def set_addable(self, addable):
         if addable:
