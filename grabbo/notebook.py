@@ -61,7 +61,7 @@ class Notebook(grabbo.Builder):
         content.set_label("Content")
         self.add_tab(content)
 
-    def add_tab(self, content, name = "_Namestack", label = "Label", closeable = True):
+    def add_tab(self, content, closeable = True):
 
         self.stack.add(content)
         tb = _TabButton(self, content)
