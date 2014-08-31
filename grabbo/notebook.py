@@ -2,8 +2,8 @@ from gi.repository import Gtk
 import os
 import grabbo
 
-r = os.path.realpath(__file__)
-CB_UI = os.path.join(r, '..', 'ui', 'CloseButton.xml')
+r = os.path.realpath(__dir__)
+CB_UI = os.path.join(r, 'ui', 'CloseButton.xml')
 
 class _CloseButton(grabbo.Builder):
     def __init__(self, notebook, content):
@@ -22,7 +22,7 @@ class _CloseButton(grabbo.Builder):
         self.n.switcher.remove(self)
 
 
-TABS_UI = os.path.join(r, '..', 'ui', 'Tabs.xml')
+TABS_UI = os.path.join(r, 'ui', 'Tabs.xml')
 
 class Notebook(grabbo.Builder):
     def __init__(self, stack = Gtk.Stack(), addable = True, closeable = True, orientation = Gtk.Orientation.HORIZONTAL):
