@@ -63,7 +63,8 @@ class Notebook(Gtk.Box):
     def on_add(self, button):
         content = Gtk.Label()
         content.set_label("Content")
-        self.add_tab(content, "Title")
+        tb = TabButton(content)
+        self.add_tab(content, tb)
 
     def add_tab(self, content, tb, closeable = True):
 
