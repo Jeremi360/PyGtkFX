@@ -4,9 +4,7 @@ from gi.repository import Gtk
 class _NButton(Gtk.Button):
     def __init__(self, notebook, content, icon_name):
         super(_NButton, self).__init__()
-        i = Gtk.Image()
-        i.new_from_icon_name(icon_name, 4)
-        self.set_image(i)
+        self.get_image().new_from_icon_name(icon_name, 4)
         self.c = content
         self.n = notebook
         self.connect("clicked", self.on_it)
@@ -28,11 +26,8 @@ class Notebook(Gtk.Box):
         super(Notebook, self).__init__()
         self.set_orientation(orientation)
 
-        AddIcon = Gtk.Image()
-        AddIcon.new_from_icon_name("list-add", 4)
-
-        self.AddButton = Gtk.Button()
-        self.AddButton.set_image(AddIcon)
+        self.AddButton = Gtk.Button("add")
+        self.AddButton.get_image().new_from_icon_name("list-add", 4)
 
         self.stack = stack
 
