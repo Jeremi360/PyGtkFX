@@ -16,6 +16,7 @@ class _NButton(Gtk.Button):
 class _CloseButton(_NButton):
     def __init__(self, n, c):
         super(_CloseButton, self).__init__(n, c, "close-window")
+        self.set_label("X")
 
     def on_it(self, button):
         self.n.stack.remove(self.c)
