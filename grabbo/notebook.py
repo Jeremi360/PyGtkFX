@@ -77,11 +77,12 @@ class Notebook(Gtk.Box):
             box.pack_end(cb, False, False, 0)
             cb.show()
 
-        self.switcher.add(box)
+        self.switcher.pack_end(box, True, False, 0)
 
         box.show_all()
         content.show()
         self.switcher.show()
+        self._sc.show()
 
 
     def set_addable(self, addable):
