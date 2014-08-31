@@ -2,7 +2,8 @@ from gi.repository import Gtk
 import os
 import grabbo
 
-r = os.path.realpath(__dir__)
+r = os.path.realpath(__file__)
+r = os.path.dirname(r)
 CB_UI = os.path.join(r, 'ui', 'CloseButton.xml')
 
 class _CloseButton(grabbo.Builder):
