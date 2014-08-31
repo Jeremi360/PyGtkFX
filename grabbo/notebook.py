@@ -44,7 +44,6 @@ class Notebook(grabbo.Builder):
 
         self.set_addable(addable)
         self._vp.add(self.switcher)
-        self._sc = Gtk.ScrolledWindow()
         self._sc.show_all()
         self.get().show()
 
