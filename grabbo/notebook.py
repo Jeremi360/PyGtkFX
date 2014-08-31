@@ -1,9 +1,9 @@
 
 from gi.repository import Gtk
 
-class _CloseButton(Gtk.Button):
-    def __init__(self, notebook, content):
-        super(_CloseButton, self).__init__()
+class _NButton(Gtk.Button):
+    def __init__(self, notebook, content, icon_name):
+        super(_NButton, self).__init__()
         i = Gtk.Image()
         i.new_from_icon_name("close-window", 4)
         self.set_image(i)
@@ -12,18 +12,20 @@ class _CloseButton(Gtk.Button):
         self.connect("clicked", self.on_it)
 
     def on_it(self, button):
+        pass
+
+
+class _CloseButton(_NButton):
+    def __init__(self, n, c):
+        super(_CloseButton, self).__init__(n, c, "close-window")
+
+    def on_it(self, button):
         self.n.stack.remove(self.c)
         self.n.switcher.remove(self)
 
 class _TabButton(Gtk.Button):
-    def __init__(self, notebook, content):
-        super(_TabButton, self).__init__()
-        i = Gtk.Image()
-        i.new_from_icon_name("applications-internet", 4)
-        self.set_image(i)
-        self.c = content
-        self.n = notebook
-        self.connect("clicked", self.on_it)
+    def __init__(self, n, c):
+        super(_TabButton, self).__init__(n, c, "applications-internet")
 
     def on_it(self, button):
         self.n.set_visible_child(self.c)
@@ -68,12 +70,13 @@ class Notebook(Gtk.Box):
         self.stack.add(content)
         box = Gtk.Box()
 
+        tb = _TabButton(self, content)
 
 
         if closeable:
-            b = _CloseButton(self, content)
-            box.pack_end(b, False, False, 0)
-            b.show()
+            cb = _CloseButton(self, content)
+            box.pack_end(cb, False, False, 0)
+            cb.show()
 
         content.show()
         self.switcher.show()
