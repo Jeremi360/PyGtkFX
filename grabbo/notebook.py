@@ -60,7 +60,7 @@ class Notebook(Gtk.Box):
 
     def add_tab(self, content, closeable = True):
 
-        self.stack.add_named("temp", content)
+        self.stack.add_named(content, "temp")
 
         if closeable:
             cb = _CloseButton(self, content)
