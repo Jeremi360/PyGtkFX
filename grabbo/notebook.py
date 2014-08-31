@@ -64,7 +64,7 @@ class Notebook(grabbo.Builder):
     def add_tab(self, content, closeable = True):
 
         self.stack.add(content)
-        tb = _TabButton(self, content)
+        tb = _TabButton(self, content).get()
         self.switcher.add(tb)
 
     def set_addable(self, addable):
