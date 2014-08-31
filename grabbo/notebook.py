@@ -68,10 +68,14 @@ class Notebook(grabbo.Builder):
 
         if closeable:
             tb.close.show()
+        else:
+            tb.close.hide()
 
         self.switcher.add(tb)
 
     def set_addable(self, addable):
         if addable:
             self.AddButton.show()
+        else:
+            self.AddButton.hide()
 
