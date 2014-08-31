@@ -8,9 +8,9 @@ r = os.path.dirname(r)
 
 TB_UI = os.path.join(r, 'ui', 'TabButton.xml')
 
-class _TabButton(grabbo.Builder):
+class TabButton(grabbo.Builder):
     def __init__(self, notebook, content):
-        super(_TabButton, self).__init__(TB_UI)
+        super(TabButton, self).__init__(TB_UI)
         self.close = self.ui.get_object("CloseButton")
         self.button = self.ui.get_object("TabButton")
 
@@ -64,7 +64,8 @@ class Notebook(grabbo.Builder):
     def add_tab(self, content, closeable = True):
 
         self.stack.add(content)
-        tb = _TabButton(self, content).get()
+        tb = TabButton(self, content)
+        tb.
         self.switcher.add(tb)
 
     def set_addable(self, addable):
