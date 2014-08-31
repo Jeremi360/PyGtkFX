@@ -5,7 +5,7 @@ class _NButton(Gtk.Button):
     def __init__(self, notebook, content, icon_name):
         super(_NButton, self).__init__()
         i = Gtk.Image()
-        i.new_from_icon_name("close-window", 4)
+        i.new_from_icon_name(icon_name, 4)
         self.set_image(i)
         self.c = content
         self.n = notebook
