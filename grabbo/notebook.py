@@ -5,7 +5,12 @@ class _NButton(Gtk.Button):
     def __init__(self, notebook, content, icon_name):
         super(_NButton, self).__init__()
         i = Gtk.Image()
-        i.new_from_icon_name(icon_name, 4)
+
+        try:
+            i.new_from_icon_name(icon_name, 4)
+        except:
+            i.new_from_stock(icon_name, 4)
+
         self.set_image(i)
         self.c = content
         self.n = notebook
@@ -17,7 +22,7 @@ class _NButton(Gtk.Button):
 
 class _CloseButton(_NButton):
     def __init__(self, n, c):
-        super(_CloseButton, self).__init__(n, c, "close-window")
+        super(_CloseButton, self).__init__(n, c, 'gtk-close')
 
     def on_it(self, button):
         self.n.stack.remove(self.c)
