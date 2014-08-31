@@ -11,16 +11,22 @@ TB_UI = os.path.join(r, 'ui', 'TabButton.xml')
 class _TabButton(grabbo.Builder):
     def __init__(self, notebook, content):
         super(_TabButton, self).__init__(TB_UI)
+        self.close = self.ui.get_object("CloseButton")
+        self.button = self.ui.get_object("TabButton")
 
-        self.get().connect("clicked", self.on_it)
+        self.close.connect("clicked", self.on_close)
+        self.button.connect("clicked", self.on_button)
 
         self.n = notebook
         self.c = content
 
     def get(self):
-        return self.ui.get_object("CloseButton")
+        return self.ui.get_object("box")
 
-    def on_it(self, button):
+    def on_button(self, button):
+        self.n.stack.set_visible_child(self.c)
+
+    def on_close(self, button):
         self.n.stack.remove(self.c)
         self.n.switcher.remove(self.get())
 
