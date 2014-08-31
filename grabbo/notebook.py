@@ -50,7 +50,7 @@ class Notebook(Gtk.Box):
         vp.show()
         self._sc.add(vp)
         self._sc.show()
-        self.pack_start(self._sc, True, False, 0)
+        self.pack_start(self._sc, False, False, 0)
         self.add(self.AddButton)
 
     def on_add(self, button):
