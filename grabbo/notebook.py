@@ -53,7 +53,7 @@ class Notebook(Gtk.Box):
         vp = Gtk.Viewport()
         self.switcher.show()
         vp.add(self.switcher)
-        sc = Gtk.ScrolledWindow()
+        self._sc = Gtk.ScrolledWindow()
         vp.show()
         sc.add(vp)
         sc.show()
