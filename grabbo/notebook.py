@@ -68,12 +68,12 @@ class Notebook(grabbo.Builder):
         if not tb:
             tb = TabButton(self, content)
 
+        self.switcher.add(tb.get())
+
         if closeable:
             tb.close.show()
         else:
             tb.close.hide()
-
-        self.switcher.add(tb.get())
 
     def set_addable(self, addable):
         if addable:
