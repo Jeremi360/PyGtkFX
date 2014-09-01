@@ -52,7 +52,7 @@ class Notebook(grabbo.Builder):
 
     def pack(self):
         self.switcher.reparent(self._vp)
-        self._sc.show_all()
+        self._sc.show()
         self.get().show()
 
     def unpack(self):
