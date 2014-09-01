@@ -51,12 +51,23 @@ class Notebook(grabbo.Builder):
         self.set_addable(addable)
 
     def pack(self):
+        try:
+            self.get().add(self.AddButton)
+        except:
+            pass
+
         self._vp.add(self.switcher)
         self._sc.show_all()
         self.get().show()
 
     def unpack(self):
-        self._vp.remove(self.switcher)
+        try:
+            self._vp.remove(self.switcher)
+        except:
+            pass
+
+        self.get().remove(self.AddButton)
+
 
     def get(self):
         return self.ui.get_object("box")
