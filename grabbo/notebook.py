@@ -47,7 +47,7 @@ class Notebook(grabbo.Builder):
 
         self.set_addable(addable)
         self._sc.add(self._vp)
-        self.make()
+        self._make()
 
     def get(self):
         return self._box
