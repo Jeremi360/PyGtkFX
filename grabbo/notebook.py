@@ -60,10 +60,17 @@ class Notebook(grabbo.Builder):
 
     def pack_sc(self):
         self._make()
-
+        self._vp.add(self.switcher)
+        self.get().add(self._sc)
+        self.get().add(self.AddButton)
+        self.get().show()
 
     def pack_no_sc(self):
         self._make()
+        self.get().add(self.switcher)
+        self.get().add(self.AddButton)
+        self.get().show()
+
 
     def on_add(self, button):
         content = Gtk.Label()
