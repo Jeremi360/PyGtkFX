@@ -46,7 +46,6 @@ class Notebook(grabbo.Builder):
         self.AddButton.connect("clicked", self.on_add)
 
         self.set_addable(addable)
-        self._sc.add(self._vp)
         self._make()
 
     def get(self):
