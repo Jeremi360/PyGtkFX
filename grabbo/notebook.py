@@ -40,6 +40,7 @@ class Notebook(grabbo.Builder):
         self._sc = self.ui.get_object("scroll")
         self._vp = self.ui.get_object("viewport")
         self.AddButton = self.ui.get_object("AddButton")
+        self.temp = Gtk.Box()
 
         self.get().set_orientation(orientation)
         self.stack = stack
@@ -57,7 +58,7 @@ class Notebook(grabbo.Builder):
 
     def unpack(self):
         self.switcher.reparent(self.get())
-        self._sc.reparent(None)
+        self._sc.reparent(self.temp)
         self.get().show()
 
 
