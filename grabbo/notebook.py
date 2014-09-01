@@ -52,21 +52,18 @@ class Notebook(grabbo.Builder):
 
     def pack(self):
         try:
-            self.get().add(self.AddButton)
+            self.get().reparent(self.get())
         except:
             pass
 
-        self._vp.add(self.switcher)
+        self.switcher.reparent(self._vp)
         self._sc.show_all()
         self.get().show()
 
     def unpack(self):
-        try:
-            self._vp.remove(self.switcher)
-        except:
-            pass
-
-        self.get().remove(self.AddButton)
+        self.get().remove(self._sc)
+        self.switcher.reparent(self.get())
+        self.get().show()
 
 
     def get(self):
