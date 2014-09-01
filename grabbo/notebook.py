@@ -51,11 +51,6 @@ class Notebook(grabbo.Builder):
         self.set_addable(addable)
 
     def pack(self):
-        try:
-            self.get().reparent(self.get())
-        except:
-            pass
-
         self.switcher.reparent(self._vp)
         self._sc.show_all()
         self.get().show()
