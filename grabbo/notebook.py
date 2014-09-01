@@ -56,8 +56,8 @@ class Notebook(grabbo.Builder):
         self.get().show()
 
     def unpack(self):
-        self.get().remove(self._sc)
         self.switcher.reparent(self.get())
+        self.get().remove(self._sc)
         self.get().show()
 
 
