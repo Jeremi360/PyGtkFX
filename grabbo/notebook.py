@@ -37,7 +37,7 @@ class Notebook(grabbo.Builder):
     def __init__(self, stack = Gtk.Stack(), addable = True, closeable = True, orientation = Gtk.Orientation.HORIZONTAL):
         super(Notebook, self).__init__(AB_UI)
 
-        self._box = Gtk.Box()
+        self._box = None
         self._sc = Gtk.ScrolledWindow()
         self._vp = Gtk.Viewport()
         self.AddButton = self.ui.get_object("AddButton")
@@ -55,7 +55,7 @@ class Notebook(grabbo.Builder):
     def _make(self):
         self.switcher = Gtk.StackSwitcher()
         self.switcher.set_stack(self.stack)
-        self._box = Gtk.Box()
+        self._box =
         self._box.set_orientation(self.orientation)
 
     def pack_sc(self):
