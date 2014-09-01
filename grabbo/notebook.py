@@ -31,39 +31,39 @@ class TabButton(grabbo.Builder):
         self.n.switcher.remove(self.get())
 
 
-NOTEBOOK_UI = os.path.join(r, 'ui', 'Notebook.xml')
+AB_UI = os.path.join(r, 'ui', 'AddButton.xml.xml')
 
 class Notebook(grabbo.Builder):
     def __init__(self, stack = Gtk.Stack(), addable = True, closeable = True, orientation = Gtk.Orientation.HORIZONTAL):
-        super(Notebook, self).__init__(NOTEBOOK_UI)
+        super(Notebook, self).__init__(AB_UI)
 
-        self._sc = self.ui.get_object("scroll")
-        self._vp = self.ui.get_object("viewport")
+        self._box = Gtk.Box()
+        self._sc = Gtk.ScrolledWindow()
+        self._vp = Gtk.Viewport()
         self.AddButton = self.ui.get_object("AddButton")
-        self.temp = Gtk.Box()
 
-        self.get().set_orientation(orientation)
+        self.orientation = orientation
         self.stack = stack
         self.AddButton.connect("clicked", self.on_add)
 
-        self.switcher = Gtk.StackSwitcher()
-        self.switcher.set_stack(self.stack)
-
         self.set_addable(addable)
-
-    def pack(self):
-        self.switcher.reparent(self._vp)
-        self._sc.show()
-        self.get().show()
-
-    def unpack(self):
-        self.switcher.reparent(self.get())
-        self._sc.reparent(self.temp)
-        self.get().show()
-
+        self._sc.add(self._vp)
 
     def get(self):
-        return self.ui.get_object("box")
+        return self._box
+
+    def _make(self):
+        self.switcher = Gtk.StackSwitcher()
+        self.switcher.set_stack(self.stack)
+        self._box = Gtk.Box()
+        self._box.set_orientation(self.orientation)
+
+    def pack_sc(self):
+        self._make()
+
+
+    def pack_no_sc(self):
+        self._make()
 
     def on_add(self, button):
         content = Gtk.Label()
