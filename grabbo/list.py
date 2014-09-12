@@ -1,4 +1,4 @@
-from gi.repository import Gtk
+from gi.repository import Gtk, Granite
 import grabbo
 import os
 
@@ -6,84 +6,92 @@ r = os.path.realpath(__file__)
 r = os.path.dirname(r)
 r = os.path.dirname(r)
 
-LIST_UI = os.path.join(r, '..', 'ui', 'List.xml')
+LI_UI = os.path.join(r, 'ui', 'ListItem.xml')
 
-class ListElement(grabbo.Builder):
-    def __init__(self, label = "Item", element = "item", pylist = ["item"]):
-        super(ListElement, self).__init__(LIST_UI)
-        self.add = self.ui.get_object("add")
-        self.remove = self.ui.get_object("remove")
-        self.change = self.ui.get_object("change")
-        self.entry = self.ui.get_object("entry")
-        self.ok = self.ui.get_object("ok")
-        self.cancel = self.ui.get_object("cancel")
-        self.change = self.ui.get_object("change")
-        self.EditBox = self.ui.get_object("EditBox")
-        self.ItemButton = self.ui.get_object("item")
-        self.ItemBox = self.ui.get_object("ItemBox")
+class ListItem(grabbo.Builder):
+    def __init__(self, label = "LabelOftem", item = "item", pylist = ["item"], glist):
+        grabbo.Builder.__init__(self, LI_UI)
 
-        self.glist = self.get().parent_instance()
+        self.glist = glist
         self.pylist = pylist
-        self.element = element
+        self.item = item
         self.set_label(label)
 
-        self.change.connect("clicked", lambda x: self.on_change())
-        self.ok.connect("clicked", lambda x: self.on_ok())
-        self.cancel.connect("clicked", lambda x: self.on_cancel())
-        self.ItemButton.connect("clicked", lambda x: self.on_item())
+        self.remove = self.ui.get_object("remove")
+        self.ItemButton = self.ui.get_object("item")
+        self.EditBox = grabbo.EditBox(self.ItemButton.label)
 
-        self.add.hide()
-        self.EditBox.hide()
+        self.ItemButton.connect("clicked", self.on_item)
+        self.remove.connect("clicked", self.on_remove)
+
         self.ItemBox.show()
-
-    def on_ok(self):
-        label = self.entry.get_text()
-        self.set_label(label)
-        self.show_item()
-
-    def on_cancel(self):
-        self.set_label(self.label)
-        self.show_item()
 
     def set_label(self, label):
-        self.label = label
         self.ItemButton.set_label(label)
-        self.entry.set_text(label)
-
-    def on_change(self):
-        self.ItemBox.hide()
-        self.EditBox.show()
-
-    def show_item(self):
-        self.EditBox.hide()
-        self.ItemBox.show()
 
     def get(self):
         return self.ui.get_object("box")
 
     def get_index(self):
-        i = self.list.index(self.element)
+        i = self.list.index(self.item)
         return i
 
-    def on_item(self):
+    def on_item(self, button):
         i = self.get_index()
         print(self.list[i])
 
-    def on_remove(self):
+    def on_remove(self, button):
         self.list.pop(self.get_index())
-        self.glist.remove(self.get())
+        self.glist.remove(self)
 
+LIST_UI = os.path.join(r, 'ui', 'List.xml')
+class List(grabbo.Builder):
+    def __init__(self, pylist = []):
+        grabbo.Builder.__init__(self, LIST_UI)
+        self.LBox = self.ui.get_object("BoxOfList")
+        self.CIBox = self.ui.get_object("CurrentItemBox")
+        self.FavB = self.ui.get_object("FavButton")
 
+        self.EBCI = grabbo.EditBox(None)
 
+        if pylist != []:
+            self.set_pylist(pylist)
+        else:
+            self.pylist = []
+
+    def on_fav(self, button):
+        if self.FavB.get_state():
+            self.add_item(label, item)
+        else:
+            self.remove_item(item)
+
+    def add_item(self, label = "LabelOfItem", item = "item"):
+        temp = ListItem(label, item, self.pylist)
+        self.LBox.add(temp)
+        self.pylist.append(item)
+
+    def remove_item(self, item):
+        self.pylist.remove(item)
+        self.LBox.remove(item)
+
+    def set_pylist(self, pylist):
+        self.pylist = pylist
+        for i in self.pylist:
+            self.add_item(str(i), i)
 
 class Window(grabbo.Window):
     def __init__(self):
-        super(Window, self).__init__()
-        test = ListElement().get()
+        grabbo.Window.__init__(self)
+        test = Gtk.Button("Show List")
         self.add(test)
+        self.glist = List()
+        self.glist.set_pylist(["item1", "item2", "item3"])
+        test.connect("clicked", self.on_test)
         test.show()
         self.show()
 
+    def on_test(self, button):
+        self.glist.get().show()
 
 if __name__ == "__main__":
     app = Window()
