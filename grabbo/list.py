@@ -71,7 +71,7 @@ class List(grabbo.Builder):
 
     def add_item(self, label = "LabelOfItem", item = "item"):
         temp = ListItem(label, item, self.pylist, self)
-        self.LBox.add(temp)
+        self.LBox.add(temp.get())
         self.pylist.append(item)
 
     def remove_item(self, item):
