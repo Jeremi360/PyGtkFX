@@ -9,7 +9,7 @@ r = os.path.dirname(r)
 LI_UI = os.path.join(r, 'ui', 'ListItem.xml')
 
 class ListItem(grabbo.Builder):
-    def __init__(self, label = "LabelOftem", item = "item", pylist = ["item"], glist):
+    def __init__(self, label, item, pylist, glist):
         grabbo.Builder.__init__(self, LI_UI)
 
         self.glist = glist
