@@ -18,7 +18,7 @@ class ListItem(grabbo.Builder):
 
         self.remove = self.ui.get_object("remove")
         self.ItemButton = self.ui.get_object("item")
-        self.EditBox = grabbo.EditBox(self.ItemButton.label)
+        self.EditBox = grabbo.EditBox(self.ItemButton.props.label)
 
         self.set_label(label)
 
