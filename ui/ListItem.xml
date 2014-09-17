@@ -16,7 +16,7 @@
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <child>
-      <object class="GtkButton" id="Book">
+      <object class="GtkButton" id="Item">
         <property name="label" translatable="yes">bookmark</property>
         <property name="visible">True</property>
         <property name="can_focus">True</property>
