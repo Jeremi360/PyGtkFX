@@ -76,7 +76,7 @@ class List(grabbo.Builder):
 
     def remove_item(self, item):
         self.pylist.remove(item)
-        self.LBox.remove(item)
+        self.LBox.remove(item.get())
 
     def set_pylist(self, pylist):
         self.pylist = pylist
