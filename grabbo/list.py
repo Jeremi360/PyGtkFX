@@ -24,7 +24,6 @@ class ListItem(grabbo.Builder):
         self.ItemButton.connect("clicked", self.on_item)
         self.remove.connect("clicked", self.on_remove)
 
-        self.ItemBox.show()
 
     def set_label(self, label):
         self.ItemButton.set_label(label)
