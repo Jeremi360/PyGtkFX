@@ -51,6 +51,8 @@ class List(grabbo.Builder):
         self.LBox = self.ui.get_object("BoxOfList")
         self.CIBox = self.ui.get_object("CurrentItemBox")
         self.FavB = self.ui.get_object("FavButton")
+        self.curentItem = None
+        self.currentLabel = None
 
         self.EBCI = grabbo.EditBox(None)
 
@@ -59,11 +61,15 @@ class List(grabbo.Builder):
         else:
             self.pylist = []
 
+    def set_current(self, label, item):
+        self.currentLabel = label
+        self.curentItem = item
+
     def on_fav(self, button):
         if self.FavB.get_state():
-            self.add_item(label, item)
+            self.add_item(self.currentLabel, self.curentItem)
         else:
-            self.remove_item(item)
+            self.remove_item(self.curentItem)
 
     def add_item(self, label = "LabelOfItem", item = "item"):
         temp = ListItem(label, item, self.pylist)
