@@ -19,7 +19,7 @@ class EditBox(grabbo.Builder):
         self.NOButton = self.ui.get_object("NOButton")
         self.InBox = self.ui.get_object("InBox")
 
-        self.InBox.connect("toggled", self.on_edit)
+        self.EditButton.connect("toggled", self.on_edit)
         self.OKButton.connect("clicked", self.on_ok)
         self.NOButton.connect("clicked", self.on_ok)
 
