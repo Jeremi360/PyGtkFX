@@ -15,11 +15,12 @@ class ListItem(grabbo.Builder):
         self.glist = glist
         self.pylist = pylist
         self.item = item
-        self.set_label(label)
 
         self.remove = self.ui.get_object("remove")
         self.ItemButton = self.ui.get_object("item")
         self.EditBox = grabbo.EditBox(self.ItemButton.label)
+
+        self.set_label(label)
 
         self.ItemButton.connect("clicked", self.on_item)
         self.remove.connect("clicked", self.on_remove)
