@@ -2,4 +2,4 @@
 
 from gi.repository.Granite import WidgetsAboutDialog as AboutDialog
 from gi.repository.Granite import WidgetsAppMenu as AppMenu
-from gi.Repository.Granite.
+from gi.repository.Granite import
