@@ -1,4 +1,5 @@
 # make imports stuff from granite easy
-from gi.repository import Grainte
 
-Granite.
+from gi.repository.Granite import WidgetsAboutDialog as AboutDialog
+from gi.repository.Granite import WidgetsAppMenu as AppMenu
+from gi.Repository.Granite.
