@@ -8,7 +8,6 @@ class Widgets:
     from gi.repository.Granite import WidgetsCompositedWindow as CompositedWindow
     from gi.repository.Granite import WidgetsDatePicker as DatePicker
     from gi.repository.Granite import WidgetsWelcome as Welcome
-    from gi.repository.Granite import WidgetsPopOver as PopOver
 
     class CellRenderer:
         from gi.repository.Granite import WidgetsCellRendererBadge as Badge
