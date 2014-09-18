@@ -31,9 +31,6 @@
       </packing>
     </child>
     <child>
-      <placeholder/>
-    </child>
-    <child>
       <object class="GtkButton" id="Remove">
         <property name="visible">True</property>
         <property name="can_focus">True</property>
