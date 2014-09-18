@@ -1,4 +1,3 @@
-from gi.repository import Gtk
 import grabbo
 import os
 
