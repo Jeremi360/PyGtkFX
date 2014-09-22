@@ -27,7 +27,9 @@ class TabButton(grabbo.Builder):
         return self.ui.get_object("box")
 
     def on_button(self, button):
-        self.n.stack.set_visible_child(self.c)
+        if self.button.get_active():
+            self.button.set_state(Gtk.StateType.SELECTED)
+            self.n.stack.set_visible_child(self.c)
 
     def on_close(self, button):
         self.n.stack.remove(self.c)
@@ -87,9 +89,6 @@ class Notebook(grabbo.Builder):
             tb.close.hide()
 
         tb.button.set_active(active)
-
-        if active:
-            self.stack.set_visible_child(content)
 
     def set_addable(self, addable):
         if addable:
