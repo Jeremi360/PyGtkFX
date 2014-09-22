@@ -29,7 +29,6 @@ class TabButton(grabbo.Builder):
     def on_button(self, button):
         self.n.stack.set_visible_child(self.c)
 
-
     def on_close(self, button):
         self.n.stack.remove(self.c)
         self.n.switcher.remove(self.get())
