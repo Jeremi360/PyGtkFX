@@ -78,8 +78,8 @@ class Notebook(grabbo.Builder):
         tb = TabButton(self, content)
         self.add_tab(content, tb)
 
-    def add_tab(self, content, tb, checked = False, closeable = True):
-        tb.button.set_active(checked)
+    def add_tab(self, content, tb, active = False, closeable = True):
+
         self.stack.add(content)
         self.switcher.add(tb.get())
         self.radiogroup.join_group(tb.button)
@@ -88,6 +88,11 @@ class Notebook(grabbo.Builder):
             tb.close.show()
         else:
             tb.close.hide()
+
+        tb.button.set_active(active)
+
+         if active:
+            self.stack.set_visible_child(content.get())
 
     def set_addable(self, addable):
         if addable:
