@@ -54,6 +54,7 @@ class Notebook(grabbo.Builder):
         self.AddButton = self.ui.get_object("AddButton")
 
         self.stack = stack
+        self.radiogroup = Gtk.r
         self.switcher = Gtk.StackSwitcher()
         self.switcher.set_stack(self.stack)
         self.get().set_orientation(orientation)
