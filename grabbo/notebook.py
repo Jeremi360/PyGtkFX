@@ -54,8 +54,12 @@ class Notebook(grabbo.Builder):
         self.AddButton = self.ui.get_object("AddButton")
 
         self.stack = stack
-        self.radiogroup = Gtk.r
+        self.radiogroup = Gtk.RadioButton()
         self.switcher = Gtk.StackSwitcher()
+
+        self.switcher.add(self.radiogroup)
+        self.radiogroup.hide()
+
         self.switcher.set_stack(self.stack)
         self.get().set_orientation(orientation)
         self.vp.add(self.switcher)
@@ -72,11 +76,13 @@ class Notebook(grabbo.Builder):
     def on_add(self, button):
         content = Gtk.Label()
         content.set_label("Content")
-        self.add_tab(content)
+        tb = TabButton(self, content)
+        self.add_tab(content, tb)
 
     def add_tab(self, content, tb, closeable = True):
         self.stack.add(content)
         self.switcher.add(tb.get())
+        self.radiogroup.join_group(tb.button)
 
         if closeable:
             tb.close.show()
