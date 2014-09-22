@@ -16,13 +16,13 @@
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <child>
-      <object class="GtkButton" id="TabButton">
-        <property name="label" translatable="yes">New Tab</property>
+      <object class="GtkToggleButton" id="TabButton">
+        <property name="label" translatable="yes">TabButton</property>
         <property name="visible">True</property>
         <property name="can_focus">True</property>
         <property name="receives_default">True</property>
         <property name="image">image2</property>
-        <property name="always_show_image">True</property>
+        <property name="relief">none</property>
       </object>
       <packing>
         <property name="expand">False</property>
