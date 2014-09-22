@@ -91,7 +91,7 @@ class Notebook(grabbo.Builder):
 
         tb.button.set_active(active)
 
-         if active:
+        if active:
             self.stack.set_visible_child(content.get())
 
     def set_addable(self, addable):
