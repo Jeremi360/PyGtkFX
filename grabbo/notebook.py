@@ -19,13 +19,17 @@ class TabButton(grabbo.Builder):
         self.button = self.ui.get_object("TabButton")
 
         self.close.connect("clicked", self.on_close)
-        self.button.connect("clicked", self.on_button)
+        self.button.connect("toggled", self.on_button)
 
     def get(self):
         return self.ui.get_object("box")
 
     def on_button(self, button):
-        self.n.stack.set_visible_child(self.c)
+        if self.button.get_active():
+            self.n.stack.set_visible_child(self.c)
+        else:
+            if self.n.stack.get_visible_child() == self.c:
+                self.button.set_active(True)
 
     def on_close(self, button):
         self.n.stack.remove(self.c)
@@ -34,7 +38,7 @@ class TabButton(grabbo.Builder):
 class HB_TabButton(TabButton):
     def on_close(self, button):
         grabbo.TabButton.on_close(self, button)
-        w = self.n.get_width() - 200
+        w = self.n.switcher.get_allocation().width
         self.n.set_width(w)
 
 NOTEBOOK_UI = os.path.join(r, 'ui', 'Notebook.xml')
