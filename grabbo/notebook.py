@@ -26,7 +26,7 @@ class TabButton(grabbo.Builder):
 
     def on_button(self, button):
         if self.button.get_active():
-            self.button.set_state(Gtk.StateType.SELECTED)
+            self.button.set_state_flags(Gtk.STYLE_REGION_TAB)
             self.n.stack.set_visible_child(self.c)
         else:
             self.button.set_state(Gtk.StateType.NORMAL)
