@@ -82,7 +82,7 @@ class Notebook(grabbo.Builder):
 
         self.stack.add(content)
         self.switcher.add(tb.get())
-        self.radiogroup.join_group(tb.button)
+        tb.button.join_group(self.radiogroup)
 
         if closeable:
             tb.close.show()
