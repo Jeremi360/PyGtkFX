@@ -9,7 +9,7 @@ r = os.path.dirname(r)
 TB_UI = os.path.join(r, 'ui', 'TabButton.xml')
 
 class TabButton(grabbo.Builder):
-    def __init__(self, notebook, content, checked = False):
+    def __init__(self, notebook, content, active = False):
 
         self.n = notebook
         self.c = content
@@ -18,10 +18,10 @@ class TabButton(grabbo.Builder):
         self.close = self.ui.get_object("CloseButton")
         self.button = self.ui.get_object("TabButton")
 
-        self.button.set_active(checked)
-
         self.close.connect("clicked", self.on_close)
         self.button.connect("toggled", self.on_button)
+
+         self.button.set_active(active)
 
     def get(self):
         return self.ui.get_object("box")
