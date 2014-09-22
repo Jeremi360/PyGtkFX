@@ -18,7 +18,7 @@ class TabButton(grabbo.Builder):
         self.close = self.ui.get_object("CloseButton")
         self.button = self.ui.get_object("TabButton")
 
-        self.get(). Gtk.Box.set_style(Gtk.STYLE_REGION_TAB)
+        self.get().set_style(Gtk.STYLE_REGION_TAB)
 
         self.close.connect("clicked", self.on_close)
         self.button.connect("toggled", self.on_button)
