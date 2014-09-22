@@ -78,7 +78,8 @@ class Notebook(grabbo.Builder):
         tb = TabButton(self, content)
         self.add_tab(content, tb)
 
-    def add_tab(self, content, tb):
+    def add_tab(self, content, tb, checked = False):
+        tb.button.set_active(checked)
         self.stack.add(content)
         self.switcher.add(tb.get())
         self.radiogroup.join_group(tb.button)
