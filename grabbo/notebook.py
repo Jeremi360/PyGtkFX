@@ -33,7 +33,6 @@ class TabButton(grabbo.Builder):
         else:
             self.button.set_state(Gtk.StateType.NORMAL)
 
-
     def on_close(self, button):
         self.n.stack.remove(self.c)
         self.n.switcher.remove(self.get())
