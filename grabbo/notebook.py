@@ -28,6 +28,7 @@ class TabButton(grabbo.Builder):
 
     def on_button(self, button):
         if self.button.get_active():
+            self.button.set_active(True)
             self.n.stack.set_visible_child(self.c)
         else:
             pass
