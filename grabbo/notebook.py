@@ -18,8 +18,6 @@ class TabButton(grabbo.Builder):
         self.close = self.ui.get_object("CloseButton")
         self.button = self.ui.get_object("TabButton")
 
-        self.get().set_style(Gtk.STYLE_REGION_TAB)
-
         self.close.connect("clicked", self.on_close)
         self.button.connect("toggled", self.on_button)
 
@@ -29,6 +27,7 @@ class TabButton(grabbo.Builder):
     def on_button(self, button):
         if self.button.get_active():
             self.n.stack.set_visible_child(self.c)
+            self.button.set_state(Gtk.StateType.SELECTED)
 
     def on_close(self, button):
         self.n.stack.remove(self.c)
