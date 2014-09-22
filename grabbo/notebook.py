@@ -21,7 +21,7 @@ class TabButton(grabbo.Builder):
         self.close.connect("clicked", self.on_close)
         self.button.connect("toggled", self.on_button)
 
-         self.button.set_active(active)
+        self.button.set_active(active)
 
     def get(self):
         return self.ui.get_object("box")
