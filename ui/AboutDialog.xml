@@ -10,7 +10,9 @@
       <object class="GtkImage" id="Logo">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <property name="stock">gtk-missing-image</property>
+        <property name="pixel_size">0</property>
+        <property name="icon_name">applications-development</property>
+        <property name="icon_size">6</property>
       </object>
       <packing>
         <property name="expand">False</property>
@@ -19,10 +21,46 @@
       </packing>
     </child>
     <child>
-      <placeholder/>
+      <object class="GtkLabel" id="Name">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="label" translatable="yes">AppName</property>
+        <property name="ellipsize">end</property>
+        <property name="angle">0.029999999999999999</property>
+        <attributes>
+          <attribute name="style" value="normal"/>
+          <attribute name="weight" value="bold"/>
+        </attributes>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="fill">True</property>
+        <property name="position">1</property>
+      </packing>
     </child>
     <child>
-      <placeholder/>
+      <object class="GtkLabel" id="ShortDescrpition">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="label" translatable="yes">Awesome App</property>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="fill">True</property>
+        <property name="position">2</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkTextView" id="Text">
+        <property name="visible">True</property>
+        <property name="can_focus">True</property>
+        <property name="editable">False</property>
+      </object>
+      <packing>
+        <property name="expand">True</property>
+        <property name="fill">True</property>
+        <property name="position">3</property>
+      </packing>
     </child>
   </object>
   <object class="GtkImage" id="image1">
