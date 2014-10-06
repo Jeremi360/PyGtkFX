@@ -30,8 +30,6 @@ class AboutDialog(grabbo.Window):
         self._HeaderBar = Gtk.HeaderBar()
         self._HeaderBar.set_custom_title(self._HeaderBox)
         self._HeaderBar.set_decoration_layout("close")
-        #self._HeaderBar.set_show_close_button(True)
-        self._HeaderBar.show()
 
         self.set_titlebar(self._HeaderBar)
         self.add(self._InfoBox)
@@ -41,6 +39,9 @@ class AboutDialog(grabbo.Window):
         self._AboutButton.connect("clicked", self.on_about)
         self._HomeButton.connect("clicked", self.on_home)
         self._RapportButton.connect("clicked", self.on_rapport)
+
+        self._InfoBox.show()
+        self._HeaderBar.show()
 
     def set_title(self, title):
         self._HeaderBar.set_title(title)
@@ -61,6 +62,9 @@ class AboutDialog(grabbo.Window):
 
     def set_about_text(self, text):
         self._abouttext = text
+        txt = open(self._abouttext, 'r').read()
+        self._TextView.get_buffer().set_text(txt)
+        self._TextView.show()
 
     def set_home_page(self, url):
         self._home_page = url
@@ -73,6 +77,7 @@ class AboutDialog(grabbo.Window):
         self._AboutButton.hide()
         txt = open(self._abouttext, 'r').read()
         self._TextView.get_buffer().set_text(txt)
+        self._TextView.show()
 
     def set_appname(self, name):
         self._Name.set_label(name)
