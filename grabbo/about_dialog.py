@@ -28,7 +28,7 @@ class AboutDialog(grabbo.Window):
         self._HeaderBox = self.ui.get_object("HeaderBox")
 
         self._HeaderBar = Gtk.HeaderBar()
-        self._HeaderBar.set_title(self._HeaderBox)
+        self._HeaderBar.set_custom_title(self._HeaderBox)
         self._HeaderBar.set_decoration_layout("close")
 
         self.set_titlebar(self._HeaderBar)
