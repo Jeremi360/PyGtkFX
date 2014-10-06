@@ -40,6 +40,9 @@ class AboutDialog(grabbo.Window):
         self._HomeButton.connect("clicked", self.on_home)
         self._RapportButton.connect("clicked", self.on_rapport)
 
+    def set_title(self, title):
+        self._HeaderBar.set_title(title)
+
     def set_license_custom(self, textfile):
         self._custom_license = textfile
         self._LicenseButton.connect("clicked", self.on_custom_license)
