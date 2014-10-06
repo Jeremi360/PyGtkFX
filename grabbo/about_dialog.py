@@ -62,8 +62,6 @@ class AboutDialog(grabbo.Window):
 
     def set_about_text(self, text):
         self._abouttext = text
-        self._TextView.get_buffer().set_text(text)
-        self._TextView.show()
 
     def set_home_page(self, url):
         self._home_page = url
@@ -74,8 +72,7 @@ class AboutDialog(grabbo.Window):
     def on_about(self, button):
         self._LicenseButton.show()
         self._AboutButton.hide()
-        txt = open(self._abouttext, 'r').read()
-        self._TextView.get_buffer().set_text(txt)
+        self._TextView.get_buffer().set_text(self._abouttext)
         self._TextView.show()
 
     def set_appname(self, name):
