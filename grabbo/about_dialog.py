@@ -47,6 +47,12 @@ class AboutDialog(grabbo.Window):
     def set_about_text(self, text):
         self._abouttext = text
 
+    def set_home_page(self, url):
+        self._home_page = url
+
+    def set_rapport_page(self, url):
+        self._rapport_page = url
+
     def on_about(self, button):
         self._LicenseButton.show()
         self._AboutButton.hide()
@@ -61,6 +67,12 @@ class AboutDialog(grabbo.Window):
 
     def open_link(self, url):
         webbrowser.open_new_tab(url)
+
+    def on_rapport(self, button):
+        self.open_link(self._home_page)
+
+    def on_home(self, button):
+        self.open_link(self._rapport_page)
 
 
 
