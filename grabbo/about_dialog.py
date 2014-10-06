@@ -96,13 +96,3 @@ class AboutDialog(grabbo.Window):
     def set_logo_from_file(self, file):
         self._Logo.set_from_file(file)
         self.set_icon_from_file(file)
-
-
-
-
-
-
-
-
-
-
