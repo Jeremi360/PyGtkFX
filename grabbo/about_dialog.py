@@ -22,6 +22,7 @@ class AboutDialog(grabbo.Window):
         self._TextView = self.ui.get_object("Text")
         self._ShortDescrpition = self.ui.get_object("ShortDescrpition")
         self._Name = self.ui.get_object("Name")
+        self._Version = self.ui.get_object("Version")
 
         self._InfoBox = self.ui.get_object("InfoBox")
         self._HeaderBox = self.ui.get_object("HeaderBox")
@@ -43,6 +44,9 @@ class AboutDialog(grabbo.Window):
         self._AboutButton.show()
         txt = open(self._custom_license, 'r').read()
         self._TextView.get_buffer().set_text(txt)
+
+    def set_version(self, version):
+        self._Version.set_label(version)
 
     def set_about_text(self, text):
         self._abouttext = text
