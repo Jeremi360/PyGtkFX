@@ -18,7 +18,7 @@ class AboutDialog(grabbo.Window):
         self._LicenseButton = self.ui.get_object("LicenseButton")
         self._AboutButton = self.ui.get_object("AboutButton")
         self._RapportButton = self.ui.get_object("RapportButton")
-        self.Logo = self.ui.get_object("Logo")
+        self._Logo = self.ui.get_object("Logo")
         self._TextView = self.ui.get_object("Text")
         self._ShortDescrpition = self.ui.get_object("ShortDescrpition")
         self._Name = self.ui.get_object("Name")
@@ -29,7 +29,7 @@ class AboutDialog(grabbo.Window):
 
         self._HeaderBar = Gtk.HeaderBar()
         self._HeaderBar.set_custom_title(self._HeaderBox)
-        self._HeaderBar.set_decoration_layout(":close")
+        self._HeaderBar.set_decoration_layout("menu:close")
 
         self.set_titlebar(self._HeaderBar)
         self.add(self._InfoBox)
@@ -92,6 +92,10 @@ class AboutDialog(grabbo.Window):
 
     def on_home(self, button):
         self.open_link(self._rapport_page)
+
+    def set_logo_from_file(self, file):
+        self._Logo.set_from_file(file)
+        self.set_icon_from_file(file)
 
 
 
