@@ -62,8 +62,7 @@ class AboutDialog(grabbo.Window):
 
     def set_about_text(self, text):
         self._abouttext = text
-        txt = open(self._abouttext, 'r').read()
-        self._TextView.get_buffer().set_text(txt)
+        self._TextView.get_buffer().set_text(text)
         self._TextView.show()
 
     def set_home_page(self, url):
