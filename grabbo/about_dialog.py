@@ -11,9 +11,9 @@ AD_UI = os.path.join(r, 'ui', 'AboutDialog.xml')
 class AboutDialog(grabbo.Window):
     def __init__(self):
         grabbo.Window.__init__(self)
-        
+
         self.ui =  grabbo.Builder(self, AD_UI).ui
-        
+
         self._HomeButton = self.ui.get_object("HomeButton")
         self._LicenseButton = self.ui.get_object("LicenseButton")
         self._AboutButton = self.ui.get_object("AboutButton")
@@ -22,22 +22,49 @@ class AboutDialog(grabbo.Window):
         self._TextView = self.ui.get_object("Text")
         self._ShortDescrpition = self.ui.get_object("ShortDescrpition")
         self._Name = self.ui.get_object("Name")
-        
+
         self._InfoBox = self.ui.get_object("InfoBox")
         self._HeaderBox = self.ui.get_object("HeaderBox")
-        
+
         self._HeaderBar = Gtk.HeaderBar()
         self._HeaderBar.set_title(self._HeaderBox)
-        
+
         self.set_titlebar(self._HeaderBar)
         self.add(self._InfoBox)
-        
-    
-        
-        
 
-        
-        
-        
-        
-        
+        self._AboutButton.hide()
+
+    def set_license_custom(self, textfile):
+        self._custom_license = textfile
+        self._LicenseButton.connect("clicked", self.on_custom_license)
+
+    def on_custom_license(self, button):
+        self._LicenseButton.hide()
+        self._AboutButton.show()
+        txt = open(self._custom_license, 'r').read()
+        self._TextView.get_buffer().set_text(txt)
+
+    def set_about_text(self, text):
+        self._abouttext = text
+
+    def on_about(self, button):
+        self._LicenseButton.show()
+        self._AboutButton.hide()
+        txt = open(self._abouttext, 'r').read()
+        self._TextView.get_buffer().set_text(txt)
+
+    def set_appname(self, name):
+        self._Name.set_label(name)
+
+    def set_shortdescrpition(self, text):
+        self._ShortDescrpition.set_label(text)
+
+
+
+
+
+
+
+
+
+
