@@ -54,6 +54,7 @@ class AboutDialog(grabbo.Window):
         self._AboutButton.show()
         txt = open(self._custom_license, 'r').read()
         self._TextView.get_buffer().set_text(txt)
+        self._TextView.show()
 
     def set_version(self, version):
         self._Version.set_label(version)
