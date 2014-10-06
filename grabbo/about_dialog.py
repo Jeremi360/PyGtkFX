@@ -1,4 +1,4 @@
-import grabbo, os
+import grabbo, os, webbrowser
 from gi.repository import Gtk
 
 r = os.path.realpath(__file__)
@@ -58,6 +58,9 @@ class AboutDialog(grabbo.Window):
 
     def set_shortdescrpition(self, text):
         self._ShortDescrpition.set_label(text)
+
+    def open_link(self, url):
+        webbrowser.open_new_tab(url)
 
 
 
