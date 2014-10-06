@@ -8,9 +8,9 @@ r = os.path.dirname(r)
 AD_UI = os.path.join(r, 'ui', 'AboutDialog.xml')
 
 
-class AboutDialog(grabbo.Window):
+class AboutDialog(Gtk.Dialog):
     def __init__(self):
-        grabbo.Window.__init__(self)
+        Gtk.Dialog.__init__(self)
 
         self.ui = grabbo.Builder(AD_UI).ui
 
@@ -42,6 +42,11 @@ class AboutDialog(grabbo.Window):
 
         self._InfoBox.show()
         self._HeaderBar.show()
+
+        self.connect("destroy", self.on_close)
+
+    def on_close(self, button):
+        Gtk.main_quit()
 
     def set_title(self, title):
         self._HeaderBar.set_title(title)
