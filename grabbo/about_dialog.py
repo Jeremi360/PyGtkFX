@@ -12,7 +12,7 @@ class AboutDialog(grabbo.Window):
     def __init__(self):
         grabbo.Window.__init__(self)
 
-        self.ui =  grabbo.Builder(self, AD_UI).ui
+        self.ui =  grabbo.Builder(AD_UI).ui
 
         self._HomeButton = self.ui.get_object("HomeButton")
         self._LicenseButton = self.ui.get_object("LicenseButton")
