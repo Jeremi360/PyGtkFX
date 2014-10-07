@@ -48,7 +48,7 @@ class AboutDialog(grabbo.Window):
         self._HeaderBar.show()
 
     def on_close(self, button):
-        Gtk.main_quit()
+        self.close()
 
     def set_title(self, title):
         self._HeaderBar.set_title(title)
