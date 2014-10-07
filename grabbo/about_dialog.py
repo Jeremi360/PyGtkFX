@@ -40,7 +40,7 @@ class AboutDialog(grabbo.Window):
         self._AboutButton.connect("clicked", self.on_about)
         self._HomeButton.connect("clicked", self.on_home)
         self._RapportButton.connect("clicked", self.on_rapport)
-        self._CloseButton("clicked", self.on_close)
+        self._CloseButton.connect("clicked", self.on_close)
 
         self.connect("destroy", self.on_close)
 
