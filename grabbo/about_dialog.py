@@ -71,7 +71,7 @@ class AboutDialog(grabbo.Window):
         self.set_custom_text(text)
 
     def set_custom_text(self, text):
-        self._TextView.get_buffer().set_text(self._abouttext)
+        self._TextView.get_buffer().set_text(text)
         self._TextView.show()
 
     def set_home_page(self, url):
