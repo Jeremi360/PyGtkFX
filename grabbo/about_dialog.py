@@ -5,7 +5,7 @@ r = os.path.realpath(__file__)
 r = os.path.dirname(r)
 r = os.path.dirname(r)
 
-AD_UI = os.path.join(r, 'ui', 'AboutDialog.xml')
+AD_UI = os.path.join(r, 'ui', 'AboutDialog.ui')
 
 
 class AboutDialog(grabbo.Window):
@@ -19,7 +19,7 @@ class AboutDialog(grabbo.Window):
         self._RapportButton = self.ui.get_object("RapportButton")
         self._CloseButton = self.ui.get_object("CloseButton")
 
-        self._Logo = self.ui.get_object("Logo")
+        self.Logo = self.ui.get_object("Logo")
         self._TextView = self.ui.get_object("Text")
         self._ShortDescrpition = self.ui.get_object("ShortDescrpition")
         self._Name = self.ui.get_object("Name")
@@ -42,7 +42,9 @@ class AboutDialog(grabbo.Window):
         self._CloseButton.connect("clicked", self.on_close)
 
         self.connect("destroy", self.on_close)
-
+        
+    def preshow(self):
+        self.set_custom_text(self._abouttext)
         self._InfoBox.show()
         self._HeaderBar.show()
 
@@ -52,22 +54,34 @@ class AboutDialog(grabbo.Window):
     def set_title(self, title):
         self._HeaderBar.set_title(title)
 
-    def set_license_custom(self, textfile):
-        self._custom_license = textfile
-        self._LicenseButton.connect("clicked", self.on_custom_license)
+    def set_license_text_file(self, textfile):
+        self._license_text = open(textfile, 'r').read()
+        self._LicenseButton.connect("clicked", self.on_license_text)
+        
+    def set_license_text(self, text):
+        self._license_text = text
+        self._LicenseButton.connect("clicked", self.on_license_text)
 
-    def on_custom_license(self, button):
+    def on_license_text(self, button):
         self._LicenseButton.hide()
         self._AboutButton.show()
-        txt = open(self._custom_license, 'r').read()
-        self.set_custom_text(txt)
+        self.set_custom_text(self._license_text)
+        
+    def set_license_link(self, link):
+        self._license_link = link
+        self._LicenseButton.connect("clicked", self.on_license_link)
+        
+    def on_license_link(self, button):
+        self.open_link(self._license_link)
 
     def set_version(self, version):
         self._Version.set_label(version)
 
     def set_about_text(self, text):
         self._abouttext = text
-        self.set_custom_text(text)
+        
+    def set_about_text_file(self, textfile):
+        self._abouttext = open(textfile, 'r').read()
 
     def set_custom_text(self, text):
         self._TextView.get_buffer().set_text(text)
@@ -98,7 +112,4 @@ class AboutDialog(grabbo.Window):
 
     def on_home(self, button):
         self.open_link(self._rapport_page)
-
-    def set_logo_from_file(self, file):
-        self._Logo.set_from_file(file)
-        self.set_icon_from_file(file)
+        
