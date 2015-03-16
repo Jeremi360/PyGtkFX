@@ -5,7 +5,7 @@ r = os.path.realpath(__file__)
 r = os.path.dirname(r)
 r = os.path.dirname(r)
 
-AD_UI = os.path.join(r, 'ui', 'AboutDialog.ui')
+AD_UI = os.path.join(r, 'ui', 'AboutDialog.xml')
 
 
 class AboutDialog(grabbo.Window):
