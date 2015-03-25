@@ -991,5 +991,5 @@ class BrowserTabs(TabBase):
 
 win = gtk.Window()
 win.connect("destroy", gtk.main_quit)
-win.add(BrowserTabs())
+win.add(BrowserTabs("test"))
 win.show_all()
