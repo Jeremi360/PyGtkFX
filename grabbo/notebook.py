@@ -347,7 +347,7 @@ class Notebook(Gtk.Notebook):
         """
 
         if event.button == 2 or \
-                (event.button == 1 and event.state & Gtk.gdk.CONTROL_MASK):
+                (event.button == 1 and event.state & Gdk.CONTROL_MASK):
             # Close the tab on a middle click and control click.
             self.close_tab(child)
         elif event.button == 3:
@@ -368,7 +368,7 @@ class Notebook(Gtk.Notebook):
 
         """
 
-        if event.button == 1 and event.state & Gtk.gdk.CONTROL_MASK:
+        if event.button == 1 and event.state & (Gdk.KEY_Control_R or Gdk.KEY_Control_L):
             # Return True so the clicked tab is not raised.
             return True
 
