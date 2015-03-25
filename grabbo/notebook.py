@@ -51,7 +51,7 @@ class Notebook(gtk.Notebook):
                 'button-press-event': self._tabbar_button_press,
                 'button-release-event': self._tabbar_button_release,
                 }
-        for signal, callback in connection_dict.iteritems():
+        for signal, callback in connection_dict.items():
             self.connect(signal, callback)
 
         self.set_scrollable(True)
