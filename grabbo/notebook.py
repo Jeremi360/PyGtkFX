@@ -573,3 +573,5 @@ class Notebook(Gtk.Notebook):
             
 win = Gtk.Window()
 win.connect("destroy", Gtk.main_quit)
+win.add(Notebook())
+win.show_all()
