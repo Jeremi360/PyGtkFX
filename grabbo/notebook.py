@@ -1,5 +1,4 @@
-from gi.repository import Gtk, Gdk
-from gi.overrides import GObject
+from gi.repository import Gtk, Gdk, GObject
 
 
 #forked from https://github.com/zepto/webbrowser/webbrowser/tab_classes.py
