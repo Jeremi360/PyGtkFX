@@ -205,9 +205,7 @@ class Notebook(Gtk.Notebook):
     def new_tab_label(self, title='Blank page', icon=None, max_width=18):
         """ new_tab_label(title='Blank page', icon=None, max_width=18) ->
         Make a new label containing an icon and title.  Make the new label
-        'max_width' wide.
-
-        """
+        'max_width' wide."""
 
         # Set up the label to look nice.
         label = Gtk.Label(title)
