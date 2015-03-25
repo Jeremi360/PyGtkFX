@@ -388,10 +388,7 @@ class Notebook(Gtk.Notebook):
             icon.set_from_image(*image.get_image())
 
     def _add_tab_menu_items(self, menu, clicked_tab):
-        """ _add_tab_menu_items(menu) -> To be implemented by inheritor. 
-        
-        """
-
+        """ _add_tab_menu_items(menu) -> To be implemented by inheritor. """
         pass
 
     def _build_popup(self, clicked_tab=None):
