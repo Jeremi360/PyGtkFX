@@ -37,7 +37,7 @@ class Notebook(gtk.Notebook):
 
         """
 
-        super(TabBase, self).__init__()
+        super(Notebook, self).__init__()
 
         self._current_tab = None
         self._previous_tab = []
