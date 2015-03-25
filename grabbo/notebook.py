@@ -575,8 +575,421 @@ class Notebook(gtk.Notebook):
         if event.button == 3:
             menu = self._build_popup()
             menu.popup(None, None, None, event.button, event.time, None)
-            
+
+class BrowserTabs(TabBase):
+    """ BrowserTabs(show_tabs=True) -> Inherits TabBase 
+    
+    """
+
+    __gsignals__ = {
+            'duplicate-tab' : (gobject.SIGNAL_RUN_LAST, gobject.TYPE_NONE, 
+                (object, object)), 
+            'paste-tab' : (gobject.SIGNAL_RUN_LAST, gobject.TYPE_NONE, 
+                (gobject.TYPE_PYOBJECT, gobject.TYPE_PYOBJECT)),
+            }
+
+    def __init__(self, tabs_file, show_tabs=True, action_widget=None):
+        """ BrowserTabs(tabs_file, show_tabs=True) -> Tabs for Browser.
+        tabs_file - The filename of the file to save the tab information to.
+        show_tabs - If True then show the tabs otherwise hide them.
+        
+        """
+
+        super(BrowserTabs, self).__init__(show_tabs, action_widget)
+
+        self._current_folder = os.getenv('HOME')
+        self._tabs_file = tabs_file
+        self.connect('page-added', self._browser_added)
+        self.connect('drag-motion', self._drag_motion)
+        self.connect('drag-data-received', self._drag_data_received)
+        self.connect('drag-drop', self._drag_drop)
+        self.connect('drag-begin', self._drag_begin)
+
+        drag_accept_tup = [
+                ('text/plain', 0, 0), 
+                ('GTK_NOTEBOOK_TAB', gtk.TARGET_SAME_APP, 1)
+                ]
+        self.drag_dest_set(gtk.DEST_DEFAULT_ALL,
+                drag_accept_tup, 
+                gtk.gdk.ACTION_COPY)
+        self.set_group_id(1)
+        self._dragged_data = None
+
+    def _drag_begin(self, tabbar, context):
+        """ When a tab is being dragged out, disconnect it's signal handlers
+        so it won't be handled by this tabbar.
+
+        """
+
+        # Get the label and disconnect from its button press and release 
+        # events.
+        eventbox = self.get_tab_label(self._current_tab)
+        try:
+            eventbox.disconnect_by_func(self._tab_button_released)
+            eventbox.disconnect_by_func(self._tab_button_pressed)
+        except TypeError:
+            pass
+        self._connect_browser(self._current_tab, disconnect=True)
+
+    def _drag_data_received(self, tabbar, context, x, y, selection, 
+            targettype, timestamp):
+        """ Check the received data.  If it is a string than save it and open 
+        a new tab otherwise do nothing.
+
+        """
+
+        if y <= 16 and targettype == 0:
+            self._dragged_data = selection.data
+            self.emit('new-tab', 0, None)
+            return True
+        elif targettype == 1:
+            return True
+
+        return False
+
+    def _drag_motion(self, tabbar, context, x, y, timestamp):
+        """ When something is dragged over check if it is over the tab
+        area and handle it accordingly.
+
+        """
+
+        if y <= 16:
+            return False
+        else:
+            return True
+
+    def _drag_drop(self, tabbar, context, x, y, timestamp):
+        """ Handle drops.
+
+        """
+
+        return True
+
+    def new_tab(self, browsebox, switch_to=False):
+        """ new_browser(browsebox, switch_to=False) -> adds a new tab for
+        browser 'browsebox' and switches to it if switch_to is True. 
+        
+        """
+
+        # Run the parent method.
+        super(BrowserTabs, self).new_tab(browsebox, switch_to)
+
+    def _connect_browser(self, browsebox, disconnect=False):
+        """ Connect/disconnect signal handlers to the browsebox.
+
+        """
+
+        connection_dict = {
+                'title-changed': self._browser_title_changed,
+                'save-tabs' : self._handle_save_tabs,
+                }
+        for signal, callback in connection_dict.iteritems():
+            if gobject.signal_lookup(signal, browsebox):
+                if disconnect:
+                    try:
+                        self._current_tab.connect(signal, callback)
+                    except:
+                        pass
+                else:
+                    browsebox.connect(signal, callback)
+
+    def _browser_added(self, tabbar, browsebox, index):
+        """ Connect browsebox signals to handlers.
+
+        """
+
+        self._connect_browser(browsebox)
+
+        if self._dragged_data:
+            browsebox.load_uri(self._dragged_data)
+            self._dragged_data = None
+
+        if browsebox.type != 'BrowserSock':
+            self.set_tab_detachable(browsebox, True)
+
+    def _browser_title_changed(self, browsebox, title):
+        """ Change the tab label and emit 'title-changed' signal when the
+        title of the tab changes.
+
+        """
+
+        if hasattr(browsebox, 'get_pid'):
+            self.set_tab_text(browsebox, '%s (pid: %d)' % (title, 
+                browsebox.get_pid()))
+        else:
+            self.set_tab_text(browsebox, title)
+        if self.get_current_page() == self.page_num(browsebox):
+            self.emit('title-changed', title)
+
+    def _add_tab_menu_items(self, menu, clicked_tab):
+        """ Add the browser specific menu items to the tab bar menu.
+
+        """
+
+        clipboard = gtk.clipboard_get('CLIPBOARD')
+        has_text = clipboard.wait_is_text_available()
+        
+        item_tup = (
+                ('_new_tab_item', ('tab-new', '_New Tab', True, '<Control>t', 
+                    self._add_tab_button_released, (clicked_tab,))),
+                #('_new_back_tab_item', ('tab-new-background', 
+                    #'New _Background Tab', True, None, 
+                    #self._add_back_tab_button_released, (clicked_tab,))),
+                ('_duplicate_tab_item', ('edit-copy', '_Duplicate Tab', 
+                    True, None, self._duplicate_tab_button_released, 
+                    (clicked_tab,))),
+                gtk.SeparatorMenuItem(),
+                ('_close_tab_item', ('gtk-remove', '_Close Tab', True, 
+                    '<Control>w', self._close_tab_button_released, 
+                    (clicked_tab,))),
+                ('_close_other_item', ('gtk-close', 
+                    'Close _Other Tabs', True, '<Control><Alt>w', 
+                    self._close_other_button_released, (clicked_tab,))),
+                ('_close_all_item', ('gtk-clear', 'Close _All Tabs', True, 
+                    '<Control><Shift>w', self._close_all_button_released, 
+                    (clicked_tab,))),
+                gtk.SeparatorMenuItem(),
+                ('_save_tabs_item', ('gtk-save', '_Save Tabs', True, None,
+                    self._save_tabs_button_released, ())),
+                ('_copy_tab_item', ('gtk-copy', 'C_opy Tab', True, None,
+                    self._copy_tab_button_released, (clicked_tab,))),
+                ('_copy_all_item', ('gtk-copy', 'Copy A_ll Tabs', True, None,
+                    self._copy_all_button_released, ())),
+                ('_paste_tab_item', ('gtk-paste', '_Paste Tab', has_text, None,
+                    self._paste_tab_button_released, (clicked_tab,))),
+                gtk.SeparatorMenuItem(),
+                )
+
+        accel_group = gtk.AccelGroup()
+        menu.set_accel_group(accel_group)
+
+        for menu_item in item_tup:
+            if type(menu_item) == tuple:
+                item_name, (icon_name, label_text, is_sensitive, accel, 
+                        clicked_callback, user_args) = menu_item
+                icon = gtk.Image()
+                icon.set_from_icon_name(icon_name, gtk.ICON_SIZE_MENU)
+                item = gtk.ImageMenuItem()
+                item.set_image(icon)
+                item.set_label(label_text)
+                item.set_use_underline(True)
+                item.set_sensitive(is_sensitive)
+                item.connect('button-release-event', clicked_callback, 
+                        *user_args)
+                if accel:
+                    keyval, modifier = gtk.accelerator_parse(accel)
+                    item.add_accelerator('activate', accel_group, keyval, 
+                            modifier, gtk.ACCEL_VISIBLE)
+                self.__setattr__(item_name, item)
+            else:
+                item = menu_item
+            menu.insert(item, item_tup.index(menu_item))
+
+        menu.show_all()
+
+    def _add_tab_button_released(self, add_tab_item, event, clicked_tab):
+        """ Notify the browser to open a new tab.
+
+        """
+
+        self.emit('new-tab', event.state, clicked_tab)
+
+    def _add_back_tab_button_released(self, add_back_tab_item, event, 
+            clicked_tab):
+        """ Ask the browser to open a new tab in the background.
+
+        Not implemented.
+
+        """
+
+        self.emit('new-tab', event.state, clicked_tab)
+
+    def _save_tabs_button_released(self, save_tabs_item, event):
+        """ _save_tabs_button_released -> Save the open tabs to a user 
+        selected file.
+
+        """
+
+        # Open a file dialog so the user can select the file to export to.
+        save_dialog = SaveDialog('tabs_list', self._current_folder)
+        out_filename = save_dialog.run()
+
+        # Set the current_folder to the parent of the file selected.
+        self._current_folder = save_dialog.get_folder()
+
+        # Save the open tabs if a file was selected.
+        if out_filename:
+            self.save_tabs(out_filename)
+
+    def _copy_tab_button_released(self, copy_tab_item, event, clicked_tab):
+        """ _copy_tab_button_released -> Copy the information about the
+        clicked tab.
+
+        """
+
+        self._copy_tab_list((clicked_tab,))
+
+    def _copy_all_button_released(self, copy_all_item, event):
+        """ _copy_all_button_released -> Copy the information about the
+        all the tabs.
+
+        """
+
+        self._copy_tab_list(self.get_children())
+
+    def _paste_tab_button_released(self, copy_tab_item, event, clicked_tab):
+        """ _paste_tab_button_released -> Emit the 'paste-tab' signal so the
+        browser will paste the tab in the clipboard after clicked_tab.
+
+        """
+
+        self.emit('paste-tab', clicked_tab, event.state)
+
+    def _duplicate_tab_button_released(self, duplicate_tab_item, event, 
+            clicked_tab):
+        """ _duuplicate_tab_button_released -> Ask the browser to duplicate
+        the clicked tab.
+
+        """
+
+        self.emit('duplicate-tab', event.state, clicked_tab)
+
+    def _close_all_button_released(self, close_all_item, event, clicked_tab):
+        """ _close_all_button_released -> Close all the tabs and open a new
+        tab.
+
+        """
+
+        tab_list = self.get_children()
+        tab_list.reverse()
+        glib.idle_add(self._close_list, tab_list, clicked_tab)
+        self.emit('new-tab', event.state, clicked_tab)
+        self.close_tab(clicked_tab)
+
+    def _close_other_button_released(self, close_other_item, event, 
+            clicked_tab):
+        """ _close_ther_button_released -> Close all the tabs except the tab
+        that was right clicked.
+
+        """
+
+        tab_list = self.get_children()
+        tab_list.reverse()
+        glib.idle_add(self._close_list, tab_list, clicked_tab)
+
+    def _close_tab_button_released(self, close_tab_item, event, clicked_tab):
+        """ _close_tab_button_released -> Close the clicked tab.
+
+        """
+
+        self.close_tab(clicked_tab)
+
+    def _close_list(self, tab_list, clicked_tab):
+        """ _close_list(tab_list, clicked_tab) -> Close all the tabs except
+        'clicked_tab.'
+
+        """
+
+        for tab in tab_list:
+            if tab != clicked_tab:
+                self.close_tab(tab)
+
+    def _copy_tab_list(self, tab_list):
+        """ _browser_book_copy_tab(browser_book, tab_list) -> Copy the 
+        information from all the tabs in 'tab_list.'
+
+        """
+
+        info_list = []
+        for tab in tab_list:
+            info = self.get_tab_info(tab)
+            if info:
+                info_list.append(info)
+
+        clipboard = gtk.clipboard_get('CLIPBOARD')
+        clipboard.set_text(json.dumps(info_list, indent=4))
+        clipboard.store()
+
+    def get_tab_info(self, tab):
+        """ get_tab_info(tab) -> Return a list containing all the info
+        about a tab.
+
+        The format of the tab info is as follows:
+
+        Old:
+        [pid, tab_state, [history_index, [[title, uri], [title, uri], ...]]]...
+
+        New:
+        {
+            'pid': pid,
+            'state': tab_state,
+            'history':  [
+                            history_index,
+                            [
+                                [title, uri],
+                                [title, uri].
+                                ...
+                            ]
+                        ]
+        }
+        
+        """
+
+        if not hasattr(tab, 'get_save_dict'):
+            return None
+
+        info_dict = tab.get_save_dict()
+
+        if not info_dict['history']:
+            return None
+
+        tab_state = self.get_tab_state(tab)
+        info_dict['state'] = tab_state
+
+        return info_dict
+
+    def _handle_save_tabs(self, *args):
+        """ Save the tabs.
+
+        """
+
+        self.save_tabs()
+
+    def save_tabs(self, filename=None, exclude=()):
+        """ save_tabs(filename=None, exclude=()) -> Save the history, type, 
+        and state (minimized, hidden, or normal) of all the tabs, except the 
+        ones in the 'exclude' tuple, to a file so they can be restored later.
+
+        A list is filled items formated as follows:
+
+        [pid, tab_state, [history_index, [[title, uri], [title, uri], ...]]]...
+
+        Finally the list is dumped to a formated string, and written to a file.
+
+        """
+
+        if not filename:
+            filename = self._tabs_file
+
+        info_list = []
+        for tab in self.get_children():
+            # Skip the tabs in the exclude tuple.
+            if tab in exclude:
+                continue
+
+            info = self.get_tab_info(tab)
+            # Only save tabs that are not blank.
+            if info:
+                info_list.append(info)
+
+        # Dump the tab info to a formated string and write it to a file.
+        save_str = json.dumps(info_list, indent=4)
+        with open(filename, 'w') as tabs_file:
+            tabs_file.write(save_str.strip())
+
+        return True
+
 win = gtk.Window()
 win.connect("destroy", gtk.main_quit)
-win.add(Notebook())
+win.add(T)
 win.show_all()
