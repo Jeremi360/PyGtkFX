@@ -14,12 +14,12 @@ Done:
 
 * AboutDialog
 * some small fixes to Window and Builder
+* Notebook was forked from https://github.com/zepto/webbrowser
 
 ToDo:
 
-* Finish Edit and List modules
 * Add more automation to Builder class
-* take Notebook Switcher from cRoWBaR
+
 
 [1]:https://www.python.org/
 [2]:http://sourceforge.net/projects/pygobjectwin32/files/
