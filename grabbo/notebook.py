@@ -559,7 +559,7 @@ class TabBase(Gtk.Notebook):
 
         """
 
-        if event.type == Gdk.._2BUTTON_PRESS:
+        if event.type == Gdk.BUTTON_SECONDARY:
             self.emit('new-tab', event.state, self._current_tab)
 
     def _tabbar_button_release(self, tabbar, event):
