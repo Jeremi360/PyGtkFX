@@ -434,7 +434,7 @@ class Notebook(Gtk.Notebook):
                     if accel:
                         keyval, modifier = Gtk.accelerator_parse(accel)
                         item.add_accelerator('activate', accel_group, keyval, 
-                                modifier, True)
+                                modifier, Gtk.ACCEL_VISIBLE)
                     self.__setattr__(item_name, item)
                 else:
                     item = menu_item
