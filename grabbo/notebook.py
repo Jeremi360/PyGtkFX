@@ -1,5 +1,4 @@
-from gi.repository import Gtk, Gdk, GObject
-import pango
+from gi.repository import Gtk, Gdk, GObject, Pango
 
 
 # forked from https://github.com/zepto/webbrowser/webbrowser/tab_classes.py
@@ -219,7 +218,7 @@ class Notebook(Gtk.Notebook):
         label.set_alignment(xalign=0, yalign=0.5)
         label.set_width_chars(max_width)
         label.set_max_width_chars(max_width)
-        label.set_ellipsize(pango.ELLIPSIZE_END)
+        label.set_ellipsize(Pango.ELLIPSIZE_END)
 
         # Add the icon.
         hbox = Gtk.HBox(homogeneous=False, spacing=6)
@@ -445,11 +444,11 @@ class Notebook(Gtk.Notebook):
             item.set_label(text)
             label = item.get_children()[0]
             label.set_max_width_chars(48)
-            label.set_ellipsize(pango.ELLIPSIZE_END)
+            label.set_ellipsize(Pango.ELLIPSIZE_END)
 
             if tab == self._current_tab:
                 # Current tab title should be bold italic
-                label.modify_font(pango.FontDescription('bold italic'))
+                label.modify_font(Pango.FontDescription('bold italic'))
             item.connect('button-release-event',
                     self._popup_item_button_released, tab, menu)
             menu.add(item)
