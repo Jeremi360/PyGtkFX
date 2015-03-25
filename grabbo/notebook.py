@@ -33,7 +33,7 @@ class Notebook(Gtk.Notebook):
         self._previous_tab = []
         self._switch_new_tab = False
         self._toggle_tabs = not show_tabs
-
+        '''
         connection_dict = {
                 'page-added': self._page_added_callback,
                 'page-removed': self._page_removed_callback,
@@ -43,7 +43,7 @@ class Notebook(Gtk.Notebook):
                 }
         for signal, callback in connection_dict.items():
             self.connect(signal, callback)
-
+        '''
         self.set_scrollable(True)
         self.set_show_tabs(show_tabs)
         if action_widget:
