@@ -30,7 +30,6 @@ class Notebook(Gtk.Notebook):
         """ TabBase(show_tabs=True) -> Initialize the tab settings for the
         notebook.  If 'show_tabs' is True the show the tabs otherwise hide
         them.
-
         """
 
         Gtk.Notebook.__init__(self)
