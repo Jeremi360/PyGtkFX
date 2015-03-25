@@ -571,3 +571,4 @@ class TabBase(Gtk.Notebook):
         if event.button == 3:
             menu = self._build_popup()
             menu.popup(None, None, None, event.button, event.time, None)
+            
