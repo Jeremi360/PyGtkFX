@@ -610,7 +610,7 @@ class BrowserTabs(TabBase):
                 ('GTK_NOTEBOOK_TAB', gtk.TARGET_SAME_APP, 1)
                 ]
         self.drag_dest_set(gtk.DEST_DEFAULT_ALL,
-                drag_accept_tup[1][1], 
+                drag_accept_tup[1], 
                 gtk.gdk.ACTION_COPY)
         self.set_group_id(1)
         self._dragged_data = None
