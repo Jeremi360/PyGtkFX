@@ -1,5 +1,4 @@
-from gi.repository import Gtk
-from gi.overrides import Gobject
+from gi.repository import Gtk, Gobject, Gdk
 
 
 
@@ -560,7 +559,7 @@ class TabBase(Gtk.Notebook):
 
         """
 
-        if event.type == Gtk.gdk._2BUTTON_PRESS:
+        if event.type == Gdk.._2BUTTON_PRESS:
             self.emit('new-tab', event.state, self._current_tab)
 
     def _tabbar_button_release(self, tabbar, event):
