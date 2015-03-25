@@ -221,7 +221,7 @@ class Notebook(gtk.Notebook):
         label.set_alignment(xalign=0, yalign=0.5)
         label.set_width_chars(max_width)
         label.set_max_width_chars(max_width)
-        #label.set_ellipsize(pango.ELLIPSIZE_END)
+        label.set_ellipsize(pango.ELLIPSIZE_END)
 
         # Add the icon.
         hbox = gtk.HBox(homogeneous=False, spacing=6)
