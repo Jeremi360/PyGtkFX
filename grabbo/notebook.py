@@ -172,7 +172,7 @@ class Notebook(Gtk.Notebook):
         """
 
         # Grab ownership of the clipboard so webkit doesn't segfault.
-        clipboard = Gtk.clipboard_get('PRIMARY')
+        clipboard = Gtk.Clipboard()
         selected_text = clipboard.wait_for_text()
         if selected_text:
             clipboard.set_text(selected_text)
