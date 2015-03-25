@@ -14,7 +14,6 @@ Done:
 
 * AboutDialog
 * some small fixes to Window and Builder
-* Notebook was forked from https://github.com/zepto/webbrowser
 
 ToDo:
 
