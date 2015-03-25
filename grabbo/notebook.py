@@ -1,16 +1,8 @@
 from gi.repository import Gtk
-from gi.repository import GObject
-from gi.repository import Pango
 
 # forked from https://github.com/zepto/webbrowser/webbrowser/tab_classes.py
 class Notebook(Gtk.Notebook):
-    """ TabBase is a generic Gtk Notebook object.  If present the return value
-    of the widgets get_title and get_icon methods will be used to set the title
-    and icon of the tab.  Also if present the widgets close method will 
-    determine if the tab should be closed or not unless it is forced to close.
-    
     """
-
     __gproperties__ = {
             'current-page' : (GObject.TYPE_PYOBJECT, 'current page', 
                 'the currently active page', GObject.PARAM_READWRITE),
@@ -27,7 +19,7 @@ class Notebook(Gtk.Notebook):
             'new-tab' : (GObject.SIGNAL_RUN_LAST, GObject.TYPE_NONE, 
                 (GObject.TYPE_PYOBJECT, GObject.TYPE_PYOBJECT)), 
             }
-
+    """
     def __init__(self, show_tabs = True, action_widget = None):
         """ TabBase(show_tabs=True) -> Initialize the tab settings for the
         notebook.  If 'show_tabs' is True the show the tabs otherwise hide
