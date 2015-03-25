@@ -1,37 +1,43 @@
-from gi.repository import Gtk, Gdk, GObject, Pango
+from gi import pygtkcompat
 
+pygtkcompat.enable() 
+pygtkcompat.enable_gtk(version='3.0')
 
-# forked from https://github.com/zepto/webbrowser/webbrowser/tab_classes.py
-class Notebook(Gtk.Notebook):
-    """ TabBase is a generic Gtk Notebook object.  If present the return value
+import gtk, gobject, pango
+
+class Notebook(gtk.Notebook):
+    """ TabBase is a generic gtk Notebook object.  If present the return value
     of the widgets get_title and get_icon methods will be used to set the title
     and icon of the tab.  Also if present the widgets close method will 
     determine if the tab should be closed or not unless it is forced to close.
+    
     """
 
     __gproperties__ = {
-            'current-page' : (GObject.TYPE_PYOBJECT, 'current page',
-                'the currently active page', GObject.PARAM_READWRITE),
+            'current-page' : (gobject.TYPE_PYOBJECT, 'current page', 
+                'the currently active page', gobject.PARAM_READWRITE),
             }
 
     __gsignals__ = {
-            'title-changed' : (GObject.SIGNAL_RUN_LAST, GObject.TYPE_NONE,
-                (GObject.TYPE_STRING,)),
-            'exit' : (GObject.SIGNAL_RUN_LAST, GObject.TYPE_NONE, ()),
-            'tab-closed' : (GObject.SIGNAL_RUN_LAST, GObject.TYPE_NONE,
-                (GObject.TYPE_PYOBJECT,)),
-            'tab-added' : (GObject.SIGNAL_RUN_LAST, GObject.TYPE_NONE,
-                (GObject.TYPE_PYOBJECT,)),
-            'new-tab' : (GObject.SIGNAL_RUN_LAST, GObject.TYPE_NONE,
-                (GObject.TYPE_PYOBJECT, GObject.TYPE_PYOBJECT)),
+            'title-changed' : (gobject.SIGNAL_RUN_LAST, gobject.TYPE_NONE, 
+                (gobject.TYPE_STRING,)),
+            'exit' : (gobject.SIGNAL_RUN_LAST, gobject.TYPE_NONE, ()),
+            'tab-closed' : (gobject.SIGNAL_RUN_LAST, gobject.TYPE_NONE, 
+                (gobject.TYPE_PYOBJECT,)),
+            'tab-added' : (gobject.SIGNAL_RUN_LAST, gobject.TYPE_NONE, 
+                (gobject.TYPE_PYOBJECT,)),
+            'new-tab' : (gobject.SIGNAL_RUN_LAST, gobject.TYPE_NONE, 
+                (gobject.TYPE_PYOBJECT, gobject.TYPE_PYOBJECT)), 
             }
 
     def __init__(self, show_tabs=True, action_widget=None):
         """ TabBase(show_tabs=True) -> Initialize the tab settings for the
         notebook.  If 'show_tabs' is True the show the tabs otherwise hide
-        them."""
+        them.
 
-        Gtk.Notebook.__init__(self)
+        """
+
+        super(TabBase, self).__init__()
 
         self._current_tab = None
         self._previous_tab = []
@@ -45,13 +51,13 @@ class Notebook(Gtk.Notebook):
                 'button-press-event': self._tabbar_button_press,
                 'button-release-event': self._tabbar_button_release,
                 }
-        for signal, callback in connection_dict.items():
+        for signal, callback in connection_dict.iteritems():
             self.connect(signal, callback)
 
         self.set_scrollable(True)
         self.set_show_tabs(show_tabs)
         if action_widget:
-            self.set_action_widget(action_widget, Gtk.PACK_END)
+            self.set_action_widget(action_widget, gtk.PACK_END)
 
     def do_get_property(self, prop):
         """ do_get_property(prop) -> Returns the value of custom properties.
@@ -122,7 +128,7 @@ class Notebook(Gtk.Notebook):
         return self.get_nth_page(self.get_current_page())
 
     def close_tab(self, child=None, force=False):
-        """ close_tab(child = None, force = False) -> Close the tab that 
+        """ close_tab(child=None, force=False) -> Close the tab that 
         contains 'child' or the current tab if child is None.  If force is
         True then remove the tab even if the child does not close.
 
@@ -162,8 +168,8 @@ class Notebook(Gtk.Notebook):
             self.remove_page(self.page_num(child))
 
         # Finally destroy the child of the tab.
-        # child.destroy()
-        # print('child destroyed')
+        #child.destroy()
+        #print('child destroyed')
 
     def _grab_clipboard(self):
         """ _grab_clipboard() -> Grab the clipboard so the webview can be
@@ -172,7 +178,7 @@ class Notebook(Gtk.Notebook):
         """
 
         # Grab ownership of the clipboard so webkit doesn't segfault.
-        clipboard = Gtk.Clipboard()
+        clipboard = gtk.clipboard_get('PRIMARY')
         selected_text = clipboard.wait_for_text()
         if selected_text:
             clipboard.set_text(selected_text)
@@ -185,15 +191,15 @@ class Notebook(Gtk.Notebook):
         """
 
         if not switch_to:
-            index = self.get_current_page() + 1
+            index = self.get_current_page()+1
         else:
             index = -1
 
-        self.add_tab(child, title=child.get_title(), icon=child.get_icon(),
+        self.add_tab(child, title=child.get_title(), icon=child.get_icon(), 
                 index=index, switch_to=switch_to)
 
     def add_tab(self, child, title, icon=None, index=-1, switch_to=False):
-        """ add_tab(child, title, ico = None, index = 1, switch_to = False) ->
+        """ add_tab(child, title, icon=None, index=-1, switch_to=False) ->
         Insert a new tab at 'index' containing 'child.'  Give the new tab 
         a title made from 'title', and 'icon.'  Save the state of 'switch_to.'
 
@@ -205,24 +211,26 @@ class Notebook(Gtk.Notebook):
     def new_tab_label(self, title='Blank page', icon=None, max_width=18):
         """ new_tab_label(title='Blank page', icon=None, max_width=18) ->
         Make a new label containing an icon and title.  Make the new label
-        'max_width' wide."""
+        'max_width' wide.
+
+        """
 
         # Set up the label to look nice.
-        label = Gtk.Label(title)
-        label.set_justify(Gtk.JUSTIFY_LEFT)
+        label = gtk.Label(title)
+        label.set_justify(gtk.JUSTIFY_LEFT)
         label.set_alignment(xalign=0, yalign=0.5)
         label.set_width_chars(max_width)
         label.set_max_width_chars(max_width)
-        label.set_ellipsize(Pango.ELLIPSIZE_END)
+        label.set_ellipsize(pango.ELLIPSIZE_END)
 
         # Add the icon.
-        hbox = Gtk.HBox(homogeneous=False, spacing=6)
+        hbox = gtk.HBox(homogeneous=False, spacing=6)
         if not icon:
-            icon = Gtk.Image()
+            icon = gtk.Image()
         hbox.pack_start(icon, False)
         hbox.pack_end(label, True, True)
 
-        eventbox = Gtk.EventBox()
+        eventbox = gtk.EventBox()
         eventbox.add(hbox)
         eventbox.show_all()
         eventbox.set_has_window(False)
@@ -342,7 +350,7 @@ class Notebook(Gtk.Notebook):
         """
 
         if event.button == 2 or \
-                (event.button == 1 and event.state & Gdk.CONTROL_MASK):
+                (event.button == 1 and event.state & gtk.gdk.CONTROL_MASK):
             # Close the tab on a middle click and control click.
             self.close_tab(child)
         elif event.button == 3:
@@ -363,65 +371,72 @@ class Notebook(Gtk.Notebook):
 
         """
 
-        if event.button == 1 and event.state & (Gdk.KEY_Control_R or Gdk.KEY_Control_L):
+        if event.button == 1 and event.state & gtk.gdk.CONTROL_MASK:
             # Return True so the clicked tab is not raised.
             return True
 
     def _icon_from_image(self, image, icon):
-        """ _icon_from_image(image, icon) -> Set icon to a copy of image."""
+        """ _icon_from_image(image, icon) -> Set icon to a copy of image.
+
+        """
 
         image_type = image.get_storage_type()
-        if image_type == Gtk.ImageType.PIXBUF:
+        if image_type == gtk.IMAGE_PIXBUF:
             icon.set_from_pixbuf(image.get_pixbuf())
-        elif image_type == Gtk.ImageType.GICON:
-            icon.set_from_icon_name(*image.get_gicon())
-        elif image_type == Gtk.ImageType.ICON_NAME:
+        elif image_type == gtk.IMAGE_PIXMAP:
+            icon.set_from_pixmap(*image.get_pixmap())
+        elif image_type == gtk.IMAGE_ICON_NAME:
             icon.set_from_icon_name(*image.get_icon_name())
-        elif image_type == Gtk.ImageType.STOCK:
+        elif image_type == gtk.IMAGE_STOCK:
             icon.set_from_stock(*image.get_stock())
         else:
             icon.set_from_image(*image.get_image())
 
     def _add_tab_menu_items(self, menu, clicked_tab):
-        """ _add_tab_menu_items(menu) -> To be implemented by inheritor. """
+        """ _add_tab_menu_items(menu) -> To be implemented by inheritor. 
+        
+        """
+
         pass
 
     def _build_popup(self, clicked_tab=None):
-        """ _build_popup() -> Build the pop up menu."""
+        """ _build_popup() -> Build the pop up menu.
+        
+        """
 
-        menu = Gtk.Menu()
+        menu = gtk.Menu()
         
         item_tup = (
-                ('_minimize_tab_item', ('Gtk-remove',
-                    '_Minimize/Unminimize Tab', True, '<Control>m',
+                ('_minimize_tab_item', ('gtk-remove', 
+                    '_Minimize/Unminimize Tab', True, '<Control>m', 
                     self._minimize_tab_button_released, (clicked_tab,))),
-                ('_hide_tab_item', ('view-restore', '_Hide/Unhide Tab', True,
-                    '<Control>h', self._hide_tab_button_released,
+                ('_hide_tab_item', ('view-restore', '_Hide/Unhide Tab', True, 
+                    '<Control>h', self._hide_tab_button_released, 
                     (clicked_tab,))),
-                Gtk.SeparatorMenuItem()
+                gtk.SeparatorMenuItem(),
                 )
 
-        accel_group = Gtk.AccelGroup()
+        accel_group = gtk.AccelGroup()
         menu.set_accel_group(accel_group)
 
         if clicked_tab:
             for menu_item in item_tup:
                 if type(menu_item) == tuple:
-                    item_name, (icon_name, label_text, is_sensitive, accel,
+                    item_name, (icon_name, label_text, is_sensitive, accel, 
                             clicked_callback, user_args) = menu_item
-                    icon = Gtk.Image()
-                    icon.set_from_icon_name(icon_name, Gtk.ICON_SIZE_MENU)
-                    item = Gtk.ImageMenuItem()
+                    icon = gtk.Image()
+                    icon.set_from_icon_name(icon_name, gtk.ICON_SIZE_MENU)
+                    item = gtk.ImageMenuItem()
                     item.set_image(icon)
                     item.set_label(label_text)
                     item.set_use_underline(True)
                     item.set_sensitive(is_sensitive)
-                    item.connect('button-release-event', clicked_callback,
+                    item.connect('button-release-event', clicked_callback, 
                             *user_args)
                     if accel:
-                        keyval, modifier = Gtk.accelerator_parse(accel)
-                        item.add_accelerator('activate', accel_group, keyval,
-                                modifier, Gtk.AccelFlags.VISIBLE)
+                        keyval, modifier = gtk.accelerator_parse(accel)
+                        item.add_accelerator('activate', accel_group, keyval, 
+                                modifier, gtk.ACCEL_VISIBLE)
                     self.__setattr__(item_name, item)
                 else:
                     item = menu_item
@@ -429,29 +444,29 @@ class Notebook(Gtk.Notebook):
 
         # Add each tab [icon, title] to menu
         for tab in self.get_children():
-            icon = Gtk.Image()
+            icon = gtk.Image()
 
             # Get tab icon as image
             self._icon_from_image(self.get_tab_icon(tab), icon)
             text = self.get_tab_title(tab)
-            item = Gtk.ImageMenuItem()
+            item = gtk.ImageMenuItem()
             item.set_image(icon)
             item.set_label(text)
             label = item.get_children()[0]
             label.set_max_width_chars(48)
-            label.set_ellipsize(Pango.ELLIPSIZE_END)
+            label.set_ellipsize(pango.ELLIPSIZE_END)
 
             if tab == self._current_tab:
                 # Current tab title should be bold italic
-                label.modify_font(Pango.FontDescription('bold italic'))
-            item.connect('button-release-event',
+                label.modify_font(pango.FontDescription('bold italic'))
+            item.connect('button-release-event', 
                     self._popup_item_button_released, tab, menu)
             menu.add(item)
         menu.show_all()
 
         return menu
 
-    def _minimize_tab_button_released(self, close_tab_item, event,
+    def _minimize_tab_button_released(self, close_tab_item, event, 
             clicked_tab):
         """ _minimize_tab_button_released -> Hide the icon of the clicked tab.
 
@@ -484,7 +499,7 @@ class Notebook(Gtk.Notebook):
 
         # Get the label and connect to its button press and release events.
         eventbox = self.get_tab_label(child)
-        eventbox.connect('button-release-event', self._tab_button_released,
+        eventbox.connect('button-release-event', self._tab_button_released, 
                 child)
         eventbox.connect('button-press-event', self._tab_button_pressed, child)
         self.set_tab_reorderable(child, True)
@@ -547,7 +562,7 @@ class Notebook(Gtk.Notebook):
 
         """
 
-        if event.type == Gdk.BUTTON_SECONDARY:
+        if event.type == gtk.gdk._2BUTTON_PRESS:
             self.emit('new-tab', event.state, self._current_tab)
 
     def _tabbar_button_release(self, tabbar, event):
@@ -560,7 +575,7 @@ class Notebook(Gtk.Notebook):
             menu = self._build_popup()
             menu.popup(None, None, None, event.button, event.time, None)
             
-win = Gtk.Window()
-win.connect("destroy", Gtk.main_quit)
+win = gtk.Window()
+win.connect("destroy", gtk.main_quit)
 win.add(Notebook())
 win.show_all()
