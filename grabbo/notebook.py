@@ -3,7 +3,7 @@ from gi import pygtkcompat
 pygtkcompat.enable() 
 pygtkcompat.enable_gtk(version='3.0')
 
-import gtk, gobject, pango
+import gtk, gobject, pango, os
 
 # forked from https://github.com/zepto/webbrowser/webbrowser/tab_classes.py
 class TabBase(gtk.Notebook):
