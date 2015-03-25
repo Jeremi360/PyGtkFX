@@ -1,7 +1,6 @@
 from gi.repository import Gtk, Gobject, Gdk
 
-
-
+#forked from https://github.com/zepto/webbrowser/webbrowser/tab_classes.py
 class TabBase(Gtk.Notebook):
     """ TabBase is a generic Gtk Notebook object.  If present the return value
     of the widgets get_title and get_icon methods will be used to set the title
