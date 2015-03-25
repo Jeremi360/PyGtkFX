@@ -28,7 +28,7 @@ class Notebook(Gtk.Notebook):
                 (GObject.TYPE_PYOBJECT, GObject.TYPE_PYOBJECT)), 
             }
 
-    def __init__(self, show_tabs=True, action_widget=None):
+    def __init__(self, show_tabs = True, action_widget = None):
         """ TabBase(show_tabs=True) -> Initialize the tab settings for the
         notebook.  If 'show_tabs' is True the show the tabs otherwise hide
         them.
