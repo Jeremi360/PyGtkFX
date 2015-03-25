@@ -228,13 +228,6 @@ class Notebook(Gtk.Notebook):
         hbox.pack_start(icon, False)
         hbox.pack_end(label, True, True)
 
-        eventbox = Gtk.EventBox()
-        eventbox.add(hbox)
-        eventbox.show_all()
-        eventbox.set_has_window(False)
-
-        return eventbox
-
     def set_tab_text(self, child, text):
         """ set_tab_text(child, text) -> Set the text on childs tab label to
         'text.'
