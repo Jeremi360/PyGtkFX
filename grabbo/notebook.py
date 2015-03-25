@@ -6,7 +6,7 @@ pygtkcompat.enable_gtk(version='3.0')
 import gtk, gobject, pango
 
 # forked from https://github.com/zepto/webbrowser/webbrowser/tab_classes.py
-class Notebook(gtk.Notebook):
+class TabBase(gtk.Notebook):
     """ TabBase is a generic gtk Notebook object.  If present the return value
     of the widgets get_title and get_icon methods will be used to set the title
     and icon of the tab.  Also if present the widgets close method will 
@@ -38,7 +38,7 @@ class Notebook(gtk.Notebook):
 
         """
 
-        super(Notebook, self).__init__()
+        super(TabBase, self).__init__()
 
         self._current_tab = None
         self._previous_tab = []
