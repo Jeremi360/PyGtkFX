@@ -398,7 +398,7 @@ class Notebook(Gtk.Notebook):
                 ('_hide_tab_item', ('view-restore', '_Hide/Unhide Tab', True,
                     '<Control>h', self._hide_tab_button_released,
                     (clicked_tab,))),
-                Gtk.SeparatorMenuItem(),
+                Gtk.SeparatorMenuItem()
                 )
 
         accel_group = Gtk.AccelGroup()
