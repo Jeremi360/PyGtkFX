@@ -571,3 +571,5 @@ class Notebook(Gtk.Notebook):
             menu = self._build_popup()
             menu.popup(None, None, None, event.button, event.time, None)
             
+win = Gtk.Window()
+win.connect("destroy", Gtk.main_quit)
