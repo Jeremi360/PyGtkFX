@@ -48,7 +48,7 @@ class Notebook(Gtk.Notebook):
         self.set_show_tabs(show_tabs)
         if action_widget:
             self.set_action_widget(action_widget, Gtk.PackType.END)
-    """
+    '''
     def do_get_property(self, prop):
         """ do_get_property(prop) -> Returns the value of custom properties.
 
@@ -564,7 +564,7 @@ class Notebook(Gtk.Notebook):
         if event.button == 3:
             menu = self._build_popup()
             menu.popup(None, None, None, event.button, event.time, None)
-"""
+'''
 
 win = Gtk.Window()
 win.connect("destroy", Gtk.main_quit)
