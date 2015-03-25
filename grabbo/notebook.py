@@ -5,6 +5,7 @@ pygtkcompat.enable_gtk(version='3.0')
 
 import gtk, gobject, pango
 
+# forked from https://github.com/zepto/webbrowser/webbrowser/tab_classes.py
 class Notebook(gtk.Notebook):
     """ TabBase is a generic gtk Notebook object.  If present the return value
     of the widgets get_title and get_icon methods will be used to set the title
