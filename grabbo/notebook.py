@@ -55,7 +55,7 @@ class Notebook(Gtk.Notebook):
         self.set_scrollable(True)
         self.set_show_tabs(show_tabs)
         if action_widget:
-            self.set_action_widget(action_widget, Gtk.PACK_END)
+            self.set_action_widget(action_widget, Gtk.PackType.END)
 
     def do_get_property(self, prop):
         """ do_get_property(prop) -> Returns the value of custom properties.
