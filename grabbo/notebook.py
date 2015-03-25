@@ -392,9 +392,7 @@ class Notebook(Gtk.Notebook):
         pass
 
     def _build_popup(self, clicked_tab=None):
-        """ _build_popup() -> Build the pop up menu.
-        
-        """
+        """ _build_popup() -> Build the pop up menu."""
 
         menu = Gtk.Menu()
         
