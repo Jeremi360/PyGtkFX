@@ -125,8 +125,8 @@ class Notebook(Gtk.Notebook):
 
         return self.get_nth_page(self.get_current_page())
 
-    def close_tab(self, child=None, force=False):
-        """ close_tab(child=None, force=False) -> Close the tab that 
+    def close_tab(self, child = None, force = False):
+        """ close_tab(child = None, force = False) -> Close the tab that 
         contains 'child' or the current tab if child is None.  If force is
         True then remove the tab even if the child does not close.
 
@@ -182,7 +182,7 @@ class Notebook(Gtk.Notebook):
             clipboard.set_text(selected_text)
             clipboard.store()
 
-    def new_tab(self, child, switch_to=False):
+    def new_tab(self, child, switch_to = False):
         """ new_tab(child, switch_to=False) -> Adds a new tab and 
         switches to it if switch_to is True. 
         
@@ -193,11 +193,11 @@ class Notebook(Gtk.Notebook):
         else:
             index = -1
 
-        self.add_tab(child, title=child.get_title(), icon=child.get_icon(), 
-                index=index, switch_to=switch_to)
+        self.add_tab(child, title = child.get_title(), icon = child.get_icon(), 
+                index = index, switch_to = switch_to)
 
-    def add_tab(self, child, title, icon=None, index=-1, switch_to=False):
-        """ add_tab(child, title, icon=None, index=-1, switch_to=False) ->
+    def add_tab(self, child, title, icon = None, index = -1, switch_to = False):
+        """ add_tab(child, title, ico = None, index = 1, switch_to = False) ->
         Insert a new tab at 'index' containing 'child.'  Give the new tab 
         a title made from 'title', and 'icon.'  Save the state of 'switch_to.'
 
@@ -206,7 +206,7 @@ class Notebook(Gtk.Notebook):
         self._switch_new_tab = switch_to
         self.insert_page(child, self.new_tab_label(title, icon=icon), index)
 
-    def new_tab_label(self, title='Blank page', icon=None, max_width=18):
+    def new_tab_label(self, title = 'Blank page', icon = None, max_width = 18):
         """ new_tab_label(title='Blank page', icon=None, max_width=18) ->
         Make a new label containing an icon and title.  Make the new label
         'max_width' wide.
