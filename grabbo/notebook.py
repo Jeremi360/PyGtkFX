@@ -1,4 +1,6 @@
-from gi.repository import Gtk, Gobject, Gdk
+from gi.repository import Gtk, Gdk
+from gi.overrides import GObject
+
 
 #forked from https://github.com/zepto/webbrowser/webbrowser/tab_classes.py
 class Notebook(Gtk.Notebook):
