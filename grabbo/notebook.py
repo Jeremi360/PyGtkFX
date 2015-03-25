@@ -29,8 +29,7 @@ class Notebook(Gtk.Notebook):
     def __init__(self, show_tabs=True, action_widget=None):
         """ TabBase(show_tabs=True) -> Initialize the tab settings for the
         notebook.  If 'show_tabs' is True the show the tabs otherwise hide
-        them.
-        """
+        them."""
 
         Gtk.Notebook.__init__(self)
 
