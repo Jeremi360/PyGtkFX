@@ -7,7 +7,6 @@ class Notebook(Gtk.Notebook):
     of the widgets get_title and get_icon methods will be used to set the title
     and icon of the tab.  Also if present the widgets close method will 
     determine if the tab should be closed or not unless it is forced to close.
-    
     """
 
     __gproperties__ = {
