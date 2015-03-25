@@ -1,4 +1,4 @@
-from gi.repository import Gtk, Gdk, GObject, Pango
+from gi.repositor import Gtk, Gdk, GObject, Pango
 
 
 # forked from https://github.com/zepto/webbrowser/webbrowser/tab_classes.py
