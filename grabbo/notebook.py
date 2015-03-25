@@ -215,7 +215,7 @@ class Notebook(Gtk.Notebook):
 
         # Set up the label to look nice.
         label = Gtk.Label(title)
-        label.set_justify(Gtk.JUSTIFY_LEFT)
+        label.set_justify(Gtk.Justification.LEFT)
         label.set_alignment(xalign=0, yalign=0.5)
         label.set_width_chars(max_width)
         label.set_max_width_chars(max_width)
