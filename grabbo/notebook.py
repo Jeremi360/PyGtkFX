@@ -12,20 +12,20 @@ class Notebook(Gtk.Notebook):
     """
 
     __gproperties__ = {
-            'current-page' : (Gobject.TYPE_PYOBJECT, 'current page', 
-                'the currently active page', Gobject.PARAM_READWRITE),
+            'current-page' : (GObject.TYPE_PYOBJECT, 'current page', 
+                'the currently active page', GObject.PARAM_READWRITE),
             }
 
     __gsignals__ = {
-            'title-changed' : (Gobject.SIGNAL_RUN_LAST, Gobject.TYPE_NONE, 
-                (Gobject.TYPE_STRING,)),
-            'exit' : (Gobject.SIGNAL_RUN_LAST, Gobject.TYPE_NONE, ()),
-            'tab-closed' : (Gobject.SIGNAL_RUN_LAST, Gobject.TYPE_NONE, 
-                (Gobject.TYPE_PYOBJECT,)),
-            'tab-added' : (Gobject.SIGNAL_RUN_LAST, Gobject.TYPE_NONE, 
-                (Gobject.TYPE_PYOBJECT,)),
-            'new-tab' : (Gobject.SIGNAL_RUN_LAST, Gobject.TYPE_NONE, 
-                (Gobject.TYPE_PYOBJECT, Gobject.TYPE_PYOBJECT)), 
+            'title-changed' : (GObject.SIGNAL_RUN_LAST, GObject.TYPE_NONE, 
+                (GObject.TYPE_STRING,)),
+            'exit' : (GObject.SIGNAL_RUN_LAST, GObject.TYPE_NONE, ()),
+            'tab-closed' : (GObject.SIGNAL_RUN_LAST, GObject.TYPE_NONE, 
+                (GObject.TYPE_PYOBJECT,)),
+            'tab-added' : (GObject.SIGNAL_RUN_LAST, GObject.TYPE_NONE, 
+                (GObject.TYPE_PYOBJECT,)),
+            'new-tab' : (GObject.SIGNAL_RUN_LAST, GObject.TYPE_NONE, 
+                (GObject.TYPE_PYOBJECT, GObject.TYPE_PYOBJECT)), 
             }
 
     def __init__(self, show_tabs=True, action_widget=None):
