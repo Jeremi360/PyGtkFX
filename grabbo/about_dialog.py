@@ -6,7 +6,7 @@ r = os.path.dirname(r)
 r = os.path.dirname(r)
 
 
-class AD_UI(grabbo.Window):
+class AboutDialog(grabbo.Window):
     def __init__(self):
         grabbo.Window.__init__(self)
         
@@ -15,6 +15,7 @@ class AD_UI(grabbo.Window):
         self._HomeButton = Gtk.Button("Web Page")
         self._Image1 = Gtk.Image().new_from_icon_name("go-home", 4)
         self._HomeButton.set_image(self._Image1)
+        self._HomeButton.connect("clicked", self.on_home)
         self._HeaderBox.add(self._HomeButton)
         
         self._LicenseButton = Gtk.Button("License")
@@ -25,17 +26,20 @@ class AD_UI(grabbo.Window):
         self._AboutButton = Gtk.Button("About")
         self._Image4 = Gtk.Image().new_from_icon_name("dialog-information", 4)
         self._AboutButton.set_image(self._Image4)
-        self._AboutButton.hide()
+        self._AboutButton.connect("clicked", self.on_about)
         self._HeaderBox.add(self._AboutButton)
+        self._AboutButton.hide()
         
         self._RapportButton = Gtk.Button("Rapport")
         self._Image3 = Gtk.Image().new_from_icon_name("dialog-warning", 4)
         self._RapportButton.set_image(self._Image3)
+        self._RapportButton.connect("clicked", self.on_rapport)
         self._HeaderBox.add(self._RapportButton)
         
         self._CloseButton = Gtk.Button()
         self._Image5 = Gtk.Image().new_from_icon_name("dialog-close", 4)
         self._HomeButton.set_image(self._Image5)
+        self._CloseButton.connect("clicked", self.on_close)
         self._HeaderBox.add(self._CloseButton)
         
         self._HeaderBar = Gtk.HeaderBar()
@@ -63,16 +67,7 @@ class AD_UI(grabbo.Window):
         self._InfoBox.add(self._Version)
         
         self.add(self._InfoBox)
-        
-        
-class AboutDialog(AD_UI):
-    def __init__(self):
-        AD_UI.__init__(self)
 
-        self._AboutButton.connect("clicked", self.on_about)
-        self._HomeButton.connect("clicked", self.on_home)
-        self._RapportButton.connect("clicked", self.on_rapport)
-        self._CloseButton.connect("clicked", self.on_close)
         
     def preshow(self):
         self.set_custom_text(self._abouttext)
@@ -132,6 +127,9 @@ class AboutDialog(AD_UI):
 
     def set_shortdescrpition(self, text):
         self._ShortDescrpition.set_label(text)
+        
+    def get_logo(self):
+        return self._Logo
 
     def open_link(self, url):
         webbrowser.open_new_tab(url)
