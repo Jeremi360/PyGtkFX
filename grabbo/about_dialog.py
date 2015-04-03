@@ -73,6 +73,7 @@ class AboutDialog(grabbo.Window):
         self.set_custom_text(self._abouttext)
         self._InfoBox.show()
         self._HeaderBar.show()
+        self.show_all()
 
     def set_title(self, title):
         self._HeaderBar.set_title(title)
