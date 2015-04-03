@@ -26,7 +26,6 @@
         <property name="can_focus">False</property>
         <property name="label" translatable="yes">AppName</property>
         <property name="ellipsize">end</property>
-        <property name="angle">0.029999999999999999</property>
         <attributes>
           <attribute name="style" value="normal"/>
           <attribute name="weight" value="bold"/>
