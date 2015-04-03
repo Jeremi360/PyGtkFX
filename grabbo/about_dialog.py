@@ -5,19 +5,31 @@ r = os.path.realpath(__file__)
 r = os.path.dirname(r)
 r = os.path.dirname(r)
 
-AD_UI = os.path.join(r, 'ui', 'AboutDialog.xml')
+#AD_UI = os.path.join(r, 'ui', 'AboutDialog.xml')
 
-
-class AboutDialog(grabbo.Window):
+class AD_UI(grabbo.Window):
     def __init__(self):
         grabbo.Window.__init__(self)
-        self.ui = grabbo.Builder(AD_UI).ui
-
-        self._HomeButton = self.ui.get_object("HomeButton")
-        self._LicenseButton = self.ui.get_object("LicenseButton")
-        self._AboutButton = self.ui.get_object("AboutButton")
-        self._RapportButton = self.ui.get_object("RapportButton")
-        self._CloseButton = self.ui.get_object("CloseButton")
+        
+        self._HomeButton = Gtk.Button("Web Page")
+        self._Image1 = Gtk.Image().new_from_icon_name("go-home")
+        self._HomeButton.set_image(self._Image1)
+        
+        self._LicenseButton = Gtk.Button("License")
+        self._Image2 = Gtk.Image().new_from_icon_name("document-properties")
+        self._LicenseButton.set_image(self._Image2)
+        
+        self._AboutButton = Gtk.Button("About")
+        self._Image4 = Gtk.Image().new_from_icon_name("dialog-information")
+        self._AboutButton.set_image(self._Image4)
+        
+        self._RapportButton = Gtk.Button("Rapport")
+        self._Image3 = Gtk.Image().new_from_icon_name("dialog-warning")
+        self._RapportButton.set_image(self._Image3)
+        
+        self._CloseButton = Gtk.Button()
+        self._Image5 = Gtk.Image().new_from_icon_name("dialog-close")
+        self._HomeButton.set_image(self._Image5)
 
         self.Logo = self.ui.get_object("Logo")
         self._TextView = self.ui.get_object("Text")
@@ -30,6 +42,10 @@ class AboutDialog(grabbo.Window):
 
         self._HeaderBar = Gtk.HeaderBar()
         self._HeaderBar.set_custom_title(self._HeaderBox)
+
+class AboutDialog(AD_UI):
+    def __init__(self):
+        AD_UI.__init__(self)
 
         self.set_titlebar(self._HeaderBar)
         self.add(self._InfoBox)
