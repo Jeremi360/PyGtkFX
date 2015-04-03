@@ -13,28 +13,28 @@ class AD_UI(grabbo.Window):
         self._HeaderBox = Gtk.HBox()
         
         self._HomeButton = Gtk.Button("Web Page")
-        self._Image1 = Gtk.Image().new_from_icon_name("go-home")
+        self._Image1 = Gtk.Image().new_from_icon_name("go-home", 4)
         self._HomeButton.set_image(self._Image1)
         self._HeaderBox.add(self._HomeButton)
         
         self._LicenseButton = Gtk.Button("License")
-        self._Image2 = Gtk.Image().new_from_icon_name("document-properties")
+        self._Image2 = Gtk.Image().new_from_icon_name("document-properties", 4)
         self._LicenseButton.set_image(self._Image2)
         self._HeaderBox.add(self._LicenseButton)
         
         self._AboutButton = Gtk.Button("About")
-        self._Image4 = Gtk.Image().new_from_icon_name("dialog-information")
+        self._Image4 = Gtk.Image().new_from_icon_name("dialog-information", 4)
         self._AboutButton.set_image(self._Image4)
         self._AboutButton.hide()
         self._HeaderBox.add(self._AboutButton)
         
         self._RapportButton = Gtk.Button("Rapport")
-        self._Image3 = Gtk.Image().new_from_icon_name("dialog-warning")
+        self._Image3 = Gtk.Image().new_from_icon_name("dialog-warning", 4)
         self._RapportButton.set_image(self._Image3)
         self._HeaderBox.add(self._RapportButton)
         
         self._CloseButton = Gtk.Button()
-        self._Image5 = Gtk.Image().new_from_icon_name("dialog-close")
+        self._Image5 = Gtk.Image().new_from_icon_name("dialog-close", 4)
         self._HomeButton.set_image(self._Image5)
         self._HeaderBox.add(self._CloseButton)
         
@@ -44,7 +44,7 @@ class AD_UI(grabbo.Window):
         
         self._InfoBox = Gtk.VBox()
         
-        self._Logo = Gtk.Image().new_from_icon_name("applications-development")
+        self._Logo = Gtk.Image().new_from_icon_name("applications-development", 4)
         self._InfoBox.add(self._Logo)
         
         self._TextView = Gtk.TextView()
