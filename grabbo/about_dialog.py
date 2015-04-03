@@ -69,16 +69,12 @@ class AboutDialog(grabbo.Window):
         InfoList.append(self._Version)
         
         for w in InfoList:
-            self._InfoBox.add(w)
-            #w.set_hexpand(False)
-            #w.set_vexpand(False)
+            self._InfoBox.pack_start(w, False, False, -1)
         
         self._TextView = Gtk.TextView()
         self._scrolledwindow1 = Gtk.ScrolledWindow()
         self._scrolledwindow1.add(self._TextView)
-        self._InfoBox.add(self._scrolledwindow1)
-        self._scrolledwindow1.set_hexpand(True)
-        self._scrolledwindow1.set_vexpand(False)
+        self._InfoBox.pack_start(self._scrolledwindow1, True, True, -1)
         
         self.add(self._InfoBox)
         
