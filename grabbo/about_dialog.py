@@ -68,6 +68,9 @@ class AboutDialog(grabbo.Window):
         self._Version = Gtk.Label("0.3")
         InfoList.append(self._Version)
         
+        for w in InfoList:
+            self._InfoBox.add(w)
+        
         self._TextView = Gtk.TextView()
         self._scrolledwindow1 = Gtk.ScrolledWindow()
         self._scrolledwindow1.add(self._TextView)
