@@ -55,11 +55,6 @@ class AboutDialog(grabbo.Window):
         self._Logo = Gtk.Image().new_from_icon_name("applications-development", 4)
         self._InfoBox.add(self._Logo)
         
-        self._TextView = Gtk.TextView()
-        self._scrolledwindow1 = Gtk.ScrolledWindow()
-        self._scrolledwindow1.add(self._TextView)
-        self._InfoBox.add(self._scrolledwindow1)
-        
         self._ShortDescrpition = Gtk.Label("Awesome App")
         self._InfoBox.add(self._ShortDescrpition)
         
@@ -69,6 +64,11 @@ class AboutDialog(grabbo.Window):
         
         self._Version = Gtk.Label("0.3")
         self._InfoBox.add(self._Version)
+        
+        self._TextView = Gtk.TextView()
+        self._scrolledwindow1 = Gtk.ScrolledWindow()
+        self._scrolledwindow1.add(self._TextView)
+        self._InfoBox.add(self._scrolledwindow1)
         
         self.add(self._InfoBox)
 
