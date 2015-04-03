@@ -5,7 +5,6 @@ r = os.path.realpath(__file__)
 r = os.path.dirname(r)
 r = os.path.dirname(r)
 
-#AD_UI = os.path.join(r, 'ui', 'AboutDialog.xml')
 
 class AD_UI(grabbo.Window):
     def __init__(self):
@@ -41,6 +40,7 @@ class AD_UI(grabbo.Window):
         
         self._HeaderBar = Gtk.HeaderBar()
         self._HeaderBar.set_custom_title(self._HeaderBox)
+        self.set_titlebar(self._HeaderBar)
         
         self._InfoBox = Gtk.VBox()
         
@@ -61,31 +61,23 @@ class AD_UI(grabbo.Window):
         
         self._Version = Gtk.Label("0.3")
         self._InfoBox.add(self._Version)
-
-
         
-
+        self.add(self._InfoBox)
+        
+        
 class AboutDialog(AD_UI):
     def __init__(self):
         AD_UI.__init__(self)
-
-        self.set_titlebar(self._HeaderBar)
-        self.add(self._InfoBox)
 
         self._AboutButton.connect("clicked", self.on_about)
         self._HomeButton.connect("clicked", self.on_home)
         self._RapportButton.connect("clicked", self.on_rapport)
         self._CloseButton.connect("clicked", self.on_close)
-
-        self.connect("destroy", self.on_close)
         
     def preshow(self):
         self.set_custom_text(self._abouttext)
         self._InfoBox.show()
         self._HeaderBar.show()
-
-    def on_close(self, button):
-        self.close()
 
     def set_title(self, title):
         self._HeaderBar.set_title(title)
