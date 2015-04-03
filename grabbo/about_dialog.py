@@ -31,10 +31,14 @@ class AD_UI(grabbo.Window):
         self._Image5 = Gtk.Image().new_from_icon_name("dialog-close")
         self._HomeButton.set_image(self._Image5)
 
-        self.Logo = self.ui.get_object("Logo")
-        self._TextView = self.ui.get_object("Text")
-        self._ShortDescrpition = self.ui.get_object("ShortDescrpition")
-        self._Name = self.ui.get_object("Name")
+        self.Logo = Gtk.Image().new_from_icon_name("applications-development")
+        self._TextView = Gtk.TextView()
+        
+        self._ShortDescrpition = Gtk.Label("Awesome App")
+        
+        self._Name = Gtk.Label()
+        self._Name.set_markup("<b>AppName</b>")
+        
         self._Version = self.ui.get_object("Version")
 
         self._InfoBox = self.ui.get_object("InfoBox")
@@ -115,7 +119,8 @@ class AboutDialog(AD_UI):
         self.set_custom_text(self._abouttext)
 
     def set_appname(self, name):
-        self._Name.set_label(name)
+        markup = "<b>" + name + "</b>"
+        self._Name.set_label(markup)
 
     def set_shortdescrpition(self, text):
         self._ShortDescrpition.set_label(text)
