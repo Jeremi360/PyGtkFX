@@ -11,41 +11,59 @@ class AD_UI(grabbo.Window):
     def __init__(self):
         grabbo.Window.__init__(self)
         
+        self._HeaderBox = Gtk.HBox()
+        
         self._HomeButton = Gtk.Button("Web Page")
         self._Image1 = Gtk.Image().new_from_icon_name("go-home")
         self._HomeButton.set_image(self._Image1)
+        self._HeaderBox.add(self._HomeButton)
         
         self._LicenseButton = Gtk.Button("License")
         self._Image2 = Gtk.Image().new_from_icon_name("document-properties")
         self._LicenseButton.set_image(self._Image2)
+        self._HeaderBox.add(self._LicenseButton)
         
         self._AboutButton = Gtk.Button("About")
         self._Image4 = Gtk.Image().new_from_icon_name("dialog-information")
         self._AboutButton.set_image(self._Image4)
+        self._AboutButton.hide()
+        self._HeaderBox.add(self._AboutButton)
         
         self._RapportButton = Gtk.Button("Rapport")
         self._Image3 = Gtk.Image().new_from_icon_name("dialog-warning")
         self._RapportButton.set_image(self._Image3)
+        self._HeaderBox.add(self._RapportButton)
         
         self._CloseButton = Gtk.Button()
         self._Image5 = Gtk.Image().new_from_icon_name("dialog-close")
         self._HomeButton.set_image(self._Image5)
-
-        self.Logo = Gtk.Image().new_from_icon_name("applications-development")
+        self._HeaderBox.add(self._CloseButton)
+        
+        self._HeaderBar = Gtk.HeaderBar()
+        self._HeaderBar.set_custom_title(self._HeaderBox)
+        
+        self._InfoBox = Gtk.VBox()
+        
+        self._Logo = Gtk.Image().new_from_icon_name("applications-development")
+        self._InfoBox.add(self._Logo)
+        
         self._TextView = Gtk.TextView()
+        self._scrolledwindow1 = Gtk.ScrolledWindow()
+        self._scrolledwindow1.add(self._TextView)
+        self._InfoBox.add(self._scrolledwindow1)
         
         self._ShortDescrpition = Gtk.Label("Awesome App")
+        self._InfoBox.add(self._ShortDescrpition)
         
         self._Name = Gtk.Label()
         self._Name.set_markup("<b>AppName</b>")
+        self._InfoBox.add(self._Name)
         
-        self._Version = self.ui.get_object("Version")
+        self._Version = Gtk.Label("0.3")
+        self._InfoBox.add(self._Version)
 
-        self._InfoBox = self.ui.get_object("InfoBox")
-        self._HeaderBox = self.ui.get_object("HeaderBox")
 
-        self._HeaderBar = Gtk.HeaderBar()
-        self._HeaderBar.set_custom_title(self._HeaderBox)
+        
 
 class AboutDialog(AD_UI):
     def __init__(self):
@@ -53,8 +71,6 @@ class AboutDialog(AD_UI):
 
         self.set_titlebar(self._HeaderBar)
         self.add(self._InfoBox)
-
-        self._AboutButton.hide()
 
         self._AboutButton.connect("clicked", self.on_about)
         self._HomeButton.connect("clicked", self.on_home)
