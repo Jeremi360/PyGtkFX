@@ -98,7 +98,6 @@
   <object class="GtkImage" id="image3">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="stock">gtk-dialog-warning</property>
   </object>
   <object class="GtkImage" id="image4">
     <property name="visible">True</property>
