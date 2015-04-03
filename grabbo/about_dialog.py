@@ -42,7 +42,7 @@ class AboutDialog(grabbo.Window):
         
         self._CloseButton = Gtk.Button("Close")
         self._CloseButton.set_relief(Gtk.ReliefStyle.NONE)
-        self._Image5 = Gtk.Image().new_from_icon_name("dialog-close")
+        self._Image5 = Gtk.Image().new_from_icon_name("dialog-close", 4)
         self._CloseButton.set_image(self._Image5)
         self._HeaderBox.add(self._CloseButton)
         
