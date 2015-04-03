@@ -44,7 +44,8 @@ class AboutDialog(grabbo.Window):
         self._CloseButton.set_relief(Gtk.ReliefStyle.NONE)
         self._Image5 = Gtk.Image().new_from_icon_name("dialog-close", 4)
         self._CloseButton.set_image(self._Image5)
-        self._CloseButton.connect("clicked", lambda c : self.destroy())
+        self._CloseButton.connect("clicked", self.on_close)
+        self.connect("destroy", self.on_close)
         self._HeaderBox.add(self._CloseButton)
         
         self._HeaderBar = Gtk.HeaderBar()
@@ -126,6 +127,9 @@ class AboutDialog(grabbo.Window):
         self._LicenseButton.show()
         self._AboutButton.hide()
         self.set_custom_text(self._abouttext)
+        
+    def on_close(self, button):
+        self.close()
 
     def set_appname(self, name):
         markup = "<b>" + name + "</b>"
