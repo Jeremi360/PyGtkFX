@@ -36,10 +36,14 @@ class AboutDialog(grabbo.Window):
         self._RapportButton.connect("clicked", self.on_rapport)
         self._HeaderBox.add(self._RapportButton)
         
+        self._CloseButton = Gtk.Button("Close")
+        self._Image5 = Gtk.Image().new_from_icon_name("dialog-close")
+        self._CloseButton.set_image(self._Image5)
+        self._HeaderBox.add(self._CloseButton)
+        
         self._HeaderBar = Gtk.HeaderBar()
         self._HeaderBar.set_custom_title(self._HeaderBox)
         self.set_titlebar(self._HeaderBar)
-        self._HeaderBar.set_decoration_layout("menu:close")
         
         self._InfoBox = Gtk.VBox()
         
