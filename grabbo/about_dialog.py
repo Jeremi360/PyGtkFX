@@ -78,6 +78,7 @@ class AboutDialog(grabbo.Window):
         self._InfoBox.show()
         self._HeaderBar.show()
         self.show_all()
+        self._AboutButton.hide()
 
     def set_title(self, title):
         self._HeaderBar.set_title(title)
