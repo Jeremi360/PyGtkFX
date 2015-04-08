@@ -19,6 +19,10 @@ class HomeButton(StandardButton):
         img = Gtk.Image().new_from_icon_name("go-home", 4)
         StandardButton.__init__(self, label, img)
         
-
+class AboutButton(StandardButton):
+    def __init__(self):
+        img = Gtk.Image().new_from_icon_name("dialog-information", 4)
+        StandardButton.__init__(self, "About", img)
+        
         
     
