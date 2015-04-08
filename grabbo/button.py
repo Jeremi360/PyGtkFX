@@ -8,10 +8,10 @@ class StandardButton(Gtk.Button):
         self.set_relief(Gtk.ReliefStyle.NONE)
         self.set_image(img)
 
-class CloseButton(Gtk.Button):
+class CloseButton(StandardButton):
     def __init__(self):
-        Gtk.Button.__init__(self)
-        self.set_label("Close")
+        self.set_label()
+        img = Gtk.Image().new_from_icon_name("dialog-close", 4)
+        StandardButton.__init__(self, "Close", img)
         
-        Image = Gtk.Image().new_from_icon_name("dialog-close", 4)
     
