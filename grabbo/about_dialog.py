@@ -12,23 +12,15 @@ class AboutDialog(grabbo.Window):
         
         self._HeaderBox = Gtk.HBox()
         
-        self._HomeButton = Gtk.Button("Web Page")
-        self._HomeButton.set_relief(Gtk.ReliefStyle.NONE)
-        self._Image1 = Gtk.Image().new_from_icon_name("go-home", 4)
-        self._HomeButton.set_image(self._Image1)
+        self._HomeButton = grabbo.HomeButton("Web Page")
         self._HomeButton.connect("clicked", self.on_home)
         self._HeaderBox.add(self._HomeButton)
         
-        self._LicenseButton = Gtk.Button("License")
-        self._LicenseButton.set_relief(Gtk.ReliefStyle.NONE)
         self._Image2 = Gtk.Image().new_from_icon_name("document-properties", 4)
-        self._LicenseButton.set_image(self._Image2)
+        self._LicenseButton = grabbo.StandardButton("License", self._Image2)
         self._HeaderBox.add(self._LicenseButton)
         
-        self._AboutButton = Gtk.Button("About")
-        self._AboutButton.set_relief(Gtk.ReliefStyle.NONE)
-        self._Image4 = Gtk.Image().new_from_icon_name("dialog-information", 4)
-        self._AboutButton.set_image(self._Image4)
+        self._AboutButton = grabbo.AboutButton()
         self._AboutButton.connect("clicked", self.on_about)
         self._HeaderBox.add(self._AboutButton)
         self._AboutButton.hide()
