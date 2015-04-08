@@ -10,7 +10,6 @@ class StandardButton(Gtk.Button):
 
 class CloseButton(StandardButton):
     def __init__(self):
-        self.set_label()
         img = Gtk.Image().new_from_icon_name("dialog-close", 4)
         StandardButton.__init__(self, "Close", img)
         
