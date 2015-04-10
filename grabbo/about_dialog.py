@@ -78,7 +78,6 @@ class AboutDialog(grabbo.Window):
         self.set_custom_text(self._abouttext)
         self._InfoBox.show()
         self._HeaderBar.show()
-        self.show_all()
         self._AboutButton.hide()
 
     def set_title(self, title):
@@ -145,8 +144,8 @@ class AboutDialog(grabbo.Window):
         webbrowser.open_new_tab(url)
 
     def on_repot(self, button):
-        self.open_link(self._home_page)
+        self.open_link(self._repot_page)
 
     def on_home(self, button):
-        self.open_link(self._repot_page)
+        self.open_link(self._home_page)
         
