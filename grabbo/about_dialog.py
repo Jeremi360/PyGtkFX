@@ -30,14 +30,10 @@ class AboutDialog(grabbo.Window):
         self._RapportButton.connect("clicked", self.on_rapport)
         self._HeaderBox.add(self._RapportButton)
         
-        self._CloseButton = grabbo.CloseButton()
-        self._CloseButton.connect("clicked", self.on_close)
-        self.connect("destroy", self.on_close)
-        self._HeaderBox.add(self._CloseButton)
-        
         self._HeaderBar = Gtk.HeaderBar()
         self._HeaderBar.set_custom_title(self._HeaderBox)
         self.set_titlebar(self._HeaderBar)
+        self._HeaderBar.set_show_close_button(True)
         
         self._InfoBox = Gtk.VBox()
         InfoList = []
