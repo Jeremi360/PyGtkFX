@@ -7,11 +7,6 @@ class StandardButton(Gtk.Button):
         self.set_label(label)
         self.set_relief(Gtk.ReliefStyle.NONE)
         self.set_image(img)
-
-class CloseButton(StandardButton):
-    def __init__(self):
-        img = Gtk.Image().new_from_icon_name("dialog-close", 4)
-        StandardButton.__init__(self, "Close", img)
         
 class HomeButton(StandardButton):
     def __init__(self, label):
