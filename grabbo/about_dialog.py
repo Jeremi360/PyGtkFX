@@ -34,6 +34,7 @@ class AboutDialog(grabbo.Window):
         self._HeaderBar.set_custom_title(self._HeaderBox)
         self.set_titlebar(self._HeaderBar)
         self._HeaderBar.set_show_close_button(True)
+        self._HeaderBar.set_decoration_layout(":close")
         
         self._InfoBox = Gtk.VBox()
         InfoList = []
