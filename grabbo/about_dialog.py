@@ -7,8 +7,20 @@ r = os.path.dirname(r)
 
 
 class AboutDialog(grabbo.Window):
-    def __init__(self):
+    def __init__(self,
+                 about_text = ["Some text about my awesome App", "string"],
+                 report_page = "https://github.com/jeremi360/Grabbo/issues",
+                 home_page = "https://github.com/jeremi360/Grabbo"):
+        
         grabbo.Window.__init__(self)
+        
+        if about_text[1] == "string":
+            self.set_about_text(about_text)
+        elif about_text[1] == ("path" or "file"):
+            self.set_about_text_file(about_text)
+        
+        self.set_repot_page(report_page)
+        self.set_home_page(home_page)
         
         self._HeaderBox = Gtk.HBox()
         
@@ -26,9 +38,9 @@ class AboutDialog(grabbo.Window):
         self._AboutButton.hide()
         
         self._Image3 = Gtk.Image().new_from_icon_name("dialog-warning", 4)
-        self._RapportButton = grabbo.StandardButton("Rapport", self._Image3)
-        self._RapportButton.connect("clicked", self.on_rapport)
-        self._HeaderBox.add(self._RapportButton)
+        self._repotButton = grabbo.StandardButton("repot", self._Image3)
+        self._repotButton.connect("clicked", self.on_repot)
+        self._HeaderBox.add(self._repotButton)
         
         self._HeaderBar = Gtk.HeaderBar()
         self._HeaderBar.set_custom_title(self._HeaderBox)
@@ -108,8 +120,8 @@ class AboutDialog(grabbo.Window):
     def set_home_page(self, url):
         self._home_page = url
 
-    def set_rapport_page(self, url):
-        self._rapport_page = url
+    def set_repot_page(self, url):
+        self._repot_page = url
 
     def on_about(self, button):
         self._LicenseButton.show()
@@ -132,9 +144,9 @@ class AboutDialog(grabbo.Window):
     def open_link(self, url):
         webbrowser.open_new_tab(url)
 
-    def on_rapport(self, button):
+    def on_repot(self, button):
         self.open_link(self._home_page)
 
     def on_home(self, button):
-        self.open_link(self._rapport_page)
+        self.open_link(self._repot_page)
         
