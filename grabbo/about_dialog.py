@@ -1,9 +1,5 @@
-import grabbo, os, webbrowser
+import grabbo, webbrowser
 from gi.repository import Gtk
-
-r = os.path.realpath(__file__)
-r = os.path.dirname(r)
-r = os.path.dirname(r)
 
 
 class AboutDialog(grabbo.Window):
