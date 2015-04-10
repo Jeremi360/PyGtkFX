@@ -15,9 +15,9 @@ class AboutDialog(grabbo.Window):
         grabbo.Window.__init__(self)
         
         if about_text[1] == "string":
-            self.set_about_text(about_text)
+            self.set_about_text(about_text[0])
         elif about_text[1] == ("path" or "file"):
-            self.set_about_text_file(about_text)
+            self.set_about_text_file(about_text[0])
         
         self.set_repot_page(report_page)
         self.set_home_page(home_page)
