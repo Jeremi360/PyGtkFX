@@ -148,5 +148,5 @@ class AboutDialog(grabbo.Window):
 
 if __name__ == '__main__':
     ad = AboutDialog()
-    #ad.preshow()
+    ad.preshow()
     ad.show()

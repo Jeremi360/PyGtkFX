@@ -7,6 +7,7 @@ class Builder(object):
 
         try:
             self.ui.add_from_file(UI_FILE)
+            
         except:
             self.ui.add_from_string(UI_FILE)
 
