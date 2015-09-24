@@ -12,6 +12,7 @@ class AboutDialog(grabbo.Window):
 
         if about_text[1] == "string":
             self.set_about_text(about_text[0])
+            
         elif about_text[1] == ("path" or "file"):
             self.set_about_text_file(about_text[0])
 
@@ -147,5 +148,5 @@ class AboutDialog(grabbo.Window):
 
 if __name__ == '__main__':
     ad = AboutDialog()
-    ad.preshow()
+    #ad.preshow()
     ad.show()
