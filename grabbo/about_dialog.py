@@ -1,15 +1,14 @@
-from grabbo import Window
-import webbrowser
+import grabbo, webbrowser
 from gi.repository import Gtk
 
 
-class AboutDialog(Window):
+class AboutDialog(grabbo.Window):
     def __init__(self,
                  about_text = ["Some text about my awesome App", "string"],
                  report_page = "https://github.com/jeremi360/Grabbo/issues",
                  home_page = "https://github.com/jeremi360/Grabbo"):
 
-        Window.__init__(self)
+        grabbo.Window.__init__(self)
 
         if about_text[1] == "string":
             self.set_about_text(about_text[0])
