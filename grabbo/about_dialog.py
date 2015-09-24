@@ -149,5 +149,5 @@ class AboutDialog(grabbo.Window):
 if __name__ == '__main__':
     ad = AboutDialog()
     ad.preshow()
-    ad.show()
+    ad.show_all()
     Gtk.main()
