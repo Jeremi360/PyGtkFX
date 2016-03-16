@@ -1,43 +1,25 @@
-import grabbo, webbrowser
+import os, sys, webbrowser
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
+import grabbo, markup
 from gi.repository import Gtk
-
 
 class AboutDialog(grabbo.Window):
     def __init__(self,
-                 about_text = ["Some text about my awesome App", "string"],
-                 report_page = "https://github.com/jeremi360/Grabbo/issues",
-                 home_page = "https://github.com/jeremi360/Grabbo"):
+                 app_name = "App Name",
+                 short_des = "Short App Descrpition",
+                 home_page = "http://app_home_page.com",
+                 report_page = "http://app_home_page.com/raport_bugs"):
 
         grabbo.Window.__init__(self)
-
-        if about_text[1] == "string":
-            self.set_about_text(about_text[0])
-            
-        elif about_text[1] == ("path" or "file"):
-            self.set_about_text_file(about_text[0])
-
-        self.set_repot_page(report_page)
-        self.set_home_page(home_page)
 
         self._HeaderBox = Gtk.HBox()
 
         self._HomeButton = grabbo.HomeButton("Web Page")
         self._HomeButton.connect("clicked", self.on_home)
-        self._HeaderBox.add(self._HomeButton)
-
-        self._Image2 = Gtk.Image().new_from_icon_name("document-properties", 4)
-        self._LicenseButton = grabbo.StandardButton("License", self._Image2)
-        self._HeaderBox.add(self._LicenseButton)
-
-        self._AboutButton = grabbo.AboutButton()
-        self._AboutButton.connect("clicked", self.on_about)
-        self._HeaderBox.add(self._AboutButton)
-        self._AboutButton.hide()
 
         self._Image3 = Gtk.Image().new_from_icon_name("dialog-warning", 4)
-        self._repotButton = grabbo.StandardButton("repot", self._Image3)
-        self._repotButton.connect("clicked", self.on_repot)
-        self._HeaderBox.add(self._repotButton)
+        self._RapportButton = grabbo.StandardButton("rapport", self._Image3)
+        self._RapportButton.connect("clicked", self.on_rapport)
 
         self._HeaderBar = Gtk.HeaderBar()
         self._HeaderBar.set_custom_title(self._HeaderBox)
@@ -52,10 +34,9 @@ class AboutDialog(grabbo.Window):
         InfoList.append(self._Logo)
 
         self._Name = Gtk.Label()
-        self._Name.set_markup("<b>AppName</b>")
         InfoList.append(self._Name)
 
-        self._ShortDescrpition = Gtk.Label("Awesome App")
+        self._ShortDescrpition = Gtk.Label()
         InfoList.append(self._ShortDescrpition)
 
         self._Version = Gtk.Label("0.3")
@@ -64,75 +45,113 @@ class AboutDialog(grabbo.Window):
         for w in InfoList:
             self._InfoBox.pack_start(w, False, False, 1)
 
-        self._TextView = Gtk.TextView()
-        self._scrolledwindow1 = Gtk.ScrolledWindow()
-        self._scrolledwindow1.add(self._TextView)
-        self._InfoBox.pack_start(self._scrolledwindow1, True, True, 1)
+        self._TextAbout = Gtk.Label()
+        sw1 = Gtk.ScrolledWindow()
+        sw1.add(self._TextAbout)
+
+        self._TextLicense = Gtk.Label()
+        sw2 = Gtk.ScrolledWindow()
+        sw2.add(self._TextLicense)
+
+        left = Gtk.Justification.LEFT
+        center = Gtk.Justification.CENTER
+        self._TextAbout.set_justify(left)
+        self._TextLicense.set_justify(center)
+
+        self._TextStack = Gtk.Stack()
+        self._TextStack.add_titled(sw1, "about", "About")
+        self._TextStack.add_titled(sw2, "license", "License")
+
+        self._TextSwitcher = Gtk.StackSwitcher()
+        self._TextSwitcher.set_stack(self._TextStack)
+
+        self._HeaderBox.add(self._HomeButton)
+        self._HeaderBox.add(self._TextSwitcher)
+        self._HeaderBox.add(self._RapportButton)
+
+        self._InfoBox.pack_start(self._TextStack, True, True, 1)
 
         self.add(self._InfoBox)
 
-    def preshow(self):
-        self.set_custom_text(self._abouttext)
-        self._InfoBox.show()
-        self._HeaderBar.show()
-        self._AboutButton.hide()
+        self.set_appname(app_name)
+        self.set_shortdescrpition(short_des)
+        self.set_rapport_page(report_page)
+        self.set_home_page(home_page)
+
+        self._license_file = ""
+        self._about_file = ""
 
     def set_title(self, title):
         self._HeaderBar.set_title(title)
 
-    def set_license_text_file(self, textfile):
-        self._license_text = open(textfile, 'r').read()
-        self._LicenseButton.connect("clicked", self.on_license_text)
-
-    def set_license_text(self, text):
-        self._license_text = text
-        self._LicenseButton.connect("clicked", self.on_license_text)
-
-    def on_license_text(self, button):
-        self._LicenseButton.hide()
-        self._AboutButton.show()
-        self.set_custom_text(self._license_text)
-
-    def set_license_link(self, link):
-        self._license_link = link
-        self._LicenseButton.connect("clicked", self.on_license_link)
-
-    def on_license_link(self, button):
-        self.open_link(self._license_link)
-
     def set_version(self, version):
         self._Version.set_label(version)
 
+    def set_license_text(self, text):
+        buff = self._TextLicense
+        buff.set_text(text)
+
+    def set_license_text_file(self, text_file_path):
+        self.set_license_text(open(text_file_path, 'r').read())
+        self._license_file = text_file_path
+
+    def set_license_file(self, textfile):
+        buff = self._TextLicense
+        self._license_file = textfile
+        m = markup.license_file(textfile)
+        buff.set_markup(m)
+
+    def set_license_keywords(self, dkws):
+        lic = self._license_file
+        m = markup.license_file(lic).splitlines()
+
+        nl = []
+
+        for s in m:
+            for i in dkws.items():
+                s = s.replace("{" + i[0] + "}", i[1])
+
+            nl.append(s)
+
+        nl = os.linesep.join(nl)
+
+        buff = self._TextLicense
+        buff.set_markup(nl)
+
     def set_about_text(self, text):
-        self._abouttext = text
+        buff = self._TextAbout
+        buff.set_text(text)
 
-    def set_about_text_file(self, textfile):
-        self._abouttext = open(textfile, 'r').read()
+    def set_about_text_file(self, text_file_path):
+        self.set_about_text(open(text_file_path, 'r').read())
+        self._about_file = text_file_path
 
-    def set_custom_text(self, text):
-        self._TextView.get_buffer().set_text(text)
-        self._TextView.show()
+    def set_about_markdown_file(self, markdown_file_path):
+        m = markup.markdown_file(markdown_file_path)
+        self._TextAbout.set_markup(m)
+        self._about_file = markdown_file_path
 
     def set_home_page(self, url):
         self._home_page = url
 
-    def set_repot_page(self, url):
-        self._repot_page = url
+    def set_rapport_page(self, url):
+        if url == None:
+            self._RapportButton.hide()
 
-    def on_about(self, button):
-        self._LicenseButton.show()
-        self._AboutButton.hide()
-        self.set_custom_text(self._abouttext)
-
-    def on_close(self, button):
-        self.close()
+        else:
+            self._RapportButton.show()
+            self._rapport_page = url
 
     def set_appname(self, name):
         markup = "<b>" + name + "</b>"
-        self._Name.set_label(markup)
+        self._Name.set_markup(markup)
 
     def set_shortdescrpition(self, text):
-        self._ShortDescrpition.set_label(text)
+        markup = "<i>" + text + "</i>"
+        self._ShortDescrpition.set_markup(markup)
+
+    def get_shortdescrpition(self):
+        return self._ShortDescrpition.get_text()
 
     def get_logo(self):
         return self._Logo
@@ -140,14 +159,36 @@ class AboutDialog(grabbo.Window):
     def open_link(self, url):
         webbrowser.open_new_tab(url)
 
-    def on_repot(self, button):
-        self.open_link(self._repot_page)
+    def on_rapport(self, button):
+        self.open_link(self._rapport_page)
 
     def on_home(self, button):
         self.open_link(self._home_page)
 
 if __name__ == '__main__':
-    ad = AboutDialog()
-    ad.preshow()
+    #example of use
+    ad = AboutDialog(
+                    app_name = "Grabbo About Dialog",
+                    short_des = "Python Gtk 3 Widget Framework",
+                    report_page = "https://github.com/jeremi360/Grabbo/issues",
+                    home_page = "https://github.com/jeremi360/Grabbo"
+                    )
+
+    ad.set_version("0.3")
+
+    license_path = os.path.join(os.path.dirname(__file__), '..', "LICENSE")
+    about_path = os.path.join(os.path.dirname(__file__), '..', "README.md")
+
+    ad.set_license_file(license_path)
+    oneline = "one line to give the program's name and a brief idea of what it does."
+    ad.set_license_keywords({
+                            "project":"Grabbo", "year":"2016",
+                            "fullname":"Jeremi Biernacki",
+                            "name of author":"Jeremi Biernacki",
+                            oneline:ad.get_shortdescrpition()
+                            })
+
+    ad.set_about_markdown_file(about_path)
+
     ad.show_all() #show() - don't works :(
     Gtk.main()
