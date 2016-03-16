@@ -77,14 +77,36 @@ def _add_to_tag(string, tag, attribute):
 
     return string
 
+def _img_convert(string):
+    imgstart = '<img src="'
+    newimgstart = '<a href="'
+    string = string.replace(imgstart, newimgstart)
+
+    allend = '" />'
+    newallend = '</a>'
+    string = string.replace(allend, newallend)
+
+    altstart = '" alt="'
+    newaltstart = '">'
+    string = string.replace(altstart, newaltstart)
+
+    return string
+
 def _md_convert(string):
     string = _replace_tag(string, "h1", "big")
     string = _replace_tag(string, "em", "i")
+
+    #code
     string = _list_replace_tag(string, "code", ["tt", "span"])
     string = _add_to_tag(string, "span", "background = 'gray'")
-    string = _smart_tag_replace(string, "p", os.linesep)
+
+    #string = _smart_tag_replace(string, "p", os.linesep)
+    string = _remove_tag(string, "p")
+
     string = _smart_tag_replace(string, "li", _tab + "<b>- </b>")
     string = _remove_tag(string, "ul")
+    string = _replace_tag(string, "strong", "big")
+    string = _img_convert(string)#converts imgs to links to this imgs
 
     return string
 

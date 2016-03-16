@@ -1,6 +1,7 @@
 import os, sys, webbrowser
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
-import grabbo, markup
+import grabbo
+from grabbo import markup
 from gi.repository import Gtk
 
 class AboutDialog(grabbo.Window):
@@ -80,6 +81,25 @@ class AboutDialog(grabbo.Window):
 
         self._license_file = ""
         self._about_file = ""
+
+    def _new_text(self, name):
+        newtext = Gtk.Label()
+        sw = Gtk.ScrolledWindow()
+        sw.add(newtext)
+        self._TextStack.add_titled(sw, name.lower(), name.capitalize())
+        return newtext
+
+    def add_text(self, text, name):
+        t = self._new_text(name)
+        t.set_text(text)
+
+    def add_text_file(self, text_file_path, name):
+        self.add_text(open(text_file_path, 'r').read())
+
+    def add_markdown_file(self, markdown_file_path, name):
+        m = markup.markdown_file(markdown_file_path)
+        t = self._new_text(name)
+        t.set_markup(m)
 
     def set_title(self, title):
         self._HeaderBar.set_title(title)
