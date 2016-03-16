@@ -18,8 +18,8 @@ class AboutDialog(grabbo.Window):
         self._HomeButton.connect("clicked", self.on_home)
 
         self._Image3 = Gtk.Image().new_from_icon_name("dialog-warning", 4)
-        self._RapportButton = grabbo.StandardButton("rapport", self._Image3)
-        self._RapportButton.connect("clicked", self.on_rapport)
+        self._ReportButton = grabbo.StandardButton("report", self._Image3)
+        self._ReportButton.connect("clicked", self.on_report)
 
         self._HeaderBar = Gtk.HeaderBar()
         self._HeaderBar.set_custom_title(self._HeaderBox)
@@ -67,7 +67,7 @@ class AboutDialog(grabbo.Window):
 
         self._HeaderBox.add(self._HomeButton)
         self._HeaderBox.add(self._TextSwitcher)
-        self._HeaderBox.add(self._RapportButton)
+        self._HeaderBox.add(self._ReportButton)
 
         self._InfoBox.pack_start(self._TextStack, True, True, 1)
 
@@ -75,7 +75,7 @@ class AboutDialog(grabbo.Window):
 
         self.set_appname(app_name)
         self.set_shortdescrpition(short_des)
-        self.set_rapport_page(report_page)
+        self.set_report_page(report_page)
         self.set_home_page(home_page)
 
         self._license_file = ""
@@ -134,13 +134,13 @@ class AboutDialog(grabbo.Window):
     def set_home_page(self, url):
         self._home_page = url
 
-    def set_rapport_page(self, url):
+    def set_report_page(self, url):
         if url == None:
-            self._RapportButton.hide()
+            self._ReportButton.hide()
 
         else:
-            self._RapportButton.show()
-            self._rapport_page = url
+            self._ReportButton.show()
+            self._report_page = url
 
     def set_appname(self, name):
         markup = "<b>" + name + "</b>"
@@ -159,8 +159,8 @@ class AboutDialog(grabbo.Window):
     def open_link(self, url):
         webbrowser.open_new_tab(url)
 
-    def on_rapport(self, button):
-        self.open_link(self._rapport_page)
+    def on_report(self, button):
+        self.open_link(self._report_page)
 
     def on_home(self, button):
         self.open_link(self._home_page)
