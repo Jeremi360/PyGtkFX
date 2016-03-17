@@ -194,7 +194,7 @@ if __name__ == '__main__':
                     home_page = "https://github.com/jeremi360/Grabbo"
                     )
 
-    ad.set_version("0.3")
+    ad.set_version("0.4")
 
     license_path = os.path.join(os.path.dirname(__file__), '..', "LICENSE")
     about_path = os.path.join(os.path.dirname(__file__), '..', "README.md")

@@ -16,6 +16,9 @@ If you want use this your python apps will need:
 
 Done:
 
+* IntEntry - Entry specially for int
+* BigLabelButton - Button with big label
+
 * AboutDialog:
   * partial support for markdown files as about files
   * partial markdown to markup converter
