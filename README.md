@@ -17,9 +17,12 @@ If you want use this your python apps will need:
 Done:
 
 * IntEntry - Entry specially for int
+  ![IntEntry screen shot][https://raw.githubusercontent.com/jeremi360/Grabbo/master/shots/IntEntry.png]
+
 * BigLabelButton - Button with big label
 
 * AboutDialog:
+  ![AboutDialog screen shot][https://raw.githubusercontent.com/jeremi360/Grabbo/master/shots/AboutDialog.png]
   * partial support for markdown files as about files
   * partial markdown to markup converter
   * smart license file loader
