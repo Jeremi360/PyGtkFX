@@ -1,5 +1,5 @@
 from gi.repository import Gtk
-from grabbo import Builder
+from pygtkfx import Builder
 
 class Window(Builder, Gtk.Window):
     def __init__(self, content = Gtk.Box()):

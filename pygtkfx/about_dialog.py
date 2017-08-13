@@ -1,25 +1,25 @@
 import os, sys, webbrowser
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
-import grabbo
-from grabbo import markup
+import pygtkfx
+from pygtkfx import markup
 from gi.repository import Gtk
 
-class AboutDialog(grabbo.Window):
+class AboutDialog(pygtkfx.Window):
     def __init__(self,
                  app_name = "App Name",
                  short_des = "Short App Descrpition",
                  home_page = "http://app_home_page.com",
                  report_page = "http://app_home_page.com/raport_bugs"):
 
-        grabbo.Window.__init__(self)
+        pygtkfx.Window.__init__(self)
 
         self._HeaderBox = Gtk.HBox()
 
-        self._HomeButton = grabbo.HomeButton("Web Page")
+        self._HomeButton = pygtkfx.HomeButton("Web Page")
         self._HomeButton.connect("clicked", self.on_home)
 
         self._Image3 = Gtk.Image().new_from_icon_name("dialog-warning", 4)
-        self._ReportButton = grabbo.StandardButton("report", self._Image3)
+        self._ReportButton = pygtkfx.StandardButton("report", self._Image3)
         self._ReportButton.connect("clicked", self.on_report)
 
         self._HeaderBar = Gtk.HeaderBar()
@@ -188,10 +188,10 @@ class AboutDialog(grabbo.Window):
 if __name__ == '__main__':
     #example of use
     ad = AboutDialog(
-                    app_name = "Grabbo About Dialog",
+                    app_name = "pygtkfx About Dialog",
                     short_des = "Python Gtk 3 Widget Framework",
-                    report_page = "https://github.com/jeremi360/Grabbo/issues",
-                    home_page = "https://github.com/jeremi360/Grabbo"
+                    report_page = "https://github.com/jeremi360/pygtkfx/issues",
+                    home_page = "https://github.com/jeremi360/pygtkfx"
                     )
 
     ad.set_version("0.4")
@@ -202,7 +202,7 @@ if __name__ == '__main__':
     ad.set_license_file(license_path)
     oneline = "one line to give the program's name and a brief idea of what it does."
     ad.set_license_keywords({
-                            "project":"Grabbo", "year":"2016",
+                            "project":"pygtkfx", "year":"2016",
                             "fullname":"Jeremi Biernacki",
                             "name of author":"Jeremi Biernacki",
                             oneline:ad.get_shortdescrpition()

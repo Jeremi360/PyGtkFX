@@ -5,7 +5,7 @@ from gi.repository import Gtk
 
 import os, sys
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
-import grabbo
+import pygtkfx
 
 class IntEntry(Gtk.VButtonBox):
     def __init__(self, mini = 0, maxi = None, step = 1):
@@ -22,7 +22,7 @@ class IntEntry(Gtk.VButtonBox):
         self.maxi = maxi
         self.step = step
 
-        self._AddButton = grabbo.BigLabelButton("+", size)
+        self._AddButton = pygtkfx.BigLabelButton("+", size)
         self.pack_start(self._AddButton, expand, fill, padding)
 
         self._Ent = Gtk.Entry()
@@ -31,7 +31,7 @@ class IntEntry(Gtk.VButtonBox):
         self.set_int(mini)
         self.pack_start(self._Ent, expand, fill, padding)
 
-        self._SubButton = grabbo.BigLabelButton("-", size)
+        self._SubButton = pygtkfx.BigLabelButton("-", size)
 
         self.pack_end(self._SubButton, expand, fill, padding)
 
@@ -86,7 +86,7 @@ class IntEntry(Gtk.VButtonBox):
             self.add_int(-self.step)
 
 if __name__ == '__main__':
-    win = grabbo.Window()
+    win = pygtkfx.Window()
     test = IntEntry()
     test.set_max_length(2)
     win.add(test)
