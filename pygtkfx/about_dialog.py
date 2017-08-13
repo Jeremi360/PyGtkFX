@@ -40,7 +40,7 @@ class AboutDialog(pygtkfx.Window):
         self._ShortDescrpition = Gtk.Label()
         InfoList.append(self._ShortDescrpition)
 
-        self._Version = Gtk.Label("0.3")
+        self._Version = Gtk.Label("0.5.0")
         InfoList.append(self._Version)
 
         for w in InfoList:
@@ -194,7 +194,7 @@ if __name__ == '__main__':
                     home_page = "https://github.com/jeremi360/pygtkfx"
                     )
 
-    ad.set_version("0.4")
+    ad.set_version("0.5.0")
 
     license_path = os.path.join(os.path.dirname(__file__), '..', "LICENSE")
     about_path = os.path.join(os.path.dirname(__file__), '..', "README.md")
@@ -202,7 +202,7 @@ if __name__ == '__main__':
     ad.set_license_file(license_path)
     oneline = "one line to give the program's name and a brief idea of what it does."
     ad.set_license_keywords({
-                            "project":"pygtkfx", "year":"2016",
+                            "project":"pygtkfx", "year":"2017",
                             "fullname":"Jeremi Biernacki",
                             "name of author":"Jeremi Biernacki",
                             oneline:ad.get_shortdescrpition()
@@ -210,5 +210,5 @@ if __name__ == '__main__':
 
     ad.set_about_markdown_file(about_path)
 
-    ad.show_all() #show() - don't works :(
+    ad.show_all() #show() - don't work :(
     Gtk.main()
